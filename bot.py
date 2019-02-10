@@ -21,7 +21,6 @@ async def hello():
     await bot.say("world !")
     
 @bot.command()
-@commands.check(is_owner)
 async def reboot():
     await bot.say("lol")
 
