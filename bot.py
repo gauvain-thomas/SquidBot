@@ -4,7 +4,7 @@ import subprocess
 import os
 
 filename = os.path.join('~', '../token.txt')
-file = open("../~/token.txt","r")
+file = open(filename,"r")
 TOKEN = file.read()
 
 description = '''SquidBot in Python'''
