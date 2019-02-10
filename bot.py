@@ -38,7 +38,7 @@ async def reboot(ctx):
         subprocess.call("./start.sh", shell=True)
         sys.exit()
     else:
-        await bot.say("Acess denied")
+        await bot.say("Access denied")
         
 
 bot.run(TOKEN)
