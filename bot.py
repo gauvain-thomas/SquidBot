@@ -3,8 +3,7 @@ from discord.ext import commands
 import subprocess
 import os
 
-filename = os.path.join('~', '../token.txt')
-file = open(filename,"r")
+file=open(os.path.join(os.path.split(os.path.dirname('token.txt'))[0], 'path', 'to', 'file')
 TOKEN = file.read()
 
 description = '''SquidBot in Python'''
