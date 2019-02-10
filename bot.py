@@ -27,6 +27,8 @@ async def is_owner(ctx):
 @commands.check(is_owner)
 async def reboot():
     """Reboot bot"""
+    await bot.say("Redémarrage en cours")
+    print("Redémarrage en cours")
     subprocess.call("./start.sh", shell=True)
 
 bot.run(TOKEN)
