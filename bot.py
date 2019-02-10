@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import subprocess
 
-TOKEN = 'NTM2OTY3NzEyMTExNTkxNDMz.Dzykmw.J1nBswy-HqDTBu9yafoOUdAo_MU'
+TOKEN = 'Insert Token Here'
 
 description = '''SquidBot in Python'''
 bot = commands.Bot(command_prefix='.', description=description)
