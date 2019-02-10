@@ -22,8 +22,8 @@ async def hello():
     await bot.say("world !")
     
     
-@bot.command()
-async def reboot(pass_context=True):
+@bot.command(pass_context=True)
+async def reboot(ctx):
     """Reboot bot"""
     if ctx.author.id == '263670024391229440':
         await bot.say("Redémarrage en cours")
