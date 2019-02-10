@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import subprocess
 
 TOKEN = 'NTM2OTY3NzEyMTExNTkxNDMz.Dzykmw.J1nBswy-HqDTBu9yafoOUdAo_MU'
 
@@ -18,6 +19,10 @@ async def on_ready():
 async def hello():
     """Says world"""
     await bot.say("world !")
-
+    
+@bot.command()
+@commands.check(is_owner)
+async def reboot():
+    await.bot.say("lol")
 
 bot.run(TOKEN)
