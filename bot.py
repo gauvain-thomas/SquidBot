@@ -22,6 +22,6 @@ async def hello():
     
 @bot.command()
 async def reboot():
-    subprocess.call("./start.sh")
+    subprocess.call("./start.sh", shell=True)
 
 bot.run(TOKEN)
