@@ -9,9 +9,10 @@ bot = commands.Bot(command_prefix='.', description=description)
 
 @bot.event
 async def on_ready():
+    print('------')
     print('Logged in as')
     print(bot.user.name)
-    print(bot.user.id)
+    print("ID : " + bot.user.id)
     print('------')
 
 
@@ -24,7 +25,7 @@ async def is_owner(ctx):
     return ctx.author.id == 263670024391229440
 
 @bot.command()
-@commands.check(is_owner)
+await @commands.check(is_owner)
 async def reboot():
     """Reboot bot"""
     await bot.say("Redémarrage en cours")
