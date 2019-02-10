@@ -5,6 +5,7 @@ import os
 
 file=open('/home/squidoss/token.txt', 'r')
 TOKEN = file.read()
+print(TOKEN)
 
 description = '''SquidBot in Python'''
 bot = commands.Bot(command_prefix=':', description=description)
