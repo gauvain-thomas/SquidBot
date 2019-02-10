@@ -24,7 +24,7 @@ async def is_owner(ctx):
     return ctx.author.id == 263670024391229440
 
 @bot.command()
-@commands.check(if_owner)
+@commands.check(is_owner)
 async def reboot():
     """Reboot bot"""
     subprocess.call("./start.sh", shell=True)
