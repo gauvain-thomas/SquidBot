@@ -4,7 +4,7 @@ import subprocess
 import os
 
 file=open('/home/squidoss/token.txt', 'r')
-TOKEN = file.read()
+TOKEN = file.readline()
 print(TOKEN)
 
 description = '''SquidBot in Python'''
