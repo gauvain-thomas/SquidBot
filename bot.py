@@ -17,7 +17,7 @@ async def on_ready():
 @bot.command()
 async def hello():
     """Says world"""
-    await bot.say("world")
+    await bot.say("world !")
 
 
 bot.run(TOKEN)
