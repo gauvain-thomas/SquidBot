@@ -1,8 +1,10 @@
 import discord
 from discord.ext import commands
 import subprocess
+import os
 
-TOKEN = 'NTM2OTY3NzEyMTExNTkxNDMz.Dzykmw.J1nBswy-HqDTBu9yafoOUdAo_MU'
+file = open("~/token.txt","r")
+TOKEN = file.read()
 
 description = '''SquidBot in Python'''
 bot = commands.Bot(command_prefix=':', description=description)
