@@ -30,7 +30,7 @@ async def reboot(ctx):
         await bot.say("Reboot in process...")
         print("Reboot in process")
         subprocess.call("./start.sh", shell=True)
-        #sys.exit()
+        sys.exit()
     else:
         await bot.say("Acess denied")
         
