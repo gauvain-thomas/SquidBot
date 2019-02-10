@@ -5,7 +5,7 @@ import subprocess
 TOKEN = 'NTM2OTY3NzEyMTExNTkxNDMz.Dzykmw.J1nBswy-HqDTBu9yafoOUdAo_MU'
 
 description = '''SquidBot in Python'''
-bot = commands.Bot(command_prefix='.', description=description)
+bot = commands.Bot(command_prefix='squid', description=description)
 
 @bot.event
 async def on_ready():
@@ -14,6 +14,7 @@ async def on_ready():
     print(bot.user.name)
     print("ID : " + bot.user.id)
     print('------')
+    await bot.change_presence(game=discord.Game(name='being a bot'))
 
 
 @bot.command()
