@@ -22,12 +22,8 @@ async def on_ready():
     print('------')
     await bot.change_presence(game=discord.Game(name='being a bot'))
 
-
-@bot.command()
-async def hello():
-    """Says world"""
-    await bot.say("world !")
     
+#Commands
     
 @bot.command(pass_context=True)
 async def reboot(ctx):
@@ -40,5 +36,14 @@ async def reboot(ctx):
     else:
         await bot.say("Access denied")
         
+@bot.command()
+async def hello():
+    """Says world"""
+    await bot.say("world !")
+    
+@bot.command()
+async def github():
+    """Give github's link"""
+    await bot.say("https://github.com/Squidoss/SquidBot")
 
 bot.run(TOKEN)
