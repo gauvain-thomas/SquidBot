@@ -18,7 +18,7 @@ async def on_ready():
     print('Logged in as')
     print(bot.user.name)
     print("ID : " + bot.user.id)
-    print('Token : " + TOKEN)
+    print("Token : " + TOKEN)
     print('------')
     await bot.change_presence(game=discord.Game(name='being a bot'))
 
