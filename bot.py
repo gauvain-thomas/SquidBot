@@ -23,6 +23,6 @@ async def hello():
 @bot.command()
 @commands.check(is_owner)
 async def reboot():
-    await.bot.say("lol")
+    await bot.say("lol")
 
 bot.run(TOKEN)
