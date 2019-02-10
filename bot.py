@@ -27,7 +27,7 @@ async def hello():
 async def reboot(ctx):
     """Reboot bot"""
     if ctx.message.author.id == '263670024391229440':
-        await bot.say("Redémarrage en cours")
+        await bot.say("Redemarrage en cours")
         await bot.say("{} , mon maître adoré.".format(ctx.message.author.mention))
         print("Redémarrage en cours")
         subprocess.call("./start.sh", shell=True)
