@@ -25,9 +25,12 @@ async def hello():
 @bot.command()
 async def reboot(pass_context=True):
     """Reboot bot"""
-    if ctx.authot.id == '263670024391229440':
+    if ctx.author.id == '263670024391229440':
         await bot.say("Redémarrage en cours")
         print("Redémarrage en cours")
         subprocess.call("./start.sh", shell=True)
+    else:
+        await bot.say("Vous n'avez pas les droits")
+        
 
 bot.run(TOKEN)
