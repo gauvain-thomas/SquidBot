@@ -21,15 +21,13 @@ async def hello():
     """Says world"""
     await bot.say("world !")
     
-async def is_owner(ctx):
-    return ctx.author.id == 263670024391229440
-
+    
 @bot.command()
-@commands.check(is_owner)
-async def reboot():
+async def reboot(pass_context=True):
     """Reboot bot"""
-    await bot.say("Redémarrage en cours")
-    print("Redémarrage en cours")
-    subprocess.call("./start.sh", shell=True)
+    if ctx.authot.id == '263670024391229440':
+        await bot.say("Redémarrage en cours")
+        print("Redémarrage en cours")
+        subprocess.call("./start.sh", shell=True)
 
 bot.run(TOKEN)
