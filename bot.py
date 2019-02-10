@@ -31,7 +31,7 @@ async def reboot(ctx):
         await bot.say("{} , mon maître adoré.".format(ctx.message.author.mention))
         print("Redémarrage en cours")
         subprocess.call("./start.sh", shell=True)
-        sys.exit()
+        #sys.exit()
     else:
         await bot.say("Vous n'avez pas les droits")
         
