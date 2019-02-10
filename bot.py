@@ -27,13 +27,13 @@ async def hello():
 async def reboot(ctx):
     """Reboot bot"""
     if ctx.message.author.id == '263670024391229440':
-        await bot.say("Redemarrage en cours")
+        await bot.say("Reboot in process...")
         await bot.say("{} , mon maitre adore.".format(ctx.message.author.mention))
-        print("Redemarrage en cours")
+        print("Reboot in process")
         subprocess.call("./start.sh", shell=True)
         #sys.exit()
     else:
-        await bot.say("Vous n'avez pas les droits")
+        await bot.say("Acess denied")
         
 
 bot.run(TOKEN)
