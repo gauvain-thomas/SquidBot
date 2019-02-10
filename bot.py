@@ -3,7 +3,7 @@ from discord.ext import commands
 import subprocess
 import os
 
-filename = os.path.join(fileDir, '../token.txt')
+filename = os.path.join('~', '../token.txt')
 file = open("../~/token.txt","r")
 TOKEN = file.read()
 
