@@ -35,7 +35,17 @@ async def reboot(ctx):
         sys.exit()
     else:
         await bot.say("Access denied")
-        
+     
+@bot.command(pass_context=True)
+async def stop(ctx):
+    """Reboot bot"""
+    if ctx.message.author.id == '263670024391229440':
+        await bot.say("Turning off...")
+        print("Turning off...")
+        sys.exit()
+    else:
+        await bot.say("Access denied")
+     
 @bot.command()
 async def hello():
     """Says world"""
