@@ -39,7 +39,7 @@ async def reboot(ctx):
      
 @bot.command(pass_context=True)
 async def stop(ctx):
-    """Reboot bot"""
+    """Turn bot off"""
     if ctx.message.author.id == '263670024391229440':
         await bot.say("Turning off...")
         print("Turning off...")
