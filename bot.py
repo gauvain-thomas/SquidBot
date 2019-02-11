@@ -10,7 +10,8 @@ file=open('/home/squidoss/token.txt', 'r')
 TOKEN = file.read().rstrip("\n")
 
 description = '''SquidBot in Python'''
-bot = commands.Bot(command_prefix=':', description=description)
+bot_prefix = (".",";",":","!")
+bot = commands.Bot(command_prefix=bot_prefix, description=description)
 
 @bot.event
 async def on_ready():
@@ -55,5 +56,17 @@ async def hello():
 async def github():
     """Give github's link"""
     await bot.say("https://github.com/Squidoss/SquidBot")
+    
+@bot.command
+async def servers():
+    await client.wait_until_ready()
+    while not client.is_closed:
+        await bot.say("Current servers:")
+        for server in client.servers:
+            await bot.say(server.name)
+        await asyncio.sleep(600)
+
+
+client.loop.create_task(list_servers())
 
 bot.run(TOKEN)
