@@ -68,6 +68,6 @@ async def servers():
         await asyncio.sleep(600)
 
 
-bot.loop.create_task(list_servers())
+bot.loop.create_task(servers())
 
 bot.run(TOKEN)
