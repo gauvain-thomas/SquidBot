@@ -28,6 +28,10 @@ async def on_ready():
         print(server.name)
     print('------')
     await bot.change_presence(game=discord.Game(name='humans...', type=3))
+    
+@bot.event
+async def on_member_join(member):
+    await bot.send_message(member.server, "Hello")
 
     
 #Commands
