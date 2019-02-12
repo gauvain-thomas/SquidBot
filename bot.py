@@ -6,7 +6,6 @@ from discord.ext import commands
 import subprocess
 import os
 import sys
-impoty asyncio
 
 file=open('/home/squidoss/token.txt', 'r')
 TOKEN = file.read().rstrip("\n")
@@ -59,16 +58,5 @@ async def github():
     """Give github's link"""
     await bot.say("https://github.com/Squidoss/SquidBot")
     
-@bot.command
-async def servers():
-    await bot.wait_until_ready()
-    while not bot.is_closed:
-        await bot.say("Current servers:")
-        for server in bot.servers:
-            await bot.say(server.name)
-        await asyncio.sleep(600)
-
-
-bot.loop.create_task(servers())
 
 bot.run(TOKEN)
