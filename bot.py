@@ -7,7 +7,7 @@ import subprocess
 import os
 import sys
 
-file=open('home/pi/Bot/token.txt', 'r')
+file=open('/home/pi/Bot/token.txt', 'r')
 TOKEN = file.read().rstrip("\n")
 
 description = '''SquidBot in Python'''
