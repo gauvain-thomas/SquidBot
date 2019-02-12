@@ -60,10 +60,10 @@ async def github():
     
 @bot.command
 async def servers():
-    await client.wait_until_ready()
-    while not client.is_closed:
+    await bot.wait_until_ready()
+    while not bot.is_closed:
         await bot.say("Current servers:")
-        for server in client.servers:
+        for server in bot.servers:
             await bot.say(server.name)
         await asyncio.sleep(600)
 
