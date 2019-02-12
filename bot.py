@@ -6,7 +6,7 @@ from discord.ext import commands
 import subprocess
 import os
 import sys
-impoty async
+impoty asyncio
 
 file=open('/home/squidoss/token.txt', 'r')
 TOKEN = file.read().rstrip("\n")
