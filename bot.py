@@ -5,6 +5,7 @@ import discord
 from discord.ext import commands
 import subprocess
 import os
+import sys
 
 file=open('/home/squidoss/token.txt', 'r')
 TOKEN = file.read().rstrip("\n")
