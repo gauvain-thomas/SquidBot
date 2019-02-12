@@ -13,6 +13,7 @@ TOKEN = file.read().rstrip("\n")
 description = '''SquidBot in Python'''
 bot_prefix = (".",";",":","!")
 bot = commands.Bot(command_prefix=bot_prefix, description=description)
+bot.remove_command('help')
 
 @bot.event
 async def on_ready():
@@ -22,8 +23,6 @@ async def on_ready():
     print("ID : " + bot.user.id)
     print("Token : " + TOKEN)
     print('------')
-    
-    
     print('Servers connected to:')
     for server in bot.servers:
         print(server.name)
@@ -31,6 +30,14 @@ async def on_ready():
 
     
 #Commands
+
+@bot.command()
+async def help():
+    help=discord.Embed(title="Help", description="List of all commands", color=0x00ff00)
+    help.set_author(name="SquidBot")
+    help.add_field(name=.help, value=Shows this message, inline=False)
+    help.set_footer(text="SquidBot, the best half-squid half-robot bot.")
+    await bot.say(embed=help)
     
 @bot.command(pass_context=True)
 async def reboot(ctx):
