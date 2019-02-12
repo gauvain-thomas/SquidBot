@@ -22,6 +22,11 @@ async def on_ready():
     print("ID : " + bot.user.id)
     print("Token : " + TOKEN)
     print('------')
+    
+    
+    print('Servers connected to:')
+    for server in bot.servers:
+        print(server.name)
     await bot.change_presence(game=discord.Game(name='humans...', type=3))
 
     
