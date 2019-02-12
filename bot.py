@@ -35,7 +35,7 @@ async def on_ready():
 async def help():
     help=discord.Embed(title="Help", description="List of all commands", color=0x00ff00)
     help.set_author(name="SquidBot")
-    help.add_field(name=.help, value=Shows this message, inline=False)
+    help.add_field(name=".help", value="Shows this message", inline=False)
     help.set_footer(text="SquidBot, the best half-squid half-robot bot.")
     await bot.say(embed=help)
     
