@@ -92,6 +92,8 @@ async def info(ctx):
     
     for role in server.roles:
         roles_list += role.name
+        roles_list += ' ID : '
+        roles_list += role.id
         roles_list += '\n'
     
     await bot.say("```" + roles_list + "```")
