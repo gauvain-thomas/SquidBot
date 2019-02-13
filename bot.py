@@ -78,8 +78,8 @@ async def github():
 @bot.command(pass_context=True)
 async def roles(ctx):
     """Give the list of roles with their IDs"""
-    role = get(message.server.roles)
-    print(role)
+    roles = message.server.roles
+    print(roles)
     
 
 bot.run(TOKEN)
