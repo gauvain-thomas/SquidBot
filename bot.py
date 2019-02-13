@@ -118,7 +118,7 @@ async def info(ctx):
     
 @bot.command(pass_context=True)
 async def poll(ctx, *args):
-    await bot.say(args)
+    await bot.say(args[2])
     
     
     
