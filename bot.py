@@ -88,7 +88,8 @@ async def info(ctx):
           "server id: {}"
           "server owner: {}"
           .format(server_name, server_id, server_owner))
-    await bot.say(server_roles)
+    for roles in server.roles:
+        await bot.say(role.name)
     
 
 bot.run(TOKEN)
