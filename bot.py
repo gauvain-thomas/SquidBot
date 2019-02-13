@@ -44,9 +44,8 @@ async def on_member_leave(member):
 async def on_message(message):
     await bot.process_commands(message)
     for mention in message.mentions:
-        print(mention.id)
         if mention.id == bot.user.id:
-            await bot.send_message(message.channel, "ok")
+            await bot.send_message(message.channel, "In order to get any help, type .help. For further informations, ask @Squidoss or any other programmer")
 
     
 #Commands
