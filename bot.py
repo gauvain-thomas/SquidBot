@@ -119,7 +119,7 @@ async def info(ctx):
 async def join(ctx):
     channel = ctx.message.author.voice.voice_channel
     await bot.join_voice_channel(channel)
-    await bot.say(":microphone: Joined "{}" voice channel :microphone:".format(channel.name))
+    await bot.say(":microphone: Joined '{}' voice channel :microphone:".format(channel.name))
 
 @bot.command(pass_context=True)
 async def leave(ctx):
@@ -127,7 +127,7 @@ async def leave(ctx):
     server = ctx.message.server
     voice_client = bot.voice_client_in(server)
     await voice_client.disconnect()
-    await bot.say(":microphone: Left "{}" voice channel :microphone:".format(channel.name))
+    await bot.say(":microphone: Left '{}' voice channel :microphone:".format(channel.name))
     
 @bot.command(pass_context=True)
 async def play(ctx, url):
