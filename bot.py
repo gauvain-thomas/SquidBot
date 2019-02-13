@@ -89,7 +89,9 @@ async def info(ctx):
           "server owner: {}"
           .format(server_name, server_id, server_owner))
     for role in server.roles:
-        await bot.say(role.name)
+        roles_list += role.name
+    
+    await bot.say(roles_list)
     
 
 bot.run(TOKEN)
