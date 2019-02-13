@@ -133,6 +133,7 @@ async def play(ctx, url):
     player = await voice_client.create_ytdl_player(url)
     players[server.id] = player
     player.start()
+    await bot.say(":musical_note: Now playing : {} :musical_note:".format(url)
     
 @bot.command(pass_context=True)
 async def pause(ctx):
