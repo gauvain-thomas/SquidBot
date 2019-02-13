@@ -32,6 +32,10 @@ async def on_ready():
 @bot.event
 async def on_member_join(member):
     await bot.send_message(member, "Hello")
+    
+@bot.event
+async def on_member_leave(member):
+    await bot.send_message(member, "Bye")
 
     
 #Commands
