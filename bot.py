@@ -31,18 +31,22 @@ async def on_ready():
     
 @bot.event
 async def on_member_join(member):
-    await bot.send_message(member.server.default_channel, "Hello")
+    await bot.send_message(member, "Hello")
 
     
 #Commands
 
 @bot.command()
 async def help():
-    help=discord.Embed(title="Help", description="List of all commands", color=0x00ff00)
-    help.set_author(name="SquidBot")
-    help.add_field(name=".help", value="Shows this message", inline=False)
-    help.set_footer(text="SquidBot, the best half-squid half-robot bot.")
-    await bot.say(embed=help)
+    embed=discord.Embed(title="List of all commands", description="Type .help to show this message", color=0x00ff00)
+    embed.set_author(name="SquidBot")
+    embed.add_field(name= , value=, inline=False)
+    embed.add_field(name=.help, value=Returns this message, inline=False)
+    embed.add_field(name=.hello, value=Replies "world !", inline=False)
+    embed.add_field(name=.info, value=Give information and IDs about this server, inline=False)
+    embed.add_field(name=.github, value=Give the github's link of SquidBot, inline=False)
+    embed.set_footer(text="SquidBot, the best half-squid half-robot bot.")
+    await bot.say(embed=embed)
     
 @bot.command(pass_context=True)
 async def reboot(ctx):
