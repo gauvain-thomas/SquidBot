@@ -45,7 +45,7 @@ async def on_message(message):
     await bot.process_commands(message)
     for mention in message.mentions:
         if mention.id == bot.user.id:
-            await bot.send_message(message.channel, "In order to get any help, type .help. For further informations, ask @Squidoss or any other programmer")
+            await bot.send_message(message.channel, "In order to get any help, type .help. For further informations, ask @Squidoss or any other programmer.")
 
     
 #Commands
@@ -115,6 +115,10 @@ async def info(ctx):
         "Server roles : \n {} \n"
         "```"
         .format(server_name, server_id, server_owner, server_owner_id, roles_list))
+    
+@bot.command(pass_context=True)
+async def poll(ctx, *args):
+    await bot.say(args)
     
     
     
