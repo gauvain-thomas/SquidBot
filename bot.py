@@ -11,8 +11,8 @@ import youtube_dl
 file=open('../token.txt', 'r')
 TOKEN = file.read().rstrip("\n")
 
-description = '''SquidBot in Python'''
-bot_prefix = (".",";",":","!")
+description = '''SquidBot in Python, by Squidoss'''
+bot_prefix = (".")
 bot = commands.Bot(command_prefix=bot_prefix, description=description)
 bot.remove_command('help')
 
@@ -121,6 +121,8 @@ async def poll(ctx, *args):
     length = len(args)
     if length == 0:
         await bot.say("Insert arguments, type .help for further informations")
+    elif length =! 5:
+        await bot.say("Wrong arguments ! Try again.")
     elif args[0] == "create":
         poll_msg = await bot.say("**Poll :** *{} {} vs {} {}*".format(args[1], args[2], args[3], args[4]))
         await bot.add_reaction(poll_msg, args[2])
