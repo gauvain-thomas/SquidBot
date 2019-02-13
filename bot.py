@@ -75,5 +75,11 @@ async def github():
     """Give github's link"""
     await bot.say("https://github.com/Squidoss/SquidBot")
     
+@bot.command(pass_context=True)
+async def roles(ctx):
+    """Give the list of roles with their IDs"""
+    role = get(message.server.roles)
+    print(role)
+    
 
 bot.run(TOKEN)
