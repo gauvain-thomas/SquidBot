@@ -119,6 +119,7 @@ async def info(ctx):
 async def join(ctx):
     channel = ctx.message.author.voice.voice_channel
     await bot.join_voice_channel(channel)
+    await bot.say("Joined {} channel".format(channel.name))
 
 @bot.command(pass_context=True)
 async def leave(ctx):
