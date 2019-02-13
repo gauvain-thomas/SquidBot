@@ -6,6 +6,7 @@ from discord.ext import commands
 import subprocess
 import os
 import sys
+import youtube_dl
 
 file=open('../token.txt', 'r')
 TOKEN = file.read().rstrip("\n")
@@ -14,6 +15,8 @@ description = '''SquidBot in Python'''
 bot_prefix = (".",";",":","!")
 bot = commands.Bot(command_prefix=bot_prefix, description=description)
 bot.remove_command('help')
+
+players = {}
 
 @bot.event
 async def on_ready():
@@ -122,6 +125,14 @@ async def leave(ctx):
     server = ctx.message.server
     voice_client = bot.voice_client_in(server)
     await voice_client.disconnect()
+    
+@bot.command(pass_context=True)
+async def play(ctx, url):
+    server = ctx.message.server
+    voice_client = bot.voice_client_in(server)
+    player = await voice_client.create_ytdl_player(url)
+    players[server.id] = player
+    player.start()
     
 
 bot.run(TOKEN)
