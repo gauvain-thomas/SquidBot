@@ -39,6 +39,10 @@ async def on_member_join(member):
 @bot.event
 async def on_member_leave(member):
     await bot.send_message(member, "Bye")
+    
+@bot.event
+async def on_message(message):
+    await bot.send_message(message.channel, message.author.mention)
 
     
 #Commands
