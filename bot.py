@@ -84,11 +84,13 @@ async def roles(ctx):
     server_name = server.name
     server_id = server.id
     server_owner = server.owner.name
+    server_roles = server.roles
 
     print("server name: {}"
           "server id: {}"
           "server owner: {}"
           .format(server_name, server_id, server_owner))
+    print(server_roles)
     
 
 bot.run(TOKEN)
