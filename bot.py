@@ -85,7 +85,7 @@ async def info(ctx):
     server_roles = server.roles
 
     await bot.say(server_name + server_id + server_owner)
-    await.bot.say(server_roles)
+    await bot.say(server_roles)
     
 
 bot.run(TOKEN)
