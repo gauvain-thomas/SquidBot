@@ -122,9 +122,7 @@ async def poll(ctx, *args):
     if length == 0:
         await bot.say("Insert arguments, type .help for further informations")
     elif args[0] == "create":
-        await bot.say("Poll : {} {} vs {} {}".format(args[0], args[1], args[2], args[3])
-    else:
-        print("Error")
+        await bot.say("Poll : {} {} vs {} {}".format(args[0], args[1], args[2], args[3]))
 
     
     
