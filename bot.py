@@ -42,8 +42,7 @@ async def on_member_leave(member):
     
 @bot.event
 async def on_message(message):
-    if bot.mentionned_in(message):
-        await bot.send_message(message.channel, message.author.mention)
+    await bot.send_message(message.channel , message.mentions)
 
     
 #Commands
