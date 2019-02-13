@@ -91,11 +91,11 @@ async def info(ctx):
     await bot.say(
         "```"
         "Server name : {} \n"
-        "Server ID : {} \n"
-        "Server owner : {} \n \n"
+        "Server ID : <{}> \n"
+        "Server owner : {} <{}> \n \n"
         "Server roles : \n {} \n"
         "```"
-        .format(server_name, server_id, ctx.message.author.server.owner.id, roles_list))
+        .format(server_name, server_id, server_owner, ctx.message.author.server.owner.id, roles_list))
 
     
 
