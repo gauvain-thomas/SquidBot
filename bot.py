@@ -67,7 +67,7 @@ async def reboot(ctx):
         await bot.say("Access denied")
      
 @bot.command(pass_context=True)
-async def stop(ctx):
+async def shutdown(ctx):
     """Turn bot off"""
     if ctx.message.author.id == '263670024391229440':
         await bot.say("Turning off...")
