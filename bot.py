@@ -118,8 +118,9 @@ async def info(ctx):
     
 @bot.command(pass_context=True)
 async def poll(ctx, *args):
-    for arg in args:
-        await bot.say(arg)
+    length = len(args)
+    if not length == 0:
+        print(args[0])
     
     
     
