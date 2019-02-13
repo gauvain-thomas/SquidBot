@@ -133,8 +133,10 @@ async def poll(ctx, *args):
         for reaction in poll_msg.reactions:
             if reaction.emoji == args[2]:
                 vote1 += 1
+                print("vote1")
             elif reaction.emoji == args[4]:
-                vote2 +=1
+                vote2 += 1
+                print("vote2")
         if vote1 > vote2:
             await bot.say(args[2])
         elif vote2 > vote1:
