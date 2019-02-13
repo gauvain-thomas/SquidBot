@@ -126,6 +126,7 @@ async def leave(ctx):
     server = ctx.message.server
     voice_client = bot.voice_client_in(server)
     await voice_client.disconnect()
+    await bot.say("Left {} channel".format(channel.name))
     
 @bot.command(pass_context=True)
 async def play(ctx, url):
