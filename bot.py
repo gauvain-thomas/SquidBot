@@ -127,7 +127,8 @@ async def poll(ctx, *args):
         await bot.add_reaction(poll_msg, args[4])
         
         end_msg = await bot.wait_for_message(author=ctx.message.author, content=".poll stop")
-        await bot.say("ok")
+        for reaction in poll_msg.reactions:
+            await bot.say(reaction)
 
     
     
