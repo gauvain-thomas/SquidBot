@@ -130,8 +130,8 @@ async def poll(ctx, *args):
         print("stop")
         await bot.say(poll_msg)
         poll_msg_id = poll_msg.id
-        poll_msg = bot.get_message(ctx.message.channel, poll_msg_id)
-        await bot.say(poll_msg)
+        poll_msg = await bot.get_message(ctx.message.channel, poll_msg_id)
+        await bot.say(poll_msg.reactions)
 #         for reaction in poll_msg.reactions:
 #             print("emoji")
 #             await bot.say(reaction.emoji)
