@@ -40,11 +40,11 @@ async def on_member_join(member):
 async def help():
     embed=discord.Embed(title="List of all commands", description="Type .help to show this message", color=0x00ff00)
     embed.set_author(name="SquidBot")
-    embed.add_field(name='--------------------' , value='', inline=False)
-    embed.add_field(name='.help', value='Returns this message', inline=False)
-    embed.add_field(name='.hello', value='Replies "world !"', inline=False)
-    embed.add_field(name='.info', value='Give information and IDs about this server', inline=False)
-    embed.add_field(name='.github', value="Give the github's link of SquidBot", inline=False)
+    embed.add_field(name="--------------------" , value=" ", inline=False)
+    embed.add_field(name=".help", value="Returns this message", inline=False)
+    embed.add_field(name=".hello", value="Replies world !", inline=False)
+    embed.add_field(name=".info", value="Give information and IDs about this server", inline=False)
+    embed.add_field(name=".github", value="Give the github's link of SquidBot", inline=False)
     embed.set_footer(text="SquidBot, the best half-squid half-robot bot.")
     await bot.say(embed=embed)
     
