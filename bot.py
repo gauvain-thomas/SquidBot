@@ -42,7 +42,7 @@ async def on_member_leave(member):
     
 @bot.event
 async def on_message(message):
-    for mention in message.mentions.id:
+    for mention in message.mentions:
         if mention == bot.user.id:
             await bot.send_message(message.channel, "ok")
 
