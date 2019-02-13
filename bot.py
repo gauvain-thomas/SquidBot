@@ -86,11 +86,7 @@ async def info(ctx):
     roles_list = ''
     
     for role in server.roles:
-        roles_list += role.name
-        roles_list += ' : '
-        roles_list += role.id
-        roles_list += '\n'
-        
+        roles_list += "{} : <{}> \n".format(role.name, role.id)        
         
     await bot.say(
         "```"
