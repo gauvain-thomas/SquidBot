@@ -84,19 +84,27 @@ async def info(ctx):
     server_owner = server.owner.name
     server_roles = server.roles
     roles_list = ''
-
-    await bot.say("server name: {}"
-          "server id: {}"
-          "server owner: {}"
-          .format(server_name, server_id, server_owner))
     
     for role in server.roles:
         roles_list += role.name
         roles_list += ' : '
         roles_list += role.id
         roles_list += '\n'
-    
-    await bot.say("```" + roles_list + "```")
+        
+        
+    await bot.say(
+        "```"
+        "Server name : {}"
+        "\n"
+        "Server ID : {}"
+        "\n"
+        "Server owner : {}"
+        "\n"
+        "Server roles : {}"
+        "\n"
+        "```"
+        .format(server_name, server_id, server_owner, server_roles))
+
     
 
 bot.run(TOKEN)
