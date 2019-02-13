@@ -42,6 +42,7 @@ async def on_member_leave(member):
     
 @bot.event
 async def on_message(message):
+    await bot.process_commands(message)
     for mention in message.mentions:
         print(mention.id)
 
