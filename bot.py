@@ -138,16 +138,19 @@ async def play(ctx, url):
 async def pause(ctx):
     id = ctx.message.server.id
     players[id].pause()
+    await bot.say(":pause_button: Music paused :pause_button:")
     
 @bot.command(pass_context=True)
 async def resume(ctx):
     id = ctx.message.server.id
     players[id].resume()
+    await bot.say(":play_pause: Music resumed :play_pause:")
     
 @bot.command(pass_context=True)
 async def stop(ctx):
     id = ctx.message.server.id
     players[id].stop()
+    await bot.say(":stop_button: Music stopped :stop_button:")
     
 
 bot.run(TOKEN)
