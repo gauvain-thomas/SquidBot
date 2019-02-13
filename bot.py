@@ -96,7 +96,7 @@ async def info(ctx):
         "```"
         "Server name : {} \n"
         "Server ID : {} \n"
-        "Server owner : {} \n"
+        "Server owner : {} \n \n"
         "Server roles : \n {} \n"
         "```"
         .format(server_name, server_id, server_owner, roles_list))
