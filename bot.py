@@ -76,21 +76,19 @@ async def github():
     await bot.say("https://github.com/Squidoss/SquidBot")
     
 @bot.command(pass_context=True)
-async def roles(ctx):
-    """Give the list of roles with their IDs"""
-#     roles = ctx.messageserver.roles
-#     print(roles)
+async def info(ctx):
+    """Give server's infos"""
     server = ctx.message.author.server
     server_name = server.name
     server_id = server.id
     server_owner = server.owner.name
     server_roles = server.roles
 
-    print("server name: {}"
-          "server id: {}"
-          "server owner: {}"
+    await.bot.say("server name : {}"
+          "server id : {}"
+          "server owner : {}"
           .format(server_name, server_id, server_owner))
-    print(server_roles)
+    await.bot.say(server_roles)
     
 
 bot.run(TOKEN)
