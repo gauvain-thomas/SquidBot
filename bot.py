@@ -31,7 +31,7 @@ async def on_ready():
     
 @bot.event
 async def on_member_join(member):
-    await bot.send_message(member.server.default.channel, "Hello")
+    await bot.send_message(member.server.default_channel, "Hello")
 
     
 #Commands
