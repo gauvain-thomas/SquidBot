@@ -122,9 +122,12 @@ async def poll(ctx, *args):
     if length == 0:
         await bot.say("Insert arguments, type .help for further informations")
     elif args[0] == "create":
-        msg = await bot.say("Poll : {} {} vs {} {}".format(args[1], args[2], args[3], args[4]))
-        await bot.add_reaction(msg, args[2])
-        await bot.add_reaction(msg, args[4])
+        poll_msg = await bot.say("**Poll :** *{} {} vs {} {}*".format(args[1], args[2], args[3], args[4]))
+        await bot.add_reaction(poll_msg, args[2])
+        await bot.add_reaction(poll_msg, args[4])
+        
+        end_msg = await bot.wait_for_message(content=".poll stop")
+        await bot.say("ok")
 
     
     
