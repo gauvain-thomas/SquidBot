@@ -105,6 +105,17 @@ async def info(ctx):
         "Server roles : \n {} \n"
         "```"
         .format(server_name, server_id, server_owner, server_owner_id, roles_list))
+    
+    
+    
+    
+    
+#Voice commands
+
+@bot.command(pass_context=True)
+async def join(ctx):
+    channel = ctx.message.author.voice.voice_channel
+    await bot.join_voice_channel(channel)
 
     
 
