@@ -82,6 +82,7 @@ async def info(ctx):
     server_name = server.name
     server_id = server.id
     server_owner = server.owner.name
+    server_owner_id = server.owner.id
     server_roles = server.roles
     roles_list = ''
     
@@ -90,12 +91,12 @@ async def info(ctx):
         
     await bot.say(
         "```Markdown\n"
-        "Server name : "{}"\n"
+        "Server name : {}\n"
         "Server ID : <{}>\n"
         "Server owner : {} <{}>\n\n"
         "Server roles : \n {} \n"
         "```"
-        .format(server_name, server_id, server_owner, ctx.message.author.server.owner.id, roles_list))
+        .format(server_name, server_id, server_owner, server_owner_id, roles_list))
 
     
 
