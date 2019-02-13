@@ -134,5 +134,20 @@ async def play(ctx, url):
     players[server.id] = player
     player.start()
     
+@bot.command(pass_context=True)
+async def pause(ctx):
+    id = ctx.message.server.id
+    players[id].pause()
+    
+@bot.command(pass_context=True)
+async def resume(ctx):
+    id = ctx.message.server.id
+    players[id].resume()
+    
+@bot.command(pass_context=True)
+async def stop(ctx):
+    id = ctx.message.server.id
+    players[id].stop()
+    
 
 bot.run(TOKEN)
