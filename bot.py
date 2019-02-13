@@ -83,6 +83,7 @@ async def info(ctx):
     server_id = server.id
     server_owner = server.owner.name
     server_roles = server.roles
+    roles_list = ''
 
     await bot.say("server name: {}"
           "server id: {}"
