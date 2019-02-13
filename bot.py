@@ -128,22 +128,19 @@ async def poll(ctx, *args):
         
         end_msg = await bot.wait_for_message(author=ctx.message.author, content=".poll stop")
         poll_msg = await bot.get_message(ctx.message.channel, poll_msg.id)
-        vote1 = 0
-        vote2 = 0
+        choice1 = 0
+        choice2 = 0
         for reaction in poll_msg.reactions:
             if reaction.emoji == args[2]:
-                vote1 += 1
-                print("vote1")
-            elif reaction.emoji == args[4]:
-                vote2 += 1
-                print("vote2")
-        if vote1 > vote2:
+                choice1 = reaction.count
+            else:
+                choice2 = reaction.count
+        if choice1 > choice2:
             await bot.say(args[2])
-        elif vote2 > vote1:
+        elif choice2 > choice1:
             await bot.say(args[4])
         else:
             await bot.say("Égalité")
-
     
     
     
