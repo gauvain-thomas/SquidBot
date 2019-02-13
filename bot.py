@@ -89,8 +89,7 @@ async def info(ctx):
         roles_list += "{} : <{}> \n".format(role.name, role.id)        
         
     await bot.say(
-        "```"
-        "<!DOCTYPE html>\n"
+        "```Markdown\n"
         "Server name : '{}'\n"
         "Server ID : <{}>\n"
         "Server owner : {} <{}>\n\n"
