@@ -148,48 +148,6 @@ async def poll(ctx, *args):
     
     
     
-#Voice commands
-
-@client.command(pass_context=True)
-async def join(ctx):
-    channel = ctx.message.author.voice.voice_channel
-    await client.join_voice_channel(channel)
-    await client.say(":microphone: Joined '{}' voice channel :microphone:".format(channel.name))
-
-@client.command(pass_context=True)
-async def leave(ctx):
-    channel = ctx.message.author.voice.voice_channel
-    server = ctx.message.server
-    voice_client = client.voice_client_in(server)
-    await voice_client.disconnect()
-    await client.say(":microphone: Left '{}' voice channel :microphone:".format(channel.name))
-    
-@client.command(pass_context=True)
-async def play(ctx, url):
-    server = ctx.message.server
-    voice_client = client.voice_client_in(server)
-    player = await voice_client.create_ytdl_player(url)
-    players[server.id] = player
-    player.start()
-    await client.say(":musical_note: Now playing : {} :musical_note:".format(url))
-    
-@client.command(pass_context=True)
-async def pause(ctx):
-    id = ctx.message.server.id
-    players[id].pause()
-    await client.say(":pause_button: Music paused :pause_button:")
-    
-@client.command(pass_context=True)
-async def resume(ctx):
-    id = ctx.message.server.id
-    players[id].resume()
-    await client.say(":play_pause: Music resumed :play_pause:")
-    
-@client.command(pass_context=True)
-async def stop(ctx):
-    id = ctx.message.server.id
-    players[id].stop()
-    await client.say(":stop_button: Music stopped :stop_button:")
     
 
 client.run(TOKEN)
