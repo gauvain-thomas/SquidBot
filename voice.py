@@ -6,12 +6,10 @@ class Voice:
   def __init__(self, client):
     self.client = client
     
-  @commands.command()
-  async def ping(self):
-    await self.client.say('Pong')
-    
   #Voice commands
-
+  
+  players = {}
+  
   @commands.command(pass_context=True)
   async def join(self, ctx):
     channel = ctx.message.author.voice.voice_channel
