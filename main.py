@@ -12,45 +12,45 @@ file=open('../token.txt', 'r')
 TOKEN = file.read().rstrip("\n")
 
 description = '''SquidBot in Python, by Squidoss'''
-bot_prefix = (".")
-bot = commands.Bot(command_prefix=bot_prefix, description=description)
-bot.remove_command('help')
+client_prefix = (".")
+client = commands.client(command_prefix=client_prefix, description=description)
+client.remove_command('help')
 
 players = {}
 
-@bot.event
+@client.event
 async def on_ready():
     print('------')
     print('Logged in as')
-    print(bot.user.name)
-    print("ID : " + bot.user.id)
+    print(client.user.name)
+    print("ID : " + client.user.id)
     print("Token : " + TOKEN)
     print('------')
     print('Servers connected to:')
-    for server in bot.servers:
+    for server in client.servers:
         print(server.name)
     print('------')
-    await bot.change_presence(game=discord.Game(name='humans...', type=3))
+    await client.change_presence(game=discord.Game(name='humans...', type=3))
     
-@bot.event
+@client.event
 async def on_member_join(member):
-    await bot.send_message(member, "Hello")
+    await client.send_message(member, "Hello")
     
-@bot.event
+@client.event
 async def on_member_leave(member):
-    await bot.send_message(member, "Bye")
+    await client.send_message(member, "Bye")
     
-@bot.event
+@client.event
 async def on_message(message):
-    await bot.process_commands(message)
+    await client.process_commands(message)
     for mention in message.mentions:
-        if mention.id == bot.user.id:
-            await bot.send_message(message.channel, "In order to get any help, type .help. For further informations, ask @Squidoss or any other programmer.")
+        if mention.id == client.user.id:
+            await client.send_message(message.channel, "In order to get any help, type .help. For further informations, ask @Squidoss or any other programmer.")
 
     
 #Commands
 
-@bot.command()
+@client.command()
 async def help():
     embed=discord.Embed(title="List of all commands", description="Type .help to show this message", color=0x00ff00)
     embed.set_author(name="SquidBot")
@@ -59,41 +59,41 @@ async def help():
     embed.add_field(name=".hello", value="Replies world !", inline=False)
     embed.add_field(name=".info", value="Give information and IDs about this server", inline=False)
     embed.add_field(name=".github", value="Give the github's link of SquidBot", inline=False)
-    embed.set_footer(text="SquidBot, the best half-squid half-robot bot.")
-    await bot.say(embed=embed)
+    embed.set_footer(text="SquidBot, the best half-squid half-robot client.")
+    await client.say(embed=embed)
     
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def reboot(ctx):
-    """Reboot bot"""
+    """Reboot client"""
     if ctx.message.author.id == '263670024391229440':
-        await bot.say("Reboot in process...")
+        await client.say("Reboot in process...")
         print("Reboot in process")
         subprocess.call("./start.sh", shell=True)
         sys.exit()
     else:
-        await bot.say("Access denied")
+        await client.say("Access denied")
      
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def shutdown(ctx):
-    """Turn bot off"""
+    """Turn client off"""
     if ctx.message.author.id == '263670024391229440':
-        await bot.say("Turning off...")
+        await client.say("Turning off...")
         print("Turning off...")
         sys.exit()
     else:
-        await bot.say("Access denied")
+        await client.say("Access denied")
      
-@bot.command()
+@client.command()
 async def hello():
     """Says world"""
-    await bot.say("world !")
+    await client.say("world !")
     
-@bot.command()
+@client.command()
 async def github():
     """Give github's link"""
-    await bot.say("https://github.com/Squidoss/SquidBot")
+    await client.say("https://github.com/Squidoss/SquidBot")
     
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def info(ctx):
     """Give server's infos"""
     server = ctx.message.author.server
@@ -107,7 +107,7 @@ async def info(ctx):
     for role in server.roles:
         roles_list += "{} : <{}> \n".format(role.name, role.id)        
         
-    await bot.say(
+    await client.say(
         "```Markdown\n"
         "Server name : {}\n"
         "Server ID : <{}>\n"
@@ -116,20 +116,20 @@ async def info(ctx):
         "```"
         .format(server_name, server_id, server_owner, server_owner_id, roles_list))
     
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def poll(ctx, *args):
     length = len(args)
     if length == 0:
-        await bot.say("Insert arguments, type .help for further informations")
+        await client.say("Insert arguments, type .help for further informations")
     elif length != 5:
-        await bot.say("Wrong arguments ! Try again.")
+        await client.say("Wrong arguments ! Try again.")
     elif args[0] == "create":
-        poll_msg = await bot.say("**Poll :** *{} {} vs {} {}*".format(args[1], args[2], args[3], args[4]))
-        await bot.add_reaction(poll_msg, args[2])
-        await bot.add_reaction(poll_msg, args[4])
+        poll_msg = await client.say("**Poll :** *{} {} vs {} {}*".format(args[1], args[2], args[3], args[4]))
+        await client.add_reaction(poll_msg, args[2])
+        await client.add_reaction(poll_msg, args[4])
         
-        end_msg = await bot.wait_for_message(author=ctx.message.author, content=".poll stop")
-        poll_msg = await bot.get_message(ctx.message.channel, poll_msg.id)
+        end_msg = await client.wait_for_message(author=ctx.message.author, content=".poll stop")
+        poll_msg = await client.get_message(ctx.message.channel, poll_msg.id)
         choice1 = 0
         choice2 = 0
         for reaction in poll_msg.reactions:
@@ -138,11 +138,11 @@ async def poll(ctx, *args):
             else:
                 choice2 = reaction.count
         if choice1 > choice2:
-            await bot.say(args[2])
+            await client.say(args[2])
         elif choice2 > choice1:
-            await bot.say(args[4])
+            await client.say(args[4])
         else:
-            await bot.say("Égalité")
+            await client.say("Égalité")
     
     
     
@@ -150,46 +150,46 @@ async def poll(ctx, *args):
     
 #Voice commands
 
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def join(ctx):
     channel = ctx.message.author.voice.voice_channel
-    await bot.join_voice_channel(channel)
-    await bot.say(":microphone: Joined '{}' voice channel :microphone:".format(channel.name))
+    await client.join_voice_channel(channel)
+    await client.say(":microphone: Joined '{}' voice channel :microphone:".format(channel.name))
 
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def leave(ctx):
     channel = ctx.message.author.voice.voice_channel
     server = ctx.message.server
-    voice_client = bot.voice_client_in(server)
+    voice_client = client.voice_client_in(server)
     await voice_client.disconnect()
-    await bot.say(":microphone: Left '{}' voice channel :microphone:".format(channel.name))
+    await client.say(":microphone: Left '{}' voice channel :microphone:".format(channel.name))
     
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def play(ctx, url):
     server = ctx.message.server
-    voice_client = bot.voice_client_in(server)
+    voice_client = client.voice_client_in(server)
     player = await voice_client.create_ytdl_player(url)
     players[server.id] = player
     player.start()
-    await bot.say(":musical_note: Now playing : {} :musical_note:".format(url))
+    await client.say(":musical_note: Now playing : {} :musical_note:".format(url))
     
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def pause(ctx):
     id = ctx.message.server.id
     players[id].pause()
-    await bot.say(":pause_button: Music paused :pause_button:")
+    await client.say(":pause_button: Music paused :pause_button:")
     
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def resume(ctx):
     id = ctx.message.server.id
     players[id].resume()
-    await bot.say(":play_pause: Music resumed :play_pause:")
+    await client.say(":play_pause: Music resumed :play_pause:")
     
-@bot.command(pass_context=True)
+@client.command(pass_context=True)
 async def stop(ctx):
     id = ctx.message.server.id
     players[id].stop()
-    await bot.say(":stop_button: Music stopped :stop_button:")
+    await client.say(":stop_button: Music stopped :stop_button:")
     
 
-bot.run(TOKEN)
+client.run(TOKEN)
