@@ -6,7 +6,6 @@ from discord.ext import commands
 import subprocess
 import os
 import sys
-import youtube_dl
 
 file=open('../token.txt', 'r')
 TOKEN = file.read().rstrip("\n")
