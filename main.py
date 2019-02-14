@@ -173,4 +173,4 @@ if __name__ == '__main__':
         except Extension as error:
             print('{} cannot be loaded. [{}]'.format(extension, error))
             
-     client.run(TOKEN)
+    client.run(TOKEN)
