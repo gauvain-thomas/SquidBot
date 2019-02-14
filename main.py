@@ -16,7 +16,6 @@ client = commands.Bot(command_prefix=client_prefix, description=description)
 client.remove_command('help')
 
 extensions = ['voice']
-players = {}
 
 @client.event
 async def on_ready():
