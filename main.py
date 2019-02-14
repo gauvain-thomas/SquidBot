@@ -16,6 +16,7 @@ client_prefix = (".")
 client = commands.client(command_prefix=client_prefix, description=description)
 client.remove_command('help')
 
+extensions = ['voice']
 players = {}
 
 @client.event
@@ -148,6 +149,28 @@ async def poll(ctx, *args):
     
     
     
-    
-
-client.run(TOKEN)
+@client.command()
+async def load(extension):
+    try:
+        print('Loaded {}'.format(extension))
+        client.load_extension(extension)
+    except Extension as error:
+        print('{} cannot be loaded. [{}].format(extension, error)')
+        
+@client.command()
+async def unload(extension):
+    try:
+        print('Unloaded {}'.format(extension))
+        client.unload_extension(extension)
+    except Extension as error:
+        print('{} cannot be unloaded. [{}].format(extension, error)')
+            
+            
+if __name__ == '__main__':
+    for extension in extensions:
+        try:
+            client.load_extension(extension)
+        except Extension as error:
+            print('{} cannot be loaded. [{}]'.format(extension, error))
+            
+     client.run(TOKEN)
