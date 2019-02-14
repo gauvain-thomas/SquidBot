@@ -170,7 +170,7 @@ if __name__ == '__main__':
     for extension in extensions:
         try:
             client.load_extension(extension)
-        except Extension as error:
+        except extension as error:
             print('{} cannot be loaded. [{}]'.format(extension, error))
             
     client.run(TOKEN)
