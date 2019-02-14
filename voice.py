@@ -54,6 +54,6 @@ class Voice:
     await self.client.say(":stop_button: Music stopped :stop_button:")
     
     
- def setup(client):
+def setup(client):
   client.add_cog(Voice(client))
 
