@@ -121,8 +121,6 @@ async def poll(ctx, *args):
     length = len(args)
     if length == 0:
         await client.say("Insert arguments, type .help for further informations")
-    elif length != 5:
-        await client.say("Wrong arguments ! Try again.")
     elif args[0] == "create":
         poll_msg = await client.say("**Poll :** *{} {} vs {} {}*".format(args[1], args[2], args[3], args[4]))
         await client.add_reaction(poll_msg, args[2])
