@@ -2,13 +2,13 @@ import discord
 from discord.ext import commands
 import youtube_dl
 
+players = {}
+
 class Voice:
   def __init__(self, client):
     self.client = client
     
   #Voice commands
-  
-  players = {}
   
   @commands.command(pass_context=True)
   async def join(self, ctx):
