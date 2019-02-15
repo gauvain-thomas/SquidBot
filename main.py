@@ -32,9 +32,6 @@ async def on_ready():
     print('------')
     await client.change_presence(game=discord.Game(name='humans...', type=3))
     
-    user = client.get_member('263657174230761483')
-    await client.send_message(user, "Bonjour")
-    
 @client.event
 async def on_member_join(member):
     await client.send_message(member, "Hello")
