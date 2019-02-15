@@ -152,8 +152,8 @@ async def load(extension):
         print('Loaded {}'.format(extension))
         client.load_extension(extension)
     except Extension as error:
-        print('{} cannot be loaded. [{}]'.format(extension, error))
-        client.say('{} cannot be loaded. [{}]'.format(extension, error))
+        print('Extension {} cannot be loaded. [{}]'.format(extension, error))
+        client.say('Extension {} cannot be loaded. [{}]'.format(extension, error))
         
 @client.command()
 async def unload(extension):
@@ -161,8 +161,8 @@ async def unload(extension):
         print('Unloaded {}'.format(extension))
         client.unload_extension(extension)
     except Extension as error:
-        print('{} cannot be unloaded. [{}]'.format(extension, error))
-        client.say('{} cannot be unloaded. [{}]'.format(extension, error))
+        print('Extension {} cannot be unloaded. [{}]'.format(extension, error))
+        client.say('Extension {} cannot be unloaded. [{}]'.format(extension, error))
             
             
 if __name__ == '__main__':
@@ -171,6 +171,6 @@ if __name__ == '__main__':
             client.load_extension(extension)
             print("{} loaded.".format(extension))
         except extension as error:
-            print('{} cannot be loaded. [{}]'.format(extension, error))
+            print('Extension {} cannot be loaded. [{}]'.format(extension, error))
             
     client.run(TOKEN)
