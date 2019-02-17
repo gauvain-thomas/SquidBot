@@ -20,7 +20,7 @@ class Voice:
       embed.add_field(name=".pause", value="Pause current music", inline=False)
       embed.add_field(name=".resume", value="Resume current music", inline=False)
       embed.add_field(name=".stop", value="stop current music", inline=False)
-      await self.bot.say(embed=embed)
+      await self.client.say(embed=embed)
       
   #Voice commands
   
