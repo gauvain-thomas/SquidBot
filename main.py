@@ -8,8 +8,8 @@ import os
 import sys
 # import youtube_dl
 
-file=open('../token.txt', 'r')
-TOKEN = file.read().rstrip("\n")
+with open('../token.txt', 'r') as file:
+    TOKEN = file.read().rstrip("\n")
 
 description = '''SquidBot in Python, by Squidoss'''
 client_prefix = (".")
