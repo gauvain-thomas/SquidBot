@@ -9,18 +9,18 @@ class Voice:
     self.client = client
     
   #Help voice
-  @commands.command(pass_context=True)
-  async def help(self, ctx):
-    if "all" in ctx.message.content:
-      embed=discord.Embed(title="Help - [Voice]", description="You must be in a voice channel to use these commands", color=0x0000ff)
-      embed.add_field(name="--------------------", value="--------------------", inline=False)
-      embed.add_field(name=".join", value="Join a voice channel", inline=False)
-      embed.add_field(name=".leave", value="Leave a voice channel", inline=False)
-      embed.add_field(name=".play [url]", value="Play audio from the youtube url", inline=False)
-      embed.add_field(name=".pause", value="Pause current music", inline=False)
-      embed.add_field(name=".resume", value="Resume current music", inline=False)
-      embed.add_field(name=".stop", value="stop current music", inline=False)
-      await self.client.say(embed=embed)
+#   @commands.command(pass_context=True)
+#   async def help(self, ctx):
+#     if "all" in ctx.message.content:
+#       embed=discord.Embed(title="Help - [Voice]", description="You must be in a voice channel to use these commands", color=0x0000ff)
+#       embed.add_field(name="--------------------", value="--------------------", inline=False)
+#       embed.add_field(name=".join", value="Join a voice channel", inline=False)
+#       embed.add_field(name=".leave", value="Leave a voice channel", inline=False)
+#       embed.add_field(name=".play [url]", value="Play audio from the youtube url", inline=False)
+#       embed.add_field(name=".pause", value="Pause current music", inline=False)
+#       embed.add_field(name=".resume", value="Resume current music", inline=False)
+#       embed.add_field(name=".stop", value="stop current music", inline=False)
+#       await self.client.say(embed=embed)
       
   #Voice commands
   
