@@ -9,7 +9,7 @@ class Voice:
     self.client = client
     
   #Help voice
-  @commands.commands(pass_context=True)
+  @commands.command(pass_context=True)
   async def help(self, ctx):
     if "all" or "voice" in ctx.message.content:
       embed=discord.Embed(title="Help - [Voice]", description="You must be in a voice channel to use these commands", color=0x0000ff)
