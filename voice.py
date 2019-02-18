@@ -5,6 +5,7 @@ import youtube_dl
 players = {}
 
 class Voice:
+  test = "test"
   def __init__(self, client):
     self.client = client
     
