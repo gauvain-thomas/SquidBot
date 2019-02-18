@@ -61,8 +61,7 @@ async def help():
     embed.add_field(name=".github", value="Give the github's link of SquidBot", inline=False)
     embed.set_footer(text="SquidBot, the best half-squid half-robot client.")
     await client.say(embed=embed)
-    voice = Voice.embed
-    await client.say(embed=voice)
+    await client.say(embed=Voice.test)
     
 @client.command(pass_context=True)
 async def reboot(ctx):
