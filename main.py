@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 import discord
 from discord.ext import commands
 import subprocess
 import os
 import sys
-# import youtube_dl
-
 
 with open('../token.txt', 'r') as file:
     TOKEN = file.read().rstrip("\n")
@@ -17,9 +14,6 @@ description = '''SquidBot in Python, by Squidoss'''
 client_prefix = (".")
 client = commands.Bot(command_prefix=client_prefix, description=description)
 client.remove_command('help')
-
-
-
 
 @client.event
 async def on_ready():
@@ -34,7 +28,6 @@ async def on_ready():
         print(server.name)
     print('------')
     await client.change_presence(game=discord.Game(name='humans...', type=3))
-
     
 @client.event
 async def on_member_join(member):
