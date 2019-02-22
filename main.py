@@ -176,7 +176,7 @@ if __name__ == '__main__':
     for extension in modules:
         extension = 'modules' + extension
         try:
-            client.load_extension(extension)
+            client.load_extension('modules.voice')
             print("{} loaded.".format(extension))
         except extension as error:
             print('Extension {} cannot be loaded. [{}]'.format(extension, error))
