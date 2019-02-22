@@ -21,7 +21,7 @@ modules = []
 for module in os.listdir('./modules'):
     if module.endswith('.py'):
         module.replace('.py', '')
-        module = ''.join(('modules.','yourstring'))
+        module = ''.join(('modules.', module))
         modules.append(module)
     
 print(modules)
