@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 import discord
 from discord.ext import commands
 import subprocess
 import os
 import sys
-# import youtube_dl
-
 
 with open('../token.txt', 'r') as file:
     TOKEN = file.read().rstrip("\n")
@@ -17,9 +14,6 @@ description = '''SquidBot in Python, by Squidoss'''
 client_prefix = (".")
 client = commands.Bot(command_prefix=client_prefix, description=description)
 client.remove_command('help')
-
-
-
 
 @client.event
 async def on_ready():
@@ -34,7 +28,6 @@ async def on_ready():
         print(server.name)
     print('------')
     await client.change_presence(game=discord.Game(name='humans...', type=3))
-
     
 @client.event
 async def on_member_join(member):
@@ -67,28 +60,6 @@ async def help(ctx, *args):
         embed.set_footer(text="SquidBot, the best half-squid half-robot client.")
         await client.say(embed=embed)
     
-    
-@client.command(pass_context=True)
-async def reboot(ctx):
-    """Reboot client"""
-    if ctx.message.author.id == '263670024391229440':
-        await client.say("Reboot in process...")
-        print("Reboot in process")
-        subprocess.call("./start.sh", shell=True)
-        sys.exit()
-    else:
-        await client.say("Access denied")
-     
-@client.command(pass_context=True)
-async def shutdown(ctx):
-    """Turn client off"""
-    if ctx.message.author.id == '263670024391229440':
-        await client.say("Turning off...")
-        print("Turning off...")
-        sys.exit()
-    else:
-        await client.say("Access denied")
-     
 @client.command()
 async def hello():
     """Says world"""
@@ -147,11 +118,7 @@ async def poll(ctx, *args):
             await client.say(args[4])
         else:
             await client.say("Égalité")
-    
-    
-    
-    
-    
+
 @client.command()
 async def load(extension):
     try:
@@ -180,8 +147,6 @@ for module in os.listdir('./modules'):
         module = module.replace(".py", "")
         module = ''.join(('modules.', module))
         modulesList.append(module)
-    
-print(modulesList)
 
 if __name__ == '__main__':
     for extension in modulesList:
