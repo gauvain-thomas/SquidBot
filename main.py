@@ -174,6 +174,7 @@ async def unload(extension):
             
 if __name__ == '__main__':
     for extension in modules:
+        extension = 'modules' + extension
         try:
             client.load_extension(extension)
             print("{} loaded.".format(extension))
