@@ -31,3 +31,6 @@ class System:
           sys.exit()
       else:
           await self.client.say("Access denied")
+
+def setup(client):
+  client.add_cog(System(client))
