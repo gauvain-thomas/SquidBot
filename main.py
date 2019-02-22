@@ -55,7 +55,7 @@ async def on_message(message):
 #Commands
 
 @client.command(pass_context=True)
-async def help(ctx, args*):
+async def help(ctx, *args):
     if 'all' in args or len(args)==0:
         embed=discord.Embed(title="List of all commands", description="Type .help to show this message", color=0x00ff00)
         embed.set_author(name="SquidBot")
