@@ -10,7 +10,7 @@ class Voice:
     
     
   async def on_message(self, message):
-    print(message)
+    print(message.content)
     
   #Help voice
 # embed=discord.Embed(title="Help - [Voice]", description="You must be in a voice channel to use these commands", color=0x0000ff)
