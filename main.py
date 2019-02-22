@@ -181,9 +181,8 @@ async def unload(extension):
             
 if __name__ == '__main__':
     for extension in modules:
-        extension = 'modules' + extension
         try:
-            client.load_extension('modules.voice')
+            client.load_extension(extension)
             print("{} loaded.".format(extension))
         except extension as error:
             print('Extension {} cannot be loaded. [{}]'.format(extension, error))
