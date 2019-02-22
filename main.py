@@ -16,6 +16,9 @@ client_prefix = (".")
 client = commands.Bot(command_prefix=client_prefix, description=description)
 client.remove_command('help')
 
+print(sys.path)
+sys.path.append('./modules')
+print(sys.path)
 
 @client.event
 async def on_ready():
@@ -61,6 +64,8 @@ async def help():
     embed.add_field(name=".github", value="Give the github's link of SquidBot", inline=False)
     embed.set_footer(text="SquidBot, the best half-squid half-robot client.")
     await client.say(embed=embed)
+    
+
     await client.say(embed=Voice.test)
     
 @client.command(pass_context=True)
