@@ -17,6 +17,11 @@ client = commands.Bot(command_prefix=client_prefix, description=description)
 client.remove_command('help')
 
 extensions = ['voice']
+modules = os.listdir('./modules')
+#     for filename in os.listdir('modules'):
+#             if filename.endswith('.py'):
+#                 try:
+#                 except:
 
 @client.event
 async def on_ready():
@@ -31,12 +36,6 @@ async def on_ready():
         print(server.name)
     print('------')
     await client.change_presence(game=discord.Game(name='humans...', type=3))
-    
-    modules = os.listdir('./modules')
-#     for filename in os.listdir('modules'):
-#             if filename.endswith('.py'):
-#                 try:
-#                 except:
 
     
 @client.event
