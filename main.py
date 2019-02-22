@@ -32,6 +32,13 @@ async def on_ready():
     print('------')
     await client.change_presence(game=discord.Game(name='humans...', type=3))
     
+    modules = os.listdir('./modules')
+#     for filename in os.listdir('modules'):
+#             if filename.endswith('.py'):
+#                 try:
+#                 except:
+
+    
 @client.event
 async def on_member_join(member):
     await client.send_message(member, "Hello")
@@ -167,7 +174,7 @@ async def unload(extension):
             
             
 if __name__ == '__main__':
-    for extension in extensions:
+    for extension in modules:
         try:
             client.load_extension(extension)
             print("{} loaded.".format(extension))
