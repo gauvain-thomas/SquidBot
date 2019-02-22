@@ -10,7 +10,7 @@ class Voice:
     
     
   async def on_message(self, message):
-    if '.help all' or '.help voice' in message.content:
+    if '.help all' in message.content or '.help voice' in message.content:
       embed=discord.Embed(title="Help - [Voice]", description="You must be in a voice channel to use these commands", color=0x0000ff)
       embed.add_field(name="--------------------", value="--------------------", inline=False)
       embed.add_field(name=".join", value="Join a voice channel", inline=False)
