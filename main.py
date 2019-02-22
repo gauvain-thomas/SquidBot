@@ -170,9 +170,8 @@ async def unload(extension):
         client.say('Extension {} cannot be unloaded. [{}]'.format(extension, error))
 
         
-print(sys.path)
+
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'modules'))
-print(sys.path)
 
 modulesList = []
 for module in os.listdir('./modules'):
