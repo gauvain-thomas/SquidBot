@@ -165,7 +165,8 @@ async def unload(extension):
         print('Extension {} cannot be unloaded. [{}]'.format(extension, error))
         client.say('Extension {} cannot be unloaded. [{}]'.format(extension, error))
 
-        modules = []
+
+modules = []
 for module in os.listdir('./modules'):
     if module.endswith('.py'):
         module = module.replace(".py", "")
