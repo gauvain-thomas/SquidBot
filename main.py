@@ -22,6 +22,7 @@ for module in os.listdir('./modules'):
     if filename.endswith('.py'):
         module.replace('.py', '')
         module = 'modules." + module
+        modules.append(module)
     
 print(modules)
 #     for filename in os.listdir('modules'):
