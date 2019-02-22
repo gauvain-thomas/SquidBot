@@ -11,16 +11,19 @@ class Voice:
     
   async def on_message(self, message):
     print(message.content)
+    if message.content is '.help all' or message.content is 'help voice':
+      embed=discord.Embed(title="Help - [Voice]", description="You must be in a voice channel to use these commands", color=0x0000ff)
+      embed.add_field(name="--------------------", value="--------------------", inline=False)
+      embed.add_field(name=".join", value="Join a voice channel", inline=False)
+      embed.add_field(name=".leave", value="Leave a voice channel", inline=False)
+      embed.add_field(name=".play [url]", value="Play audio from the youtube url", inline=False)
+      embed.add_field(name=".pause", value="Pause current music", inline=False)
+      embed.add_field(name=".resume", value="Resume current music", inline=False)
+      embed.add_field(name=".stop", value="stop current music", inline=False)
+      
+      await self.client.send_message(message.channel, embed=embed)
     
   #Help voice
-# embed=discord.Embed(title="Help - [Voice]", description="You must be in a voice channel to use these commands", color=0x0000ff)
-# embed.add_field(name="--------------------", value="--------------------", inline=False)
-# embed.add_field(name=".join", value="Join a voice channel", inline=False)
-# embed.add_field(name=".leave", value="Leave a voice channel", inline=False)
-# embed.add_field(name=".play [url]", value="Play audio from the youtube url", inline=False)
-# embed.add_field(name=".pause", value="Pause current music", inline=False)
-# embed.add_field(name=".resume", value="Resume current music", inline=False)
-# embed.add_field(name=".stop", value="stop current music", inline=False)   
 
     
     
