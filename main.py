@@ -23,7 +23,7 @@ for module in os.listdir('./modules'):
         module = ''.join(('modules.', module))
         modules.append(module)
     
-print('Modules ' + modules)
+print(modules)
 
 if __name__ == '__main__':
     for extension in modules:
