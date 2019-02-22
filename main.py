@@ -20,6 +20,7 @@ extensions = ['voice']
 modules = []
 for module in os.listdir('./modules'):
     if module.endswith('.py'):
+        module = module.replace(".py", "")
         module.remove('.py')
         module = ''.join(('modules.', module))
         modules.append(module)
