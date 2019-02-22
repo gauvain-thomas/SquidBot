@@ -16,7 +16,6 @@ client_prefix = (".")
 client = commands.Bot(command_prefix=client_prefix, description=description)
 client.remove_command('help')
 
-extensions = ['voice']
 modules = []
 for module in os.listdir('./modules'):
     if module.endswith('.py'):
@@ -24,11 +23,17 @@ for module in os.listdir('./modules'):
         module = ''.join(('modules.', module))
         modules.append(module)
     
-print(modules)
-#     for filename in os.listdir('modules'):
-#             if filename.endswith('.py'):
-#                 try:
-#                 except:
+print('Modules ' + modules)
+
+if __name__ == '__main__':
+    for extension in modules:
+        try:
+            client.load_extension(extension)
+            print("{} loaded.".format(extension))
+        except extension as error:
+            print('Extension {} cannot be loaded. [{}]'.format(extension, error))
+            
+    client.run(TOKEN)
 
 @client.event
 async def on_ready():
@@ -177,14 +182,3 @@ async def unload(extension):
     except Extension as error:
         print('Extension {} cannot be unloaded. [{}]'.format(extension, error))
         client.say('Extension {} cannot be unloaded. [{}]'.format(extension, error))
-            
-            
-if __name__ == '__main__':
-    for extension in modules:
-        try:
-            client.load_extension(extension)
-            print("{} loaded.".format(extension))
-        except extension as error:
-            print('Extension {} cannot be loaded. [{}]'.format(extension, error))
-            
-    client.run(TOKEN)
