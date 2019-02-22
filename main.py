@@ -17,7 +17,12 @@ client = commands.Bot(command_prefix=client_prefix, description=description)
 client.remove_command('help')
 
 extensions = ['voice']
-modules = os.listdir('./modules')
+modules = []
+for module in os.listdir('./modules'):
+    if filename.endswith('.py'):
+        module.replace('.py', '')
+        module = 'modules." + module
+    
 print(modules)
 #     for filename in os.listdir('modules'):
 #             if filename.endswith('.py'):
