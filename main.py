@@ -17,7 +17,7 @@ client = commands.Bot(command_prefix=client_prefix, description=description)
 client.remove_command('help')
 
 print(sys.path)
-sys.path.append('./modules')
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'modules'))
 print(sys.path)
 
 @client.event
