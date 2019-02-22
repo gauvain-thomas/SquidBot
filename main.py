@@ -4,7 +4,7 @@
 import discord
 from discord.ext import commands
 import os
-import system
+import sys
 
 with open('../token.txt', 'r') as file:
     TOKEN = file.read().rstrip("\n")
