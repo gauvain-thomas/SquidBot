@@ -54,17 +54,18 @@ async def on_message(message):
     
 #Commands
 
-@client.command()
-async def help():
-    embed=discord.Embed(title="List of all commands", description="Type .help to show this message", color=0x00ff00)
-    embed.set_author(name="SquidBot")
-    embed.add_field(name="--------------------" , value="--------------------", inline=False)
-    embed.add_field(name=".help", value="Returns this message", inline=False)
-    embed.add_field(name=".hello", value="Replies world !", inline=False)
-    embed.add_field(name=".info", value="Give information and IDs about this server", inline=False)
-    embed.add_field(name=".github", value="Give the github's link of SquidBot", inline=False)
-    embed.set_footer(text="SquidBot, the best half-squid half-robot client.")
-    await client.say(embed=embed)
+@client.command(pass_context=True)
+async def help(ctx, arg):
+    if 'all' in arg or arg is None:
+        embed=discord.Embed(title="List of all commands", description="Type .help to show this message", color=0x00ff00)
+        embed.set_author(name="SquidBot")
+        embed.add_field(name="--------------------" , value="--------------------", inline=False)
+        embed.add_field(name=".help", value="Returns this message", inline=False)
+        embed.add_field(name=".hello", value="Replies world !", inline=False)
+        embed.add_field(name=".info", value="Give information and IDs about this server", inline=False)
+        embed.add_field(name=".github", value="Give the github's link of SquidBot", inline=False)
+        embed.set_footer(text="SquidBot, the best half-squid half-robot client.")
+        await client.say(embed=embed)
     
     
 @client.command(pass_context=True)
