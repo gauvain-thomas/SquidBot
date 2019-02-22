@@ -19,7 +19,7 @@ client.remove_command('help')
 extensions = ['voice']
 modules = []
 for module in os.listdir('./modules'):
-    if filename.endswith('.py'):
+    if module.endswith('.py'):
         module.replace('.py', '')
         module = ''.join(('modules.','yourstring'))
         modules.append(module)
