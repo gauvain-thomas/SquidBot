@@ -171,17 +171,17 @@ async def unload(extension):
         client.say('Extension {} cannot be unloaded. [{}]'.format(extension, error))
 
 
-modules = []
+modulesList = []
 for module in os.listdir('./modules'):
     if module.endswith('.py'):
         module = module.replace(".py", "")
         module = ''.join(('modules.', module))
-        modules.append(module)
+        modulesList.append(module)
     
-print(modules)
+print(modulesList)
 
 if __name__ == '__main__':
-    for extension in modules:
+    for extension in modulesList:
         try:
             client.load_extension(extension)
             print("{} loaded.".format(extension))
