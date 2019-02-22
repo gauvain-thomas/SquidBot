@@ -14,7 +14,7 @@ class System:
   #Help system
   async def on_message(self, message):
     if '.help all' in message.content or '.help system' in message.content:
-      embed=discord.Embed(title="Help - [Systeù]", description="Only authorized members can use these commands", color=0xff0000)
+      embed=discord.Embed(title="Help - [System]", description="Only authorized members can use these commands", color=0xff0000)
       embed.add_field(name="--------------------", value="--------------------", inline=False)
       embed.add_field(name=".reboot", value="Restart bot and update code from github", inline=False)
       embed.add_field(name=".shutdown", value="Turn bot off", inline=False)
