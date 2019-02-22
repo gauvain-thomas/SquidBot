@@ -27,10 +27,13 @@ class System:
   async def reboot(self, ctx):
       """Reboot bot"""
       if ctx.message.author.id in owners:
-          await self.client.say("Reboot in process...")
-          print("Reboot in process")
-          subprocess.call("../start.sh", shell=True)
-          sys.exit()
+        await self.client.say("Reboot in process...")
+        print("Reboot in process")
+        source = os.path.dirname(__file__)
+        parent = os.path.join(source, '../')
+        script_path = os.path.join(parent, 'start.sh')
+        subprocess.call(script_path, shell=True)
+        sys.exit()
       else:
           await self.client.say("Access denied")
 
