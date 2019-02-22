@@ -66,7 +66,7 @@ async def help():
     await client.say(embed=embed)
     
 
-    await client.say(embed=Voice.test)
+    Voice.help()
     
 @client.command(pass_context=True)
 async def reboot(ctx):
