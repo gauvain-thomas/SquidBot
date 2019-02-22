@@ -8,7 +8,7 @@ class Voice:
   def __init__(self, client):
     self.client = client
     
-    
+  #Help voice
   async def on_message(self, message):
     if '.help all' in message.content or '.help voice' in message.content:
       embed=discord.Embed(title="Help - [Voice]", description="You must be in a voice channel to use these commands", color=0x0000ff)
@@ -22,7 +22,7 @@ class Voice:
       
       await self.client.send_message(message.channel, embed=embed)
     
-  #Help voice
+
 
     
     
