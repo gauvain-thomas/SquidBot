@@ -6,14 +6,9 @@ import discord
 from discord.ext import commands
 import subprocess
 import os
-
 import sys
-print(sys.path)
-sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'modules'))
-print(sys.path)
-
 # import youtube_dl
-from modules import voice
+
 
 with open('../token.txt', 'r') as file:
     TOKEN = file.read().rstrip("\n")
@@ -22,6 +17,7 @@ description = '''SquidBot in Python, by Squidoss'''
 client_prefix = (".")
 client = commands.Bot(command_prefix=client_prefix, description=description)
 client.remove_command('help')
+
 
 
 
@@ -70,8 +66,6 @@ async def help():
     embed.set_footer(text="SquidBot, the best half-squid half-robot client.")
     await client.say(embed=embed)
     
-
-    print(modules.Voice.help())
     
 @client.command(pass_context=True)
 async def reboot(ctx):
@@ -175,6 +169,10 @@ async def unload(extension):
         print('Extension {} cannot be unloaded. [{}]'.format(extension, error))
         client.say('Extension {} cannot be unloaded. [{}]'.format(extension, error))
 
+        
+print(sys.path)
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'modules'))
+print(sys.path)
 
 modulesList = []
 for module in os.listdir('./modules'):
