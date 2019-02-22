@@ -18,6 +18,7 @@ client.remove_command('help')
 
 extensions = ['voice']
 modules = os.listdir('./modules')
+print(modules)
 #     for filename in os.listdir('modules'):
 #             if filename.endswith('.py'):
 #                 try:
@@ -176,7 +177,7 @@ if __name__ == '__main__':
     for extension in modules:
         extension = 'modules' + extension
         try:
-            client.load_extension('modules.voice.py')
+            client.load_extension('modules.voice')
             print("{} loaded.".format(extension))
         except extension as error:
             print('Extension {} cannot be loaded. [{}]'.format(extension, error))
