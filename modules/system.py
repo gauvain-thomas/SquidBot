@@ -4,6 +4,7 @@
 import discord
 from discord.ext import commands
 import subprocess
+import sys
 
 owners = ['263670024391229440']
 
