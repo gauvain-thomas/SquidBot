@@ -7,7 +7,7 @@ import subprocess
 import os
 import sys
 # import youtube_dl
-from modules import Voice
+from modules import voice
 
 with open('../token.txt', 'r') as file:
     TOKEN = file.read().rstrip("\n")
