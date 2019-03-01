@@ -27,7 +27,7 @@ class Eleusis:
   async def eleusis(self, ctx, args*):
       """Eleusis commands"""
       if args[0] == 'rules':
-        await self.clinet.say('http://laelith.fr/Zet/Articles/images/eleusis.pdf')
+        await self.client.say('http://laelith.fr/Zet/Articles/images/eleusis.pdf')
 
           
 def setup(client):
