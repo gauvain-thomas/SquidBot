@@ -31,7 +31,7 @@ class System:
       if ctx.message.author.id in owners:
         if arg == 'reboot':
           print('Reboot modules')
-          await self.cient.say('Reboot modules')
+          await self.client.say('Reboot modules')
           source = os.path.dirname(__file__)
           parent = os.path.join(source, '../')
           script_path = os.path.join(parent, 'modules.sh')
