@@ -36,7 +36,6 @@ class System:
           parent = os.path.join(source, '../')
           script_path = os.path.join(parent, 'modules.sh')
           subprocess.call(script_path, shell=True)
-          sys.exit()
       else:
           await self.client.say("Access denied")
 
