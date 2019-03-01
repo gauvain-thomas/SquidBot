@@ -29,7 +29,7 @@ class System:
   async def modules(self, ctx, arg):
       """Modules"""
       if ctx.message.author.id in owners:
-        if arg is 'reboot':
+        if arg == 'reboot':
           print('Reboot modules')
           await self.cient.say('Reboot modules')
           source = os.path.dirname(__file__)
