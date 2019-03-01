@@ -16,7 +16,7 @@ class Eleusis:
   #Help system
   async def on_message(self, message):
     if '.help all' in message.content or '.help eulesis' in message.content:
-      embed=discord.Embed(title="Help - [Eleusis]", description=" - ", color=0x00ffff)
+      embed=discord.Embed(title="Help - [Eleusis]", description="Commands about Eleusis", color=0x00ffff)
       embed.add_field(name="--------------------", value="--------------------", inline=False)
       embed.add_field(name=".eleusis rules", value="Give link to the game's rules", inline=False)
       
