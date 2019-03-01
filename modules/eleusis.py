@@ -24,7 +24,7 @@ class Eleusis:
       
   #Commands
   @commands.command(pass_context=True)
-  async def eleusis(self, ctx, args*):
+  async def eleusis(self, ctx, *args):
       """Eleusis commands"""
       if args[0] == 'rules':
         await self.client.say('http://laelith.fr/Zet/Articles/images/eleusis.pdf')
