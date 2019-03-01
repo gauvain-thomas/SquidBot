@@ -31,4 +31,4 @@ class Eleusis:
 
           
 def setup(client):
-  client.add_cog(System(client))
+  client.add_cog(Eleusis(client))
