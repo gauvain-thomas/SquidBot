@@ -30,6 +30,8 @@ class System:
       """Modules"""
       if ctx.message.author.id in owners:
         if arg is 'reboot':
+          print('Reboot modules')
+          await self.cient.say('Reboot modules')
           source = os.path.dirname(__file__)
           parent = os.path.join(source, '../')
           script_path = os.path.join(parent, 'modules.sh')
