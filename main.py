@@ -10,7 +10,7 @@ with open('../token.txt', 'r') as file:
     TOKEN = file.read().rstrip("\n")
 
 description = '''SquidBot in Python, by Squidoss'''
-client_prefix = (".")
+client_prefix = (".", "/")
 client = commands.Bot(command_prefix=client_prefix, description=description)
 client.remove_command('help')
 
