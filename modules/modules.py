@@ -26,7 +26,7 @@ class System:
       
   #Commands
   @commands.command(pass_context=True)
-  async def modules(self, arg):
+  async def modules(self, ctx, arg):
       """Modules"""
       if ctx.message.author.id in owners:
         if arg is 'reboot':
