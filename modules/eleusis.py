@@ -9,7 +9,7 @@ import sys
 
 owners = ['263670024391229440']
 
-class System:
+class Eleusis:
   def __init__(self, client):
     self.client = client
 
