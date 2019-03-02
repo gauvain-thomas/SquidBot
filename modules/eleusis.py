@@ -24,7 +24,7 @@ class Eleusis:
       await self.client.send_message(message.channel, embed=embed)
       
       game = Game(self.client, message.channel)
-      game.hello()
+      await game.hello()
       
       
   #Commands
