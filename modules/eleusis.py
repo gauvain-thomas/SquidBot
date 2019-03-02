@@ -24,7 +24,7 @@ class Eleusis:
       
   class Game:
     def __init__(self):
-# #       self.players = players
+      self.players = 1
       
       
   #Commands
