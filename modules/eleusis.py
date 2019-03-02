@@ -40,6 +40,7 @@ class Eleusis:
         await self.client.wait_for_message(author=ctx.message.author, content=".eleusis start")
         await self.client.say('Game is starting !')
         partie = Game()
+        await self.client.say('ok')
 
           
 def setup(client):
