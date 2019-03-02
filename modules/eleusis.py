@@ -49,7 +49,7 @@ class Eleusis:
         game_channel = await self.client.create_channel(server, 'cool-channel', type=discord.ChannelType.text)
 
         for player in players:
-          await self.client.send_message(game_channel.id,player.name)
+          await self.client.send_message(game_channel,player.name)
 
           
 
