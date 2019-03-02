@@ -51,7 +51,7 @@ class Eleusis:
               players.append(reactor)
           
         for player in players:
-          await self.client.say(player.nick)
+          await self.client.say(player.name)
 
 
           
