@@ -43,8 +43,13 @@ class Eleusis:
         await self.client.say('Game is starting !')
         
         new_game__msg = await self.client.get_message(ctx.message.channel, new_game_msg.id)
+        await self.client.say(new_game_msg.reactions)
+        print(new_game_msg.reactions)
         for reaction in new_game_msg.reactions:
+          await self.client.say(reaction)
           await self.client.say(reaction.emoji)
+          print(reaction)
+          print(reaction.emoji)
 
           
 def setup(client):
