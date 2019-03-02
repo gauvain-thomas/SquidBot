@@ -19,7 +19,8 @@ class Eleusis:
       embed=discord.Embed(title="Help - [Eleusis]", description="Commands about Eleusis", color=0x00ffff)
       embed.add_field(name="--------------------", value="--------------------", inline=False)
       embed.add_field(name=".eleusis rules", value="Give link to the game's rules", inline=False)
-      
+      embed.add_field(name=".eleusis create", value="Create a new party, waiting for playing to react until game is started", inline=False)
+      embed.add_field(name=".eleusis start", value="Launch a new game, must be used after creating a new party", inline=False)
       await self.client.send_message(message.channel, embed=embed)
       
       
@@ -30,8 +31,10 @@ class Eleusis:
       players = []
       
       class Game:
-        def __init__(self):
-         print('ok')
+        def __init__(self, players):
+          self.players = players
+          for player in self.players:
+            await self.client.say(player.name)
       
       
       if args[0] == 'rules':
@@ -44,14 +47,15 @@ class Eleusis:
         new_game_msg = await self.client.get_message(ctx.message.channel, new_game_msg.id)
 
         for reaction in new_game_msg.reactions:
-          await self.client.say(reaction.emoji)
+#           await self.client.say(reaction.emoji)
           reactors = await self.client.get_reaction_users(reaction)
           for reactor in reactors:
             if reactor not in players:
               players.append(reactor)
+            
+         new_game = Game()
           
-        for player in players:
-          await self.client.say(player.name)
+
 
 
           
