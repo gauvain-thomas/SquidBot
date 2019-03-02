@@ -82,4 +82,4 @@ class Game:
     print('test')
     
   async def hello(self):
-    self.client.send_message(self.channel, self.client.user.name)
+    await self.client.send_message(self.channel, self.client.user.name)
