@@ -44,12 +44,12 @@ class Eleusis:
           for reactor in reactors:
             if reactor not in players:
               players.append(reactor)
-            
-        for player in players:
-          await self.client.say(player.name)
         
         server = ctx.message.server
-        await self.client.create_channel(server, 'cool-channel', type=discord.ChannelType.text)
+        game_channel = await self.client.create_channel(server, 'cool-channel', type=discord.ChannelType.text)
+
+        for player in players:
+          await self.client.send_message(game_channel.id,player.name)
 
           
 
