@@ -52,7 +52,7 @@ class Eleusis:
         embed=discord.Embed(title="[Eleusis]", description="Eleusis", color=0x00ffff)
         for player in players:
           await self.client.say(player.name)
-          embed.add_field(name=player.name, inline=False)
+          embed.add_field(name=player.name, value=None, inline=False)
           
         await self.client.say(embed=embed)
 
