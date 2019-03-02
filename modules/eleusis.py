@@ -40,7 +40,7 @@ class Eleusis:
       elif args[0] == 'create':
         poll_msg = await self.client.say("**Poll :**")
         
-        end_msg = await self.client.wait_for_message(author=ctx.message.author, content=".poll stop")
+        end_msg = await self.client.wait_for_message(author=ctx.message.author, content=".eleusis start")
         poll_msg = await self.client.get_message(ctx.message.channel, poll_msg.id)
 
         for reaction in poll_msg.reactions:
