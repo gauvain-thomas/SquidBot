@@ -78,7 +78,7 @@ class Game:
   def __init__(self, client):
     self.client = client
     print('test')
-    print(self.client.id)
+    print(self.client.user.name)
 #     self.client=client
 #     self.channel = channel
 #     await self.client.send_message(self.channel, 'test')
