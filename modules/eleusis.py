@@ -23,6 +23,8 @@ class Eleusis:
       embed.add_field(name=".eleusis start", value="Launch a new game, must be used after creating a new party", inline=False)
       await self.client.send_message(message.channel, embed=embed)
       
+      game = Game(self.client, message.channel)
+      
       
   #Commands
   @commands.command(pass_context=True)
@@ -63,3 +65,17 @@ class Eleusis:
           
 def setup(client):
   client.add_cog(Eleusis(client))
+  
+  
+  
+  
+  
+  
+  
+  
+  
+class Game:
+  def __init__(self, client, channel):
+    self.client=client
+    self.channel = channel
+    await self.client.send_message(self.channel, 'test')
