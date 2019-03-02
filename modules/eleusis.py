@@ -27,7 +27,7 @@ class Eleusis:
   @commands.command(pass_context=True)
   async def eleusis(self, ctx, *args):
       """Eleusis commands"""
-      
+      players = []
       
       class Game:
         def __init__(self):
@@ -46,19 +46,13 @@ class Eleusis:
         for reaction in new_game_msg.reactions:
           await self.client.say(reaction.emoji)
           reactors = await self.client.get_reaction_users(reaction)
-          await self.client.say(reactors)
-#         new_game_msg = await self.client.say('A new game of Eleusis is being created ! React to join the party !')
-#         await self.client.wait_for_message(author=ctx.message.author, content=".eleusis start")
-#         await self.client.say('Game is starting !')
-        
-#         new_game__msg = await self.client.get_message(ctx.message.channel, new_game_msg.id)
-        
-#         await self.client.say(new_game_msg.reactions)
-#         for reaction in new_game_msg.reactions:
-#           await self.client.say(reaction)
-#           await self.client.say(reaction.emoji)
-#           print(reaction)
-#           print(reaction.emoji)
+          for reactor in reactors:
+            if reactor not in players:
+              players.append(reactor)
+          
+        for player in players:
+          await self.client.say(player.nick)
+
 
           
 def setup(client):
