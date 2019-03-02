@@ -13,15 +13,6 @@ class Eleusis:
   def __init__(self, client):
     self.client = client
 
-    
-    
-    
-    
-    
-  class Game:
-    def __init__(self):
-#       self.client = client
-      print('ok')
   #Help system
   async def on_message(self, message):
     if '.help all' in message.content or '.help eleusis' in message.content:
@@ -36,6 +27,13 @@ class Eleusis:
   @commands.command(pass_context=True)
   async def eleusis(self, ctx, *args):
       """Eleusis commands"""
+      
+      
+      class Game:
+        def __init__(self):
+         print('ok')
+      
+      
       if args[0] == 'rules':
         await self.client.say('http://laelith.fr/Zet/Articles/images/eleusis.pdf')
         
