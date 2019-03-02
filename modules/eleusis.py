@@ -29,14 +29,7 @@ class Eleusis:
   async def eleusis(self, ctx, *args):
       """Eleusis commands"""
       players = []
-      
-      class Game:
-        async def __init__(self, players):
-          self.players = players
-          for player in self.players:
-            await self.client.say(player.name)
-      
-      
+    
       if args[0] == 'rules':
         await self.client.say('http://laelith.fr/Zet/Articles/images/eleusis.pdf')
         
@@ -47,14 +40,13 @@ class Eleusis:
         new_game_msg = await self.client.get_message(ctx.message.channel, new_game_msg.id)
 
         for reaction in new_game_msg.reactions:
-#           await self.client.say(reaction.emoji)
           reactors = await self.client.get_reaction_users(reaction)
           for reactor in reactors:
             if reactor not in players:
               players.append(reactor)
             
-
-        new_game = Game()
+        for player in players:
+          await self.client.say(player.name)
 
           
 
