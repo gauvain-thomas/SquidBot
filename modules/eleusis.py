@@ -79,4 +79,6 @@ class Game:
     self.client = client
     self.channel = channel
     print('test')
+    
+  async def hello(self):
     self.client.send_message(self.channel, self.client.user.name)
