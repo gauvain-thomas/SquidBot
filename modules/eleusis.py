@@ -13,6 +13,15 @@ class Eleusis:
   def __init__(self, client):
     self.client = client
 
+    
+    
+    
+    
+    
+  class Game:
+    def __init__(self):
+#       self.client = client
+      print('ok')
   #Help system
   async def on_message(self, message):
     if '.help all' in message.content or '.help eleusis' in message.content:
@@ -21,11 +30,6 @@ class Eleusis:
       embed.add_field(name=".eleusis rules", value="Give link to the game's rules", inline=False)
       
       await self.client.send_message(message.channel, embed=embed)
-      
-  class Game:
-    def __init__(self):
-#       self.client = client
-      print('ok')
       
       
   #Commands
