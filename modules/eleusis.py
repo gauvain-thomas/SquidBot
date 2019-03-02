@@ -38,11 +38,12 @@ class Eleusis:
         await self.client.say('http://laelith.fr/Zet/Articles/images/eleusis.pdf')
         
       elif args[0] == 'create':
-        new_game__msg = await self.client.say("**A new game of Eleusis is being created ! React to join the party !**")
-        start_game__msg = await self.client.wait_for_message(author=ctx.message.author, content=".eleusis start")
-        new_game_msg = await self.client.get_message(ctx.message.channel, new_game_msg.id)
+        poll_msg = await self.client.say("**Poll :**")
+        
+        end_msg = await self.client.wait_for_message(author=ctx.message.author, content=".poll stop")
+        poll_msg = await self.client.get_message(ctx.message.channel, poll_msg.id)
 
-        for reaction in new_game_msg.reactions:
+        for reaction in poll_msg.reactions:
           await self.client.say(reaction)
           await self.client.say(reaction.emoji)
 #         new_game_msg = await self.client.say('A new game of Eleusis is being created ! React to join the party !')
