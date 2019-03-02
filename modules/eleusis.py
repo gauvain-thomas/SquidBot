@@ -44,7 +44,7 @@ class Eleusis:
         
         new_game__msg = await self.client.get_message(ctx.message.channel, new_game_msg.id)
         
-        await self.client.say(nw_game_msg.reactions)
+        await self.client.say(new_game_msg.reactions)
         for reaction in new_game_msg.reactions:
           await self.client.say(reaction)
           await self.client.say(reaction.emoji)
