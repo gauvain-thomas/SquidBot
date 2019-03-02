@@ -23,8 +23,9 @@ class Eleusis:
       await self.client.send_message(message.channel, embed=embed)
       
   class Game:
-    def __init__(self):
-      self.players = 1
+    def __init__(self, client):
+      self.client = client
+      print('ok')
       
       
   #Commands
@@ -38,6 +39,9 @@ class Eleusis:
         new_game_msg = await self.client.say('A new game of Eleusis is being created ! React to join the party !')
         await self.client.wait_for_message(author=ctx.message.author, content=".eleusis start")
         await self.client.say('Game is starting !')
+        
+        
+        partie = Game(self.client)
 
           
 def setup(client):
