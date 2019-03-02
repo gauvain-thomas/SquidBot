@@ -41,6 +41,9 @@ class Eleusis:
         new_game_msg = await self.client.say('A new game of Eleusis is being created ! React to join the party !')
         await self.client.wait_for_message(author=ctx.message.author, content=".eleusis start")
         await self.client.say('Game is starting !')
+        
+        for reaction in new_game_msg.reactions:
+          await self.client.say(reaction.emoji)
 
           
 def setup(client):
