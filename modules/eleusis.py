@@ -31,7 +31,7 @@ class Eleusis:
       players = []
       
       class Game:
-        def __init__(self, players):
+        async def __init__(self, players):
           self.players = players
           for player in self.players:
             await self.client.say(player.name)
