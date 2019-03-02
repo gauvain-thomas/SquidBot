@@ -53,7 +53,9 @@ class Eleusis:
             if reactor not in players:
               players.append(reactor)
             
-         new_game = Game()
+
+        new_game = Game()
+
           
 
 
