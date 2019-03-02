@@ -47,6 +47,9 @@ class Eleusis:
             
         for player in players:
           await self.client.say(player.name)
+        
+        server = ctx.message.server
+        await self.client.create_channel(server, 'cool-channel', type=discord.ChannelType.text)
 
           
 
