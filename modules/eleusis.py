@@ -71,6 +71,10 @@ class Game:
     self.players = players
     print('New game of Eleusis')
     
-    await self.client.send_message(self.channel, 'Game is about to start, players are :')
+    self.start()
+   
+      
+  async def start(self):
+        await self.client.send_message(self.channel, 'Game is about to start, players are :')
     for player in players:
       await self.client.send_message(self.channel, player.name)
