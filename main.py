@@ -141,14 +141,6 @@ async def unload(extension):
         print('Extension {} cannot be unloaded. [{}]'.format(extension, error))
         client.say('Extension {} cannot be unloaded. [{}]'.format(extension, error))
 
-
-@client.command(pass_context=True)
-async def hornet(self, ctx):
-    user=ctx.message.author
-    voice_channel=user.voice.voice_channel
-    vc= await client.join_voice_channel(voice_channel)
-    player = vc.create_ffmpeg_player('hornet.mp3', after=lambda: print('done'))
-    player.start()
         
 
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'modules'))
