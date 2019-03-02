@@ -33,6 +33,10 @@ class Eleusis:
       if args[0] == 'rules':
         await self.client.say('http://laelith.fr/Zet/Articles/images/eleusis.pdf')
         
+        
+        
+        
+#       New Game
       elif args[0] == 'create':
         new_game_msg = await self.client.say("**A new game of Eleusis is being created ! React to join the party !**")
         
@@ -44,12 +48,13 @@ class Eleusis:
           for reactor in reactors:
             if reactor not in players:
               players.append(reactor)
-        
-        server = ctx.message.server
-        game_channel = await self.client.create_channel(server, 'cool-channel', type=discord.ChannelType.text)
 
+        embed=discord.Embed(title="[Eleusis]", description="Eleusis", color=0x00ffff)
         for player in players:
-          await self.client.send_message(game_channel,player.name)
+          await self.client.say(player.name)
+          embed.add_field(name=player.name, inline=False)
+          
+        await self.client.say(embed=embed)
 
           
 
