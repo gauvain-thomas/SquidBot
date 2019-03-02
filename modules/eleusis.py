@@ -39,7 +39,7 @@ class Eleusis:
         
       elif args[0] == 'create':
         new_game__msg = await self.client.say("**A new game of Eleusis is being created ! React to join the party !**")
-        start_game__msg = await self.client.wait_for_message(author=ctx.message.author, content=".eleusis stop")
+        start_game__msg = await self.client.wait_for_message(author=ctx.message.author, content=".eleusis start")
         new_game_msg = await self.client.get_message(ctx.message.channel, new_game_msg.id)
 
         for reaction in new_game_msg.reactions:
