@@ -127,15 +127,7 @@ class Voice:
     id = ctx.message.server.id
     players[id].stop()
     await self.client.say(":stop_button: Music stopped :stop_button:")
-    
-  @commands.command(pass_context=True)
-  async def hornet(self, ctx):
-    user=ctx.message.author
-    voice_channel=user.voice.voice_channel
-    vc= await self.client.join_voice_channel(voice_channel)
-    player = vc.create_ffmpeg_player('hornet.mp3', after=lambda: print('done'))
-    player.start()
-    
+
     
 #   @commands.command(pass_context=True)
 #   async def youtube(self, ctx, arg):
