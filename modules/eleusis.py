@@ -23,9 +23,6 @@ class Eleusis:
       embed.add_field(name=".eleusis start", value="Launch a new game, must be used after creating a new party", inline=False)
       await self.client.send_message(message.channel, embed=embed)
       
-      game = Game(self.client, message.channel)
-      await game.hello()
-      
       
   #Commands
   @commands.command(pass_context=True)
@@ -50,15 +47,11 @@ class Eleusis:
           reactors = await self.client.get_reaction_users(reaction)
           for reactor in reactors:
             if reactor not in players:
-              players.append(reactor)
-
-        embed=discord.Embed(title="[Eleusis]", description="Eleusis", color=0x00ffff)
-        for player in players:
-          await self.client.say(player.name)
-          embed.add_field(name=player.name, value=None, inline=False)
-          
-        await self.client.say(embed=embed)
-
+              players.append(reactor)+
+        
+        
+        new_game = Game(self.client, ctx.message.channel, players)
+        
           
 
 
@@ -71,15 +64,13 @@ def setup(client):
   
   
   
-  
-  
-  
-  
 class Game:
-  def __init__(self, client, channel):
+  def __init__(self, client, channel, players):
     self.client = client
     self.channel = channel
-    print('test')
+    self.players = players
+    print('New game of Eleusis')
     
-  async def hello(self):
-    await self.client.send_message(self.channel, self.client.user.name)
+    await self.client.send_message(self.channel, 'Game is about to start, players are :')
+    for player in players:
+      await self.client.send_message(self.channel, player.name)
