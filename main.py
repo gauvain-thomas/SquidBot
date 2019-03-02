@@ -43,6 +43,11 @@ async def on_message(message):
         if mention.id == client.user.id:
             await client.send_message(message.channel, "In order to get any help, type .help. For further informations, ask @Squidoss or any other programmer.")
 
+@client.event
+async def on_error(event, *args, **kwargs):
+    print(event)
+    print(args)
+    print(kwargs)
     
 #Commands
 
