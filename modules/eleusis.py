@@ -23,8 +23,8 @@ class Eleusis:
       await self.client.send_message(message.channel, embed=embed)
       
   class Game:
-    def __init__(self, players):
-      self.players = players
+    def __init__(self):
+#       self.players = players
       
       
   #Commands
