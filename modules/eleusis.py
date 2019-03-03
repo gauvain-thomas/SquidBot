@@ -4,6 +4,7 @@
 import discord
 from discord.ext import commands
 import random
+# import json
 
 owners = ['263670024391229440']
 
@@ -18,13 +19,21 @@ class Game:
             self.client = client
             self.player = player
             self.deck = []
+            self.points = 0
 
         def create_deck(self):
+            self.deck = []
             for i in range(14):
                 self.deck.append(random.choice(Game.cards))
 
         def set_player_status(self, status):
             self.player_status = status
+
+        def is_god():
+            if player_status == 'god':
+                return True
+            else:
+                return False
 
     cards = [
     '1_Clubs', '2_Clubs', '3_Clubs', '4_Clubs', '5_Clubs', '6_Clubs', '7_Clubs', '8_Clubs', '9_Clubs', '10_Clubs', 'J_Clubs', 'Q_Clubs', 'K_Clubs',
@@ -38,14 +47,27 @@ class Game:
         self.channel = channel
         self.players_obj = {}
 
+        #Set players object
         for player in players:
             self.players_obj[players.id] = Game.Player(self.client, player)
 
-    async def start(self):
-        for player in players_obj:
-            player.create_deck()
+        self.start()
 
+    def start(self):
+        self.pick_god()
+        self.reset_decks()
 
+        first_card = random.choice(Game.cards)
+        
+
+    def reset_decks(self):
+        for player in self.players_obj:
+            if not player.is_god():
+                player.create_deck()
+
+    def pick_god():
+        """Choose and define a player to be god"""
+        random.choice(self.players_obj).set_player_status('god')
 
 class Eleusis:
   def __init__(self, client):
@@ -86,7 +108,7 @@ class Eleusis:
             players.append(reactor)
 
         new_game = Game(self.client, ctx.message.channel, players)
-        await new_game.start()
+        # await new_game.start()
 
 
 def setup(client):
