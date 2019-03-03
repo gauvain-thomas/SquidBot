@@ -26,7 +26,7 @@ class Game:
         self.players = players
         self.decks = {}
 
-        self.start()
+        await self.start()
 
     async def start(self):
         await self.client.send_message(self.channel, 'Game is about to start ! Players are :')
