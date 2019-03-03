@@ -13,29 +13,8 @@ owners = ['263670024391229440']
 
 # Game class
 class Game:
-    """Game class"""
-    cards = [
-    '1_Clubs', '2_Clubs', '3_Clubs', '4_Clubs', '5_Clubs', '6_Clubs', '7_Clubs', '8_Clubs', '9_Clubs', '10_Clubs', 'J_Clubs', 'Q_Clubs', 'K_Clubs',
-    '1_Diamonds', '2_Diamonds', '3_Diamonds', '4_Diamonds', '5_Diamonds', '6_Diamonds', '7_Diamonds', '8_Diamonds', '9_Diamonds', '10_Diamonds', 'J_Diamonds', 'Q_Diamonds', 'K_Diamonds',
-    '1_Hearts', '2_Hearts', '3_Hearts', '4_Hearts', '5_Hearts', '6_Hearts', '7_Hearts', '8_Hearts', '9_Hearts', '10_Hearts', 'J_Hearts', 'Q_Hearts', 'K_Hearts',
-    '1_Spades', '2_Spades', '3_Spades', '4_Spades', '5_Spades', '6_Spades', '7_Spades', '8_Spades', '9_Spades', '10_Spades', 'J_Spades', 'Q_Spades', 'K_Spades'
-    ]
-
-    def __init__(self, client, channel, players):
+    def __init__(self,client):
         self.client = client
-        self.channel = channel
-        self.players = players
-        self.decks = {}
-
-        await self.client.send_message(self.channel, 'Game is about to start ! Players are :')
-        for player in self.players:
-            deck = []
-            await self.client.send_message(self.channel, player)
-            await self.client.send_message(player, 'Good luck !')
-            for i in range(14):
-                deck.append(random.choice(cards))
-                decks[player.id] = deck
-
 
 class Eleusis:
   def __init__(self, client):
