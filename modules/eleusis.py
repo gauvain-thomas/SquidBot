@@ -78,7 +78,7 @@ class Eleusis:
               players.append(reactor)
 
         new_game = Game(self.client, ctx.message.channel, players)
-        new_game.start()
+        await new_game.start()
 
 
 def setup(client):
