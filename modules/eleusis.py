@@ -35,7 +35,7 @@ class Game:
             await self.client.send_message(player, 'Good luck !')
             for i in range(14):
                 deck.append(random.choice(Game.cards))
-            decks[player.id] = deck
+            self.decks[player.id] = deck
             await self.client.send_message(player, decks[player.id])
 
 class Eleusis:
