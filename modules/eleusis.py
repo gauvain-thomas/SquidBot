@@ -49,27 +49,27 @@ class Eleusis:
           for reactor in reactors:
             if reactor not in players:
               players.append(reactor)
-              
-        # new_game = Game(self.client, ctx.message.channel)
+
+        new_game = Game(self.client, ctx.message.channel)
 
 
 def setup(client):
   client.add_cog(Eleusis(client))
 
-  #
-  # class Game
-  # cartes = []
-  #
-  #   def __init__(self, client, channel, players):
-  #     self.client = client
-  #     self.channel = channel
-  #     self.players = players
-  #     self.decks = {}
-  #     print('New game of Eleusis')
-  #
-  #     self.start()
-  #
-  #   async def start(self):
-  #       await self.client.send_message(self.channel, 'Game is about to start, players are :')
-  #           for player in players:
-  #               await self.client.send_message(self.channel, player.name)
+
+  class Game
+  cartes = []
+
+    def __init__(self, client, channel, players):
+      self.client = client
+      self.channel = channel
+      self.players = players
+      self.decks = {}
+      print('New game of Eleusis')
+
+      self.start()
+
+    async def start(self):
+        await self.client.send_message(self.channel, 'Game is about to start, players are :')
+            for player in players:
+                await self.client.send_message(self.channel, player.name)
