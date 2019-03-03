@@ -14,7 +14,6 @@ description = '''SquidBot in Python, by Squidoss'''
 client_prefix = (".", "/")
 client = commands.Bot(command_prefix=client_prefix, description=description)
 client.remove_command('help')
-initModules()
 
 @client.event
 async def on_ready():
@@ -29,6 +28,8 @@ async def on_ready():
         print(server.name)
     print('------')
     await client.change_presence(game=discord.Game(name='humans...', type=3))
+
+    initModules()
 
 @client.event
 async def on_member_join(member):
