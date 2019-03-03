@@ -58,9 +58,6 @@ class Eleusis:
       if args[0] == 'rules':
         await self.client.say('http://laelith.fr/Zet/Articles/images/eleusis.pdf')
 
-
-
-
 #       New Game
       elif args[0] == 'create':
         players = []

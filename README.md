@@ -1,2 +1,7 @@
 # SquidBot
-A bot by Squidoss
+A bot by Squidoss in Python
+
+Modules :
+Voice
+Eleusis
+System
