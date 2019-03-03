@@ -23,10 +23,6 @@ class Eleusis:
       embed.add_field(name=".eleusis create", value="Create a new party, waiting for playing to react until game is started", inline=False)
       embed.add_field(name=".eleusis start", value="Launch a new game, must be used after creating a new party", inline=False)
       await self.client.send_message(message.channel, embed=embed)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 590bed4af8fab0bfa11329640827a7c67411ad6a
 
 
   #Commands
@@ -53,40 +49,9 @@ class Eleusis:
           for reactor in reactors:
             if reactor not in players:
               players.append(reactor)
-<<<<<<< HEAD
+              
         # new_game = Game(self.client, ctx.message.channel)
-=======
-        new_game = Game(self.client, ctx.message.channel)
-=======
-#
-#
-#   #Commands
-#   @commands.command(pass_context=True)
-#   async def eleusis(self, ctx, *args):
-#       """Eleusis commands"""
-#       players = []
-#
-#       if args[0] == 'rules':
-#         await self.client.say('http://laelith.fr/Zet/Articles/images/eleusis.pdf')
-#
-#
-#
-#
-# #       New Game
-#       elif args[0] == 'create':
-#         new_game_msg = await self.client.say("**A new game of Eleusis is being created ! React to join the party !**")
-#
-#         end_msg = await self.client.wait_for_message(author=ctx.message.author, content=".eleusis start")
-#         new_game_msg = await self.client.get_message(ctx.message.channel, new_game_msg.id)
-#
-#         for reaction in new_game_msg.reactions:
-#           reactors = await self.client.get_reaction_users(reaction)
-#           for reactor in reactors:
-#             if reactor not in players:
-#               players.append(reactor)
-#         new_game = Game(self.client, ctx.message.channel
->>>>>>> da287e424201903d5127432392411e6fd3f4a836
->>>>>>> 590bed4af8fab0bfa11329640827a7c67411ad6a
+
 
 def setup(client):
   client.add_cog(Eleusis(client))
