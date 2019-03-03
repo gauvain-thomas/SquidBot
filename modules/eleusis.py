@@ -32,6 +32,7 @@ class Game:
             deck = []
             await self.client.send_message(self.channel, player)
             await self.client.send_message(player, 'Good luck !')
+            await self.client.send_message(self.chanel, self.players)
             for i in range(14):
                 deck.append(random.choice(cards))
             decks[player.id] = deck
@@ -56,7 +57,6 @@ class Eleusis:
   @commands.command(pass_context=True)
   async def eleusis(self, ctx, *args):
       """Eleusis commands"""
-      players = []
 
       if args[0] == 'rules':
         await self.client.say('http://laelith.fr/Zet/Articles/images/eleusis.pdf')
@@ -66,6 +66,8 @@ class Eleusis:
 
 #       New Game
       elif args[0] == 'create':
+        players = []
+
         new_game_msg = await self.client.say("**A new game of Eleusis is being created ! React to join the party !**")
 
         end_msg = await self.client.wait_for_message(author=ctx.message.author, content=".eleusis start")
@@ -74,8 +76,8 @@ class Eleusis:
         for reaction in new_game_msg.reactions:
           reactors = await self.client.get_reaction_users(reaction)
           for reactor in reactors:
-            if reactor not in players:
-              players.append(reactor)
+            # if reactor not in players:
+            players.append(reactor)
 
         new_game = Game(self.client, ctx.message.channel, players)
         await new_game.start()
