@@ -25,6 +25,8 @@ class Game:
         self.channel = channel
         self.players = players
 
+        await self.client.send_message(channel 'test')
+
 class Eleusis:
   def __init__(self, client):
     self.client = client
