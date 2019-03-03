@@ -29,13 +29,13 @@ class Game:
     async def start(self):
         await self.client.send_message(self.channel, 'Game is about to start ! Players are :')
         for player in self.players:
-            deck = []
-            await self.client.send_message(self.channel, player)
-            await self.client.send_message(player, 'Good luck !')
-            await self.client.send_message(self.channel, self.players)
-            for i in range(14):
-                deck.append(random.choice(cards))
-            decks[player.id] = deck
+            print(player.name)
+            # deck = []
+            # await self.client.send_message(self.channel, player.name)
+            # await self.client.send_message(player, 'Good luck !')
+            # for i in range(14):
+            #     deck.append(random.choice(cards))
+            # decks[player.id] = deck
 
 
 class Eleusis:
