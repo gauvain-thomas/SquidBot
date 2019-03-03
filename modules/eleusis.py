@@ -57,7 +57,7 @@ def setup(client):
   client.add_cog(Eleusis(client))
 
 
-  class Game
+class Game
   cartes = []
 
     def __init__(self, client, channel, players):
