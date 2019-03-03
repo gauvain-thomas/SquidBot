@@ -47,7 +47,7 @@ class Eleusis:
           reactors = await self.client.get_reaction_users(reaction)
           for reactor in reactors:
             if reactor not in players:
-              players.append(reactor)+
+              players.append(reactor)
         
         
         new_game = Game(self.client, ctx.message.channel, players)
