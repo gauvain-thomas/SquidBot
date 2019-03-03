@@ -24,8 +24,16 @@ class Game:
         self.client = client
         self.channel = channel
         self.players = players
+        self.decks = {}
 
-        await self.client.send_message(self.channel, 'test')
+        await self.client.send_message(self.channel, 'Game is about to start ! Players are :')
+        for player in self.players:
+            deck = []
+            await self.client.send_message(self.channel, player)
+            await self.client.send_message(player, 'Good luck !')
+            for i in range(14):
+                deck.append(random.choice(cards))
+            decks[player.id] = deck
 
 class Eleusis:
   def __init__(self, client):
