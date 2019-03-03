@@ -20,12 +20,15 @@ class Game:
     '1_Spades', '2_Spades', '3_Spades', '4_Spades', '5_Spades', '6_Spades', '7_Spades', '8_Spades', '9_Spades', '10_Spades', 'J_Spades', 'Q_Spades', 'K_Spades'
     ]
 
-    async def __init__(self, client, channel, players):
+    def __init__(self, client, channel, players):
         self.client = client
         self.channel = channel
         self.players = players
         self.decks = {}
 
+        self.start()
+
+    async def start():
         await self.client.send_message(self.channel, 'Game is about to start ! Players are :')
         for player in self.players:
             deck = []
@@ -34,6 +37,7 @@ class Game:
             for i in range(14):
                 deck.append(random.choice(cards))
             decks[player.id] = deck
+
 
 class Eleusis:
   def __init__(self, client):
@@ -77,6 +81,6 @@ class Eleusis:
 
         new_game = Game(self.client, ctx.message.channel, players)
 
-        
+
 def setup(client):
   client.add_cog(Eleusis(client))
