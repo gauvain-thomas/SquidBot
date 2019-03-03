@@ -20,7 +20,7 @@ class Game:
     '1_Spades', '2_Spades', '3_Spades', '4_Spades', '5_Spades', '6_Spades', '7_Spades', '8_Spades', '9_Spades', '10_Spades', 'J_Spades', 'Q_Spades', 'K_Spades'
     ]
 
-    def __init__(self, client, channel, players):
+    async def __init__(self, client, channel, players):
         self.client = client
         self.channel = channel
         self.players = players
