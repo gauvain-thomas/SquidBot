@@ -13,8 +13,10 @@ owners = ['263670024391229440']
 
 # Game class
 class Game:
-    def __init__(self,client):
+    def __init__(self, client, channel, players):
         self.client = client
+        self.channel = channel
+        self.players = players
 
 class Eleusis:
   def __init__(self, client):
