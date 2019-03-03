@@ -10,6 +10,10 @@ import random
 
 owners = ['263670024391229440']
 
+class Game:
+  def __init__(self):
+    print('test')
+
 class Eleusis:
   def __init__(self, client):
     self.client = client
@@ -55,7 +59,3 @@ class Eleusis:
 def setup(client):
   client.add_cog(Eleusis(client))
 
-
-class Game:
-    """docstring for Game."""
-    def __init__(self):
