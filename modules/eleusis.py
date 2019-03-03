@@ -30,7 +30,7 @@ class Game:
         await self.client.send_message(self.channel, 'Game is about to start ! Players are :')
         for player in self.players:
             print(player.name)
-            # deck = []
+            deck = []
             # await self.client.send_message(self.channel, player.name)
             await self.client.send_message(player, 'Good luck !')
             for i in range(14):
