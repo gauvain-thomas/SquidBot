@@ -10,6 +10,22 @@ owners = ['263670024391229440']
 
 # Game class
 class Game:
+    """Eleusis game class"""
+
+    class Player():
+        """Eleusis game player sub-class"""
+        def __init__(self, client, player):
+            self.client = client
+            self.player = player
+            self.deck = []
+
+        def create_deck(self):
+            for i in range(14):
+                self.deck.append(random.choice(Game.cards))
+
+        def set_player_status(self, status):
+            self.player_status = status
+
     cards = [
     '1_Clubs', '2_Clubs', '3_Clubs', '4_Clubs', '5_Clubs', '6_Clubs', '7_Clubs', '8_Clubs', '9_Clubs', '10_Clubs', 'J_Clubs', 'Q_Clubs', 'K_Clubs',
     '1_Diamonds', '2_Diamonds', '3_Diamonds', '4_Diamonds', '5_Diamonds', '6_Diamonds', '7_Diamonds', '8_Diamonds', '9_Diamonds', '10_Diamonds', 'J_Diamonds', 'Q_Diamonds', 'K_Diamonds',
@@ -20,26 +36,22 @@ class Game:
     def __init__(self, client, channel, players):
         self.client = client
         self.channel = channel
-        self.players = players
-        self.decks = {}
+        self.players_obj = {}
+
+        for player in players:
+            self.players_obj[players.id] = Game.Player(self.client, player)
 
     async def start(self):
-        await self.client.send_message(self.channel, 'Game is about to start ! Players are :')
-        for player in self.players:
-            print(player.name)
-            deck = []
-            # await self.client.send_message(self.channel, player.name)
-            await self.client.send_message(player, 'Good luck !')
-            for i in range(14):
-                deck.append(random.choice(Game.cards))
-            self.decks[player.id] = deck
-            await self.client.send_message(player, self.decks[player.id])
+        for player in players_obj:
+            player.create_deck()
+
+
 
 class Eleusis:
   def __init__(self, client):
     self.client = client
 
-  #Help system
+  #Help Eleusis
   async def on_message(self, message):
     if '.help all' in message.content or '.help eleusis' in message.content:
       embed=discord.Embed(title="Help - [Eleusis]", description="Commands about Eleusis", color=0x00ffff)
