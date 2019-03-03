@@ -52,7 +52,7 @@ class Eleusis:
         new_game = Game(self.client, ctx.message.channel
 
   def setup(client):
-  client.add_cog(Eleusis(client))
+    client.add_cog(Eleusis(client))
 
   #
   # class Game
