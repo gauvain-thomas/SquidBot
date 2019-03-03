@@ -54,11 +54,18 @@ class Game:
         self.start()
 
     def start(self):
+        self.turn = 0
+
+        self.up_row = []
+        self.middle_row = []
+        self.down_row = []
+
         self.pick_god()
         self.reset_decks()
 
         first_card = random.choice(Game.cards)
-        
+        self.middle_row.append((turn, first_card))
+
 
     def reset_decks(self):
         for player in self.players_obj:
