@@ -44,7 +44,8 @@ async def on_message(message):
     await client.process_commands(message)
     for mention in message.mentions:
         if mention.id == client.user.id:
-            await client.send_message(message.channel, "In order to get any help, type .help. For further informations, ask @Squidoss or any other programmer.")
+            await client.send_message(message.channel,
+            "In order to get any help, type .help. For further informations, ask @Squidoss or any other programmer.")
 
 # @client.event
 # async def on_error(event, *args, **kwargs):
@@ -172,4 +173,4 @@ def initModules():
             except extension as error:
                 print('Extension {} cannot be loaded. [{}]'.format(extension, error))
 
-        client.run(TOKEN)
+client.run(TOKEN)
