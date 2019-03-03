@@ -20,13 +20,11 @@ class Game:
     '1_Spades', '2_Spades', '3_Spades', '4_Spades', '5_Spades', '6_Spades', '7_Spades', '8_Spades', '9_Spades', '10_Spades', 'J_Spades', 'Q_Spades', 'K_Spades'
     ]
 
-    async def __init__(self, client, channel, players):
+    def __init__(self, client, channel, players):
         self.client = client
         self.channel = channel
         self.players = players
         self.decks = {}
-
-        await self.start()
 
     async def start(self):
         await self.client.send_message(self.channel, 'Game is about to start ! Players are :')
@@ -80,6 +78,7 @@ class Eleusis:
               players.append(reactor)
 
         new_game = Game(self.client, ctx.message.channel, players)
+        new_game.start()
 
 
 def setup(client):
