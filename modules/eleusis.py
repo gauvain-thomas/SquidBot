@@ -3,9 +3,6 @@
 
 import discord
 from discord.ext import commands
-import os
-import subprocess
-import sys
 import random
 
 owners = ['263670024391229440']
