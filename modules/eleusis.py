@@ -51,7 +51,7 @@ class Eleusis:
               players.append(reactor)
         new_game = Game(self.client, ctx.message.channel
 
-def setup(client):
+  def setup(client):
   client.add_cog(Eleusis(client))
 
   #
