@@ -32,7 +32,11 @@ class Game:
             print(player.name)
             # deck = []
             # await self.client.send_message(self.channel, player.name)
+<<<<<<< HEAD
             await self.client.send_message(player, 'Good luck !')
+=======
+            # await self.client.send_message(player, 'Good luck !')
+>>>>>>> f62925c61d27d575418eda5eb74fc1a874cef299
             # for i in range(14):
             #     deck.append(random.choice(cards))
             # decks[player.id] = deck
