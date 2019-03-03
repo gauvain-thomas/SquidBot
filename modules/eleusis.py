@@ -28,7 +28,7 @@ class Game:
 
         self.start()
 
-    async def start():
+    async def start(self):
         await self.client.send_message(self.channel, 'Game is about to start ! Players are :')
         for player in self.players:
             deck = []
