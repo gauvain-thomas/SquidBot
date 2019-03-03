@@ -10,9 +10,14 @@ import random
 
 owners = ['263670024391229440']
 
+
+# Game class
 class Game:
-  def __init__(self):
-    print('test')
+  def __init__(self, client, channel, players):
+    print('New game started')
+    self.client = client
+    self.channel = channel
+    self.players = players
 
 class Eleusis:
   def __init__(self, client):
@@ -58,4 +63,3 @@ class Eleusis:
 
 def setup(client):
   client.add_cog(Eleusis(client))
-
