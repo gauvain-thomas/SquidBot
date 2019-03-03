@@ -34,7 +34,7 @@ class Game:
             # await self.client.send_message(self.channel, player.name)
             await self.client.send_message(player, 'Good luck !')
             for i in range(14):
-                deck.append(random.choice(cards))
+                deck.append(random.choice(Game.cards))
             decks[player.id] = deck
             await self.client.send_message(player, decks[player.id])
 
