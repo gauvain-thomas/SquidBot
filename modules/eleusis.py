@@ -65,7 +65,7 @@ class Game:
         self.reset_decks()
 
         first_card = random.choice(Game.cards)
-        self.middle_row.append((turn, first_card
+        self.middle_row.append((turn, first_card))
 
 
     def reset_decks(self):
