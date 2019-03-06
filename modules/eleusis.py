@@ -51,7 +51,7 @@ class Game:
         for player in players:
             self.players_obj[player.id] = Game.Player(self.client, player)
 
-        print(self.players_obj.items())
+        # print(self.players_obj.items())
 
         self.start()
 
@@ -62,7 +62,7 @@ class Game:
         self.middle_row = []
         self.down_row = []
 
-        # self.pick_god()
+        self.pick_god()
     #     self.reset_decks()
     #
     #     first_card = random.choice(Game.cards)
@@ -76,9 +76,9 @@ class Game:
     #
     def pick_god(self):
         """Choose and define a player to be god"""
-        self.god = random.choice(self.players_obj.values())
+        self.god = random.choice(self.players_obj.items())
         print('God is : {}'.format(self.god))
-        self.god.set_player_status('god')
+        self.god[0].set_player_status('god')
 
 class Eleusis:
   def __init__(self, client):
