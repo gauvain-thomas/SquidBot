@@ -70,7 +70,7 @@ class Game:
 
     def reset_decks(self):
         for player in self.players_obj:
-            if not player.is_god():
+            if player.is_god() is False:
                 player.create_deck()
 
     def pick_god(self):
