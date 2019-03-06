@@ -30,7 +30,7 @@ class Game:
             self.player_status = status
 
         def is_god():
-            if player_status == 'god':
+            if self.player_status == 'god':
                 return True
             else:
                 return False
