@@ -60,7 +60,7 @@ class Game:
         self.middle_row = []
         self.down_row = []
 
-        self.pick_god()
+        # self.pick_god()
         self.reset_decks()
 
         first_card = random.choice(Game.cards)
