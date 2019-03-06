@@ -41,6 +41,9 @@ class Game:
             else:
                 return False
 
+        async def show_deck(self):
+            await self.client.send_message(self.player, self.deck)
+
     cards = [
     '1_Clubs', '2_Clubs', '3_Clubs', '4_Clubs', '5_Clubs', '6_Clubs', '7_Clubs', '8_Clubs', '9_Clubs', '10_Clubs', 'J_Clubs', 'Q_Clubs', 'K_Clubs',
     '1_Diamonds', '2_Diamonds', '3_Diamonds', '4_Diamonds', '5_Diamonds', '6_Diamonds', '7_Diamonds', '8_Diamonds', '9_Diamonds', '10_Diamonds', 'J_Diamonds', 'Q_Diamonds', 'K_Diamonds',
@@ -71,6 +74,7 @@ class Game:
         self.middle_row.append((self.turn, random.choice(Game.cards)))
 
         await self.show_cards()
+        await self.show_decks()
 
     def reset_decks(self):
         for player in self.players:
@@ -82,6 +86,11 @@ class Game:
 
     async def show_cards(self):
         await self.client.send_message(self.channel, self.middle_row)
+
+    async def show_decks(self):
+        for player in players:
+            if not players_obj[player.id].is_god():
+                await players_obj[player.id].show_deck()
 
 class Eleusis:
   def __init__(self, client):
