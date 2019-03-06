@@ -46,36 +46,38 @@ class Game:
         self.client = client
         self.channel = channel
         self.players_obj = {}
-
+    #
         #Set players object
         for player in players:
             self.players_obj[player.id] = Game.Player(self.client, player)
 
-        self.start()
-
-    def start(self):
-        self.turn = 0
-
-        self.up_row = []
-        self.middle_row = []
-        self.down_row = []
-
-        # self.pick_god()
-        self.reset_decks()
-
-        first_card = random.choice(Game.cards)
-        self.middle_row.append((turn, first_card))
-
-
-    def reset_decks(self):
-        for player in self.players_obj:
-            if not player.is_god():
-                player.create_deck()
-
-    def pick_god(self):
-        """Choose and define a player to be god"""
-        god = random.choice(self.players_obj)
-        god.set_player_status('god')
+        print(players_obj)
+    #
+    #     self.start()
+    #
+    # def start(self):
+    #     self.turn = 0
+    #
+    #     self.up_row = []
+    #     self.middle_row = []
+    #     self.down_row = []
+    #
+    #     # self.pick_god()
+    #     self.reset_decks()
+    #
+    #     first_card = random.choice(Game.cards)
+    #     self.middle_row.append((turn, first_card))
+    #
+    #
+    # def reset_decks(self):
+    #     for player in self.players_obj:
+    #         if not player.is_god():
+    #             player.create_deck()
+    #
+    # def pick_god(self):
+    #     """Choose and define a player to be god"""
+    #     god = random.choice(self.players_obj)
+    #     god.set_player_status('god')
 
 class Eleusis:
   def __init__(self, client):
