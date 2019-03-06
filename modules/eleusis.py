@@ -44,14 +44,13 @@ class Game:
 
     def __init__(self, client, channel, players):
         self.client = client
-        self.channel = channel
+        self.channel = channe
+        self.players = players
         self.players_obj = {}
 
         #Set players object
-        for player in players:
+        for player in self.players:
             self.players_obj[player.id] = Game.Player(self.client, player)
-
-        # print(self.players_obj.items())
 
         self.start()
 
@@ -76,10 +75,8 @@ class Game:
     #
     def pick_god(self):
         """Choose and define a player to be god"""
-        players_list = self.players_obj.items()
-        self.god = random.choice(players_list)
-        print('God is : {}'.format(self.god))
-        self.god[0].set_player_status('god')
+        self.players_obj[random.choice(self.players).id].set_player_status('god')
+
 
 class Eleusis:
   def __init__(self, client):
