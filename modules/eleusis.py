@@ -88,7 +88,7 @@ class Game:
         await self.client.send_message(self.channel, self.middle_row)
 
     async def show_decks(self):
-        for player in players:
+        for player in self.players:
             if not players_obj[player.id].is_god():
                 await players_obj[player.id].show_deck()
 
