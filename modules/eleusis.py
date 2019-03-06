@@ -72,7 +72,7 @@ class Game:
             if not player.is_god():
                 player.create_deck()
 
-    def pick_god():
+    def pick_god(self):
         """Choose and define a player to be god"""
         random.choice(self.players_obj).set_player_status('god')
 
