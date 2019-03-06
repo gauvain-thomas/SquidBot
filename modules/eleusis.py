@@ -4,6 +4,12 @@
 import discord
 from discord.ext import commands
 import random
+import sys
+import os
+
+# sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'cards_img'))
+# print(sys.path)
+# import display_cards
 # import json
 
 owners = ['263670024391229440']
@@ -65,6 +71,7 @@ class Game:
         self.reset_decks()
 
         self.middle_row.append((self.turn, random.choice(Game.cards)))
+        print(self.middle_row)
 
 
     def reset_decks(self):
