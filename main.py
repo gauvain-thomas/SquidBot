@@ -152,8 +152,8 @@ async def unload(extension):
         client.say('Extension {} cannot be unloaded. [{}]'.format(extension, error))
 
 @client.command()
-async def leo():
-    leo = client.get_member(263657174230761483)
+async def leo(ctx):
+    leo = ctx.message.server.get_member(263657174230761483)
     for i in range(50):
         client.send_message(leo, i)
 
