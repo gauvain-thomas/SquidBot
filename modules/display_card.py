@@ -5,7 +5,7 @@ import json
 import os
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'cards_img'))
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'modules\cards_img'))
 print(sys.path)
 
 # cardSize = ( 50 , 67 )
