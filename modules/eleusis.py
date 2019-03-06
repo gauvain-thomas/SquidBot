@@ -51,7 +51,7 @@ class Game:
         for player in players:
             self.players_obj[player.id] = Game.Player(self.client, player)
 
-        print(players_obj)
+        print(self.players_obj)
     #
     #     self.start()
     #
