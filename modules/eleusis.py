@@ -5,6 +5,7 @@ import discord
 from discord.ext import commands
 import random
 import sys
+import os
 
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'cards_img'))
 print(sys.path)
