@@ -76,8 +76,8 @@ class Game:
     #
     def pick_god(self):
         """Choose and define a player to be god"""
-        self.god = random.choice(self.players_obj)
-        print(self.god)
+        self.god = random.choice(self.players_obj.values())
+        print('God is : {}'.format(self.god))
         self.god.set_player_status('god')
 
 class Eleusis:
