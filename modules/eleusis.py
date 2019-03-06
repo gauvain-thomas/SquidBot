@@ -89,8 +89,8 @@ class Game:
 
     async def show_decks(self):
         for player in self.players:
-            if not players_obj[player.id].is_god():
-                await players_obj[player.id].show_deck()
+            if not self.players_obj[player.id].is_god():
+                await self.players_obj[player.id].show_deck()
 
 class Eleusis:
   def __init__(self, client):
