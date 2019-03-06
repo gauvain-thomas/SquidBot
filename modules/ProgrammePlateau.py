@@ -26,3 +26,6 @@ img.show()
 img.close()
 print("Everything is okay")
 os.system("pause")
+
+if __name__ == __main__:
+    pass
