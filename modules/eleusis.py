@@ -62,19 +62,18 @@ class Game:
         self.down_row = []
 
         self.pick_god()
-    #     self.reset_decks()
-    #
-    #     first_card = random.choice(Game.cards)
-    #     self.middle_row.append((turn, first_card))
-    #
-    #
-    # def reset_decks(self):
-    #     for player in self.players_obj:
-    #         if not player.is_god():
-    #             player.create_deck()
-    #
+        self.reset_decks()
+
+        first_card = random.choice(Game.cards)
+        self.middle_row.append((turn, first_card
+
+
+    def reset_decks(self):
+        for player in self.players_obj:
+            if not player.is_god():
+                player.create_deck()
+
     def pick_god(self):
-        """Choose and define a player to be god"""
         self.players_obj[random.choice(self.players).id].set_player_status('god')
 
 
