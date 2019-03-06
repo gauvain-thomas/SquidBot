@@ -4,6 +4,10 @@
 import discord
 from discord.ext import commands
 import random
+
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'cards_img'))
+print(sys.path)
+import display_cards
 # import json
 
 owners = ['263670024391229440']
