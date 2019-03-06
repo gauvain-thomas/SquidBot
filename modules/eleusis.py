@@ -72,7 +72,7 @@ class Game:
 
         self.middle_row.append((self.turn, random.choice(Game.cards)))
 
-        self.show_cards()
+        await self.show_cards()
 
     def reset_decks(self):
         for player in self.players:
