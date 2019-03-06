@@ -44,7 +44,7 @@ class Game:
 
     def __init__(self, client, channel, players):
         self.client = client
-        self.channel = channe
+        self.channel = channel
         self.players = players
         self.players_obj = {}
 
