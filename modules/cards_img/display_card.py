@@ -5,6 +5,9 @@ import json
 import os
 # import sys
 
+dirname = os.path.dirname(__file__)
+print(dirname)
+print(dirname+"\\test.png")
 # sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'modules/cards_img'))
 # print(sys.path)
 
@@ -16,8 +19,8 @@ v_gap2 = 25
 row = 1
 column = 2
 
-img = Image.open("plateau.png")
-card = Image.open("1.jpg")
+img = Image.open(dirname+"\\test.png")
+card = Image.open(dirname+"\\1.jpg")
 
 position1 = (column*(h_gap+cardSize[0])+h_gap , v_gap1+row*(v_gap2+cardSize[1]) )
 position2 = (position1[0]+cardSize[0], position1[1]+cardSize[1])
