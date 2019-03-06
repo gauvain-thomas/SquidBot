@@ -82,7 +82,7 @@ class Game:
     def pick_god(self):
         self.players_obj[random.choice(self.players).id].set_player_status('god')
 
-    def show_cards(self):
+    async def show_cards(self):
         await self.client.send_message(self.channel, self.middle_row)
 
 class Eleusis:
