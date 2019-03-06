@@ -71,8 +71,8 @@ class Game:
         self.reset_decks()
 
         self.middle_row.append((self.turn, random.choice(Game.cards)))
-        print(self.middle_row)
 
+        self.show_cards()
 
     def reset_decks(self):
         for player in self.players:
@@ -82,6 +82,8 @@ class Game:
     def pick_god(self):
         self.players_obj[random.choice(self.players).id].set_player_status('god')
 
+    def show_cards(self):
+        await self.client.send_message(self.channel, self.middle_row)
 
 class Eleusis:
   def __init__(self, client):
