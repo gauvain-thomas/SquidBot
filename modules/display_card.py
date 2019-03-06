@@ -15,7 +15,7 @@ v_gap2 = 25
 row = 1
 column = 2
 
-img = Image.open("plateau.png")
+img = Image.open("cards_img.plateau.png")
 card = Image.open("1.jpg")
 
 position1 = (column*(h_gap+cardSize[0])+h_gap , v_gap1+row*(v_gap2+cardSize[1]) )
