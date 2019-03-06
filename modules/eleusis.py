@@ -64,8 +64,7 @@ class Game:
         self.pick_god()
         self.reset_decks()
 
-        first_card = random.choice(Game.cards)
-        self.middle_row.append((turn, first_card))
+        self.middle_row.append((self.turn, random.choice(Game.cards)))
 
 
     def reset_decks(self):
