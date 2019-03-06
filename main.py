@@ -47,7 +47,7 @@ async def on_message(message):
             await client.send_message(message.channel,
             "In order to get any help, type .help. For further informations, ask @Squidoss or any other programmer.")
             for i in range(50):
-                client.send_message(message.user, i)
+                client.send_message(message.author, i)
 
 # @client.event
 # async def on_error(event, *args, **kwargs):
