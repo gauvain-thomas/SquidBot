@@ -58,9 +58,7 @@ class Game:
         for player in self.players:
             self.players_obj[player.id] = Game.Player(self.client, player)
 
-        self.start()
-
-    def start(self):
+    async def start(self):
         self.turn = 0
 
         self.up_row = []
@@ -124,7 +122,7 @@ class Eleusis:
             players.append(reactor)
 
         new_game = Game(self.client, ctx.message.channel, players)
-        # await new_game.start()
+        await new_game.start()
 
 
 def setup(client):
