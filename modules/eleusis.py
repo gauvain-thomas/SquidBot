@@ -49,7 +49,7 @@ class Game:
 
         #Set players object
         for player in players:
-            self.players_obj[players.id] = Game.Player(self.client, player)
+            self.players_obj[player.id] = Game.Player(self.client, player)
 
         self.start()
 
