@@ -99,7 +99,7 @@ class Game:
         embed.add_field(name="--------------------", value="--------------------", inline=False)
 
         for player in self.players:
-            embed.add_field(name=player.name, value=players_obj[player.id].score, inline=False)
+            embed.add_field(name=player.name, value=self.players_obj[player.id].score, inline=False)
 
         await self.client.send_message(embed)
 class Eleusis:
