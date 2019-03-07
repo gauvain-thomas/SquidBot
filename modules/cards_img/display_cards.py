@@ -47,6 +47,24 @@ def paste_card(cardTuple,position,stack):
     stack.paste(card_image,position)
     return stack
 
+def create_image(up_row, middle_row, down_row):
+
+    round = len(middle_row)
+
+    if round < 4:
+        rounds_shown = round
+
+    else:
+        rounds_shown = 4
+
+
+
+def paste_middle_row(middle_row, rounds_shown ,stack):
+    
+
+
+
+
 stack = load_stack()
 paste_card((1,"1_Clubs"),get_position(1,2),stack).show()
 
