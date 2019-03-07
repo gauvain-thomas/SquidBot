@@ -26,6 +26,7 @@ class Game:
             self.player = player
             self.deck = []
             self.points = 0
+            self.player_status = 'player'
 
         def create_deck(self):
             self.deck = []
