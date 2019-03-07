@@ -109,7 +109,7 @@ class Game:
         for player in self.players:
             if not self.players_obj[player.id].is_god:
                 card = ''
-                while chosen_card is not in self.cards:
+                while not chosen_card in self.cards:
                     await self.client.send_message(player, 'Choose a card.. .')
                     chosen_card = await self.client.wait_for_message(author=player)
 
