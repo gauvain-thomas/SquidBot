@@ -78,13 +78,15 @@ class Game:
         await self.show_cards()
         await self.show_decks()
 
+        await self.process_turn()
+
     def reset_decks(self):
         for player in self.players:
             if not self.players_obj[player.id].is_god():
                 self.players_obj[player.id].create_deck()
 
     def pick_god(self):
-        self.players_obj[random.choice(self.players).id].set_player_status('god')
+        self.god = self.players_obj[random.choice(self.players).id].set_player_status('god')
 
     async def show_cards(self):
         await self.client.send_message(self.channel, 'Card are : {}'.format(self.middle_row))
@@ -102,6 +104,32 @@ class Game:
             embed.add_field(name=player.name, value=self.players_obj[player.id].score, inline=False)
 
         await self.client.send_message(self.channel, embed=embed)
+
+    async def process_turn(self):
+        for player in self.players:
+            if not self.players_obj[player.id].is_god:
+                card = ''
+                while chosen_card is not in self.cards:
+                    await self.client.send_message(player, 'Choose a card.. .')
+                    chosen_card = await self.client.wait_for_message(author=player)
+
+                await self.client.send_message(god, 'Does this card fit the sequence ? : {}'.format(chosen_card))
+                answer = await self.client.wait_for_message(author=god)
+
+                while answer.content is 'yes' or answer.content is 'no':
+                    if answer.content is 'yes':
+                        self.middle_row.append((turn, chosen_card))
+                        turn += 1
+                    elif answer.content is 'no':
+                        self.down_row.append((turn, chosen_card))
+                    else:
+                        await self.client.send_message(god,
+                        'Sorry, your message was not fully understood, please try again')
+
+                    self.show_cards()
+
+
+
 class Eleusis:
   def __init__(self, client):
     self.client = client
