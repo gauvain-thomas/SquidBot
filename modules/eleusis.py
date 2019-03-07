@@ -97,7 +97,7 @@ class Game:
     async def show_scores(self):
         embed=discord.Embed(title="[Eleusis]", description="Scores", color=0x00ffff)
         embed.add_field(name="--------------------", value="--------------------", inline=False)
-        
+
         for player in players:
             embed.add_field(name=player.name, value=players_obj[player.id].score, inline=False)
 
@@ -105,7 +105,7 @@ class Game:
 class Eleusis:
   def __init__(self, client):
     self.client = client
-    games_list = {}
+    self.games_list = {}
   #Help Eleusis
   async def on_message(self, message):
     if '.help all' in message.content or '.help eleusis' in message.content:
@@ -141,7 +141,7 @@ class Eleusis:
                 players.append(reactor)
 
         games_list[ctx.channel.id] = Game(self.client, ctx.message.channel, players)
-        await games_list[ctx.channel.id].start()
+        await self.games_list[ctx.channel.id].start()
 
 
 def setup(client):
