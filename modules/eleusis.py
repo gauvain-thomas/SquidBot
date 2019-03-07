@@ -75,7 +75,7 @@ class Game:
 
         self.middle_row.append((self.turn, random.choice(Game.cards)))
 
-        # await self.show_cards()
+        await self.show_cards()
         await self.show_decks()
 
     def reset_decks(self):
@@ -87,7 +87,7 @@ class Game:
         self.players_obj[random.choice(self.players).id].set_player_status('god')
 
     async def show_cards(self):
-        await self.client.send_message(self.channel, self.middle_row)
+        await self.client.send_message(self.channel, 'Card are : {}'.format(self.middle_row))
 
     async def show_decks(self):
         for player in self.players:
