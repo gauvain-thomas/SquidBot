@@ -19,14 +19,12 @@ def get_folder():
 def load_card(cardTuple):
 
     cardPath = get_folder()+ "\\" + cardTuple[1] + ".jpg"
-    card_image = Image.open(cardPath)
-    return card_image
+    return Image.open(cardPath)
 
 def load_stack():
 
     stackPath = get_folder() + "\\stack.png"
-    stack_image = Image.open(stackPath)
-    return stack_image
+    return  Image.open(stackPath)
 
 def get_position(row,column):
 
