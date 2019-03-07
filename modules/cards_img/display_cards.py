@@ -5,34 +5,55 @@ import json
 import os
 # import sys
 
-dirname = os.path.dirname(__file__)
-print(dirname)
-print(dirname+"\\test.png")
 # sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'modules/cards_img'))
 # print(sys.path)
 
-cardSize = ( 50 , 67 )
-h_gap = 40
-v_gap1 = 24
-v_gap2 = 25
+#return the position in the image of the card, given a row and a column
 
-row = 1
-column = 2
 
-img = Image.open(dirname+"\\test.png")
-card = Image.open(dirname+"\\1.jpg")
+def get_folder():
 
-position1 = (column*(h_gap+cardSize[0])+h_gap , v_gap1+row*(v_gap2+cardSize[1]) )
-position2 = (position1[0]+cardSize[0], position1[1]+cardSize[1])
-print (position1)
-print (position2)
+    return os.path.direname(__file__)
 
-img.paste(card, position1+position2)
 
-img.show()
-img.close()
-print("Everything is okay")
-os.system("pause")
+def load_card(cardTuple):
 
-if __name__ == '__main__':
-    pass
+    cardPath = get_folder()+ "\\" + cardTuple[1] + ".jpg"
+    cardImage = image.open(cardPath)
+
+def load_stack():
+
+    stackPath = get_folder() + "\\stack.jpg"
+    stack_image = image.open(stackPath)
+
+def get_position(row,column):
+
+    card_width = 50
+    card_height = 67
+    horizontal_gap = 40
+    vertical_gap1 = 24
+    vertical_gap2 = 25
+
+    position1 = (column*(horizontal_gap+card_width) + horizontal_gap, row*(vertical_gap2+card_height) + vertical_gap1)
+    position2 = (position1[0] + card_width, position1[1] + card_height)
+
+    return position1 + position2
+
+
+# def createImage(up,mid,down):
+#
+#     tour_max = len(mid)
+#
+#     if tour_max < 4:
+#         count = tour_max
+#     else:
+#         count = 4
+#
+#         for x in range (-4,0):
+#             tuple = mid[x]
+#             card = tuple[1]
+#             card_image = Image.open(dirname+"\\"+card+".jpg")
+#             row = 1
+#             column = tuple[0]
+#             img.paste(card_image,
+#             card_image.close()
