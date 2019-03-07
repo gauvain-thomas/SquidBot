@@ -106,6 +106,7 @@ class Game:
         await self.client.send_message(self.channel, embed=embed)
 
     async def process_turn(self):
+        print('Process turn')
         for player in self.players:
             if not self.players_obj[player.id].is_god:
                 card = ''
