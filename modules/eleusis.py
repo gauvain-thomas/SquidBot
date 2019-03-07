@@ -44,6 +44,7 @@ class Game:
 
         async def show_deck(self):
             await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
+            print('test')
 
     cards = [
     '1_Clubs', '2_Clubs', '3_Clubs', '4_Clubs', '5_Clubs', '6_Clubs', '7_Clubs', '8_Clubs', '9_Clubs', '10_Clubs', 'J_Clubs', 'Q_Clubs', 'K_Clubs',
