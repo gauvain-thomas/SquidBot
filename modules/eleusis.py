@@ -119,13 +119,16 @@ class Game:
                 await self.client.send_message(player, 'Card chosen')
                 await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
                 answer = await self.client.wait_for_message(author=self.god)
+                answer_message = answer.content
 
-                while not (answer.content is 'yes' or answer.content is 'no'):
-                    if answer.content is 'yes':
+                while not (answer_message is 'yes' or answer_message is 'no'):
+                    if answer_message is 'yes':
                         self.middle_row.append((turn, chosen_card))
                         turn += 1
-                    elif answer.content is 'no':
+                        answer_message = ''
+                    elif answer_message is 'no':
                         self.down_row.append((turn, chosen_card))
+                        answer_message = ''
                     else:
                         await self.client.send_message(self.god,
                         'Sorry, your message was not fully understood, please try again')
