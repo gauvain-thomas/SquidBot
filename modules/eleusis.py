@@ -140,7 +140,7 @@ class Eleusis:
             if reactor not in players:
                 players.append(reactor)
 
-        games_list[ctx.channel.id] = Game(self.client, ctx.message.channel, players)
+        self.games_list[ctx.channel.id] = Game(self.client, ctx.message.channel, players)
         await self.games_list[ctx.channel.id].start()
 
 
