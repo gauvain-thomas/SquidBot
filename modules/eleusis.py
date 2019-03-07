@@ -86,7 +86,8 @@ class Game:
                 self.players_obj[player.id].create_deck()
 
     def pick_god(self):
-        self.god = self.players_obj[random.choice(self.players).id].set_player_status('god')
+        self.god = random.choice(self.players)
+        self.players_obj[self.god.id].set_player_status('god')
 
     async def show_cards(self):
         await self.client.send_message(self.channel, 'Card are : {}'.format(self.middle_row))
@@ -115,8 +116,8 @@ class Game:
                     chosen_card_msg = await self.client.wait_for_message(author=player)
                     chosen_card = chosen_card_msg.content
 
-                await self.client.send_message(self.god.player, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
-                answer = await self.client.wait_for_message(author=self.god.player)
+                await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
+                answer = await self.client.wait_for_message(author=self.god)
 
                 while answer.content is 'yes' or answer.content is 'no':
                     if answer.content is 'yes':
@@ -125,7 +126,7 @@ class Game:
                     elif answer.content is 'no':
                         self.down_row.append((turn, chosen_card))
                     else:
-                        await self.client.send_message(self.god.player,
+                        await self.client.send_message(self.god,
                         'Sorry, your message was not fully understood, please try again')
 
                     self.show_cards()
