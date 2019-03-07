@@ -12,11 +12,18 @@ import os
 
 
 def get_folder():
-
     return os.path.dirname(__file__)
 
-def get_position(row,column):
 
+def load_card(cardTuple):
+    cardPath = get_folder()+ "\\" + cardTuple[1] + ".jpg"
+    return Image.open(cardPath)
+
+def load_stack():
+    stackPath = get_folder() + "\\stack.png"
+    return  Image.open(stackPath)
+
+def get_position(row, column):
     card_width = 50
     card_height = 67
     horizontal_gap = 40
@@ -29,48 +36,16 @@ def get_position(row,column):
     return position1 + position2
 
 
-def load_card(cardTuple):
-
-    cardPath = get_folder()+ "\\" + cardTuple[1] + ".jpg"
-    return Image.open(cardPath)
-
-def load_stack():
-
-    stackPath = get_folder() + "\\stack.png"
-    return  Image.open(stackPath)
-
-
-
-def paste_card(cardTuple,position,stack):
-
+def paste_card(cardTuple, position, stack):
     card_image = load_card(cardTuple)
     stack.paste(card_image,position)
     return stack
-
-def create_image(up_row, middle_row, down_row):
-
-    round = len(middle_row)
-
-    if round < 4:
-        rounds_shown = round
-
-    else:
-        rounds_shown = 4
-
-
-
-def paste_middle_row(middle_row, rounds_shown ,stack):
-    
-
-
-
 
 stack = load_stack()
 paste_card((1,"1_Clubs"),get_position(1,2),stack).show()
 
 
 # def createImage(up,mid,down):
-#
 #     tour_max = len(mid)
 #
 #     if tour_max < 4:
