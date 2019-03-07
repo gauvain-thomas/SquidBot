@@ -98,7 +98,7 @@ class Game:
         embed=discord.Embed(title="[Eleusis]", description="Scores", color=0x00ffff)
         embed.add_field(name="--------------------", value="--------------------", inline=False)
 
-        for player in players:
+        for player in self.players:
             embed.add_field(name=player.name, value=players_obj[player.id].score, inline=False)
 
         await self.client.send_message(embed)
