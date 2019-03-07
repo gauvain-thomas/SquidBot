@@ -23,18 +23,27 @@ def load_stack():
     stack_path = get_folder() + "\\stack.png"
     return  Image.open(stack_path)
 
-def get_position(row, column):
+def get_position(row, column, card_index = None, cards_number = None):
+
     card_width = 50
     card_height = 67
     horizontal_gap = 40
     vertical_gap1 = 24
     vertical_gap2 = 25
+    cards_disparity = 30
 
-    position1 = (column*(horizontal_gap+card_width) + horizontal_gap, row*(vertical_gap2+card_height) + vertical_gap1)
-    position2 = (position1[0] + card_width, position1[1] + card_height)
+    if card_index == None or cards_number == None:
+
+        position1 = (column*(horizontal_gap+card_width) + horizontal_gap, row*(vertical_gap2+card_height) + vertical_gap1)
+        position2 = (position1[0] + card_width, position1[1] + card_height)
+
+    else:
+
+        position1 = (column*(horizontal_gap+card_width) + horizontal_gap + (cards_number - card_index)* 30 / (cards_number - 1), row*(vertical_gap2+card_height) + vertical_gap1)
+        position2 = (position1[0] + card_width, position1[1] + card_height)
+
 
     return position1 + position2
-
 
 def paste_card(cardTuple, position, stack):
     card_image = load_card(cardTuple)
@@ -69,6 +78,33 @@ def paste_middle_row(middle_row, round_shown, stack):
         print(column)
 
     return stack
+
+def paste_down_row(down_row, round, round_shown, stack):
+
+    row = 2
+    index = -1
+
+    for current_round in range(round, round - round_shown, -1):
+
+        previous_index = index
+        card_tuple = down_row[index]
+
+        while down_row[index] == current_round:
+
+            index =- 1
+            card_tuple = down_row[index]
+
+        cards_number = previous_index - index
+
+        for index in range(previous_index, index, -1):
+
+            
+
+
+            pass
+
+
+
 
 
 
