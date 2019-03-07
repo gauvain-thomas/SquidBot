@@ -15,17 +15,6 @@ def get_folder():
 
     return os.path.dirname(__file__)
 
-
-def load_card(cardTuple):
-
-    cardPath = get_folder()+ "\\" + cardTuple[1] + ".jpg"
-    return Image.open(cardPath)
-
-def load_stack():
-
-    stackPath = get_folder() + "\\stack.png"
-    return  Image.open(stackPath)
-
 def get_position(row,column):
 
     card_width = 50
@@ -38,6 +27,18 @@ def get_position(row,column):
     position2 = (position1[0] + card_width, position1[1] + card_height)
 
     return position1 + position2
+
+
+def load_card(cardTuple):
+
+    cardPath = get_folder()+ "\\" + cardTuple[1] + ".jpg"
+    return Image.open(cardPath)
+
+def load_stack():
+
+    stackPath = get_folder() + "\\stack.png"
+    return  Image.open(stackPath)
+
 
 
 def paste_card(cardTuple,position,stack):
