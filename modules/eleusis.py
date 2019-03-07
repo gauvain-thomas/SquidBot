@@ -112,7 +112,8 @@ class Game:
                 chosen_card = ''
                 while not chosen_card in self.cards:
                     await self.client.send_message(player, 'Choose a card.. .')
-                    chosen_card = await self.client.wait_for_message(author=player).content
+                    chosen_card_msg = await self.client.wait_for_message(author=player)
+                    chosen_card = chosen_card_msg.content
 
                 await self.client.send_message(god, 'Does this card fit the sequence ? : {}'.format(chosen_card))
                 answer = await self.client.wait_for_message(author=god)
