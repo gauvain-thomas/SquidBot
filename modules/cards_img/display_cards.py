@@ -20,8 +20,8 @@ def load_card(cardTuple):
     return Image.open(cardPath)
 
 def load_stack():
-    stackPath = get_folder() + "\\stack.png"
-    return  Image.open(stackPath)
+    stack_path = get_folder() + "\\stack.png"
+    return  Image.open(stack_path)
 
 def get_position(row, column):
     card_width = 50
@@ -41,8 +41,39 @@ def paste_card(cardTuple, position, stack):
     stack.paste(card_image,position)
     return stack
 
-stack = load_stack()
-paste_card((1,"1_Clubs"),get_position(1,2),stack).show()
+def create_image(up_row, middle_row, down_row):
+
+    stack = load_stack()
+
+    round = len(middle_row)
+
+    if round < 4:
+        round_shown = round
+
+    else:
+        round_shown = 4
+
+    stack = paste_middle_row(middle_row, round_shown, stack)
+    stack.show()
+    print(round)
+    print(round_shown)
+    print(middle_row)
+
+def paste_middle_row(middle_row, round_shown, stack):
+
+    row = 1
+
+    for i in range(-round_shown, 0):
+        column = round_shown - 1 - i
+        stack = paste_card(middle_row[i], get_position(row, column), stack)
+        print(column)
+
+    return stack
+
+
+
+# stack = load_stack()
+# paste_card((1,"1_Clubs"),get_position(1,2),stack).show()
 
 
 # def createImage(up,mid,down):
