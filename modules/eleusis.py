@@ -101,7 +101,7 @@ class Game:
         for player in self.players:
             embed.add_field(name=player.name, value=self.players_obj[player.id].score, inline=False)
 
-        await self.client.send_message(embed)
+        await self.client.send_message(self.channel, embed)
 class Eleusis:
   def __init__(self, client):
     self.client = client
