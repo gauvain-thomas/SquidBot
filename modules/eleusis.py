@@ -70,7 +70,7 @@ class Game:
         self.middle_row = []
         self.down_row = []
 
-        self.pick_god()
+        # self.pick_god()
         self.reset_decks()
 
         self.middle_row.append((self.turn, random.choice(Game.cards)))
@@ -81,7 +81,7 @@ class Game:
     def reset_decks(self):
         for player in self.players:
             if not self.players_obj[player.id].is_god():
-                player.create_deck()
+                self.players_obj[player.id].create_deck()
 
     def pick_god(self):
         self.players_obj[random.choice(self.players).id].set_player_status('god')
