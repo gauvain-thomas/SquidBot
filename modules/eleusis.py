@@ -25,7 +25,7 @@ class Game:
             self.client = client
             self.player = player
             self.deck = []
-            self.points = 0
+            self.score = 0
             self.player_status = 'player'
 
         def create_deck(self):
@@ -44,7 +44,6 @@ class Game:
 
         async def show_deck(self):
             await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
-            print('test')
 
     cards = [
     '1_Clubs', '2_Clubs', '3_Clubs', '4_Clubs', '5_Clubs', '6_Clubs', '7_Clubs', '8_Clubs', '9_Clubs', '10_Clubs', 'J_Clubs', 'Q_Clubs', 'K_Clubs',
@@ -64,13 +63,14 @@ class Game:
             self.players_obj[player.id] = Game.Player(self.client, player)
 
     async def start(self):
-        self.turn = 0
+        self.turn = 1
 
         self.up_row = []
         self.middle_row = []
         self.down_row = []
 
-        # self.pick_god()
+        await self.show_scores()
+        self.pick_god()
         self.reset_decks()
 
         self.middle_row.append((self.turn, random.choice(Game.cards)))
@@ -94,10 +94,18 @@ class Game:
             if not self.players_obj[player.id].is_god():
                 await self.players_obj[player.id].show_deck()
 
+    async def show_scores(self):
+        embed=discord.Embed(title="[Eleusis]", description="Scores", color=0x00ffff)
+        embed.add_field(name="--------------------", value="--------------------", inline=False)
+        
+        for player in players:
+            embed.add_field(name=player.name, value=players_obj[player.id].score, inline=False)
+
+        await self.client.send_message(embed)
 class Eleusis:
   def __init__(self, client):
     self.client = client
-
+    games_list = {}
   #Help Eleusis
   async def on_message(self, message):
     if '.help all' in message.content or '.help eleusis' in message.content:
@@ -129,11 +137,11 @@ class Eleusis:
         for reaction in new_game_msg.reactions:
           reactors = await self.client.get_reaction_users(reaction)
           for reactor in reactors:
-            # if reactor not in players:
-            players.append(reactor)
+            if reactor not in players:
+                players.append(reactor)
 
-        new_game = Game(self.client, ctx.message.channel, players)
-        await new_game.start()
+        games_list[ctx.channel.id] = Game(self.client, ctx.message.channel, players)
+        await games_list[ctx.channel.id].start()
 
 
 def setup(client):
