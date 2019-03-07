@@ -107,7 +107,7 @@ class Game:
 
     async def process_turn(self):
         for player in self.players:
-            if not self.players_obj[player.id].is_god:
+            if not self.players_obj[player.id].is_god():
                 print('Process turn')
                 card = ''
                 while not chosen_card in self.cards:
