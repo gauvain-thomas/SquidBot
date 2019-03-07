@@ -120,7 +120,7 @@ class Game:
                 await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
                 answer = await self.client.wait_for_message(author=self.god)
 
-                while not answer.content is 'yes' or answer.content is 'no':
+                while not (answer.content is 'yes' or answer.content is 'no'):
                     if answer.content is 'yes':
                         self.middle_row.append((turn, chosen_card))
                         turn += 1
@@ -130,7 +130,7 @@ class Game:
                         await self.client.send_message(self.god,
                         'Sorry, your message was not fully understood, please try again')
 
-                    self.show_cards()
+                await self.show_cards()
 
 
 
