@@ -42,6 +42,7 @@ class Game:
                 return False
 
         async def show_deck(self):
+            self.deck.sort()
             await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
 
     cards = [
@@ -56,14 +57,13 @@ class Game:
         self.channel = channel
         self.players = players
         self.players_obj = {}
+        self.turn = 1
 
         #Set players object
         for player in self.players:
             self.players_obj[player.id] = Game.Player(self.client, player)
 
     async def start(self):
-        self.turn = 1
-
         self.up_row = [(0, '')]
         self.middle_row = [(0, '')]
         self.down_row = [(0, '')]
@@ -107,6 +107,16 @@ class Game:
 
         await self.client.send_message(self.channel, embed=embed)
 
+    def count_score(self):
+        num_cards = []
+        for player in self.players:
+            num_cards.append(len(self.players_obj[player.id].deck))
+
+        max = max(num_cards)
+
+        for player in self.players:
+            self.players_obj[player].score = max - len(self.players_obj[player].deck)
+
     async def process_turn(self):
         for player in self.players:
             if not self.players_obj[player.id].is_god():
@@ -149,8 +159,9 @@ class Game:
                 await self.show_cards()
 
                 if len(self.players_obj[player.id].deck) == 0:
-                    await self.client.send_message(self.chanel, '{} has won !'.format(player.name))
-                    self.satrt()
+                    await self.client.send_message(self.channel, '{} has won !'.format(player.name))
+                    self.count_score()
+                    await self.start()
 
         await self.process_turn()
 
