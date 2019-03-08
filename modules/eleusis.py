@@ -25,7 +25,8 @@ class Game:
             self.client = client
             self.player = player
             self.deck = []
-            self.points = 0
+            self.score = 0
+            self.player_status = 'player'
 
         def create_deck(self):
             self.deck = []
@@ -42,7 +43,7 @@ class Game:
                 return False
 
         async def show_deck(self):
-            await self.client.send_message(self.player, self.deck)
+            await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
 
     cards = [
     '1_Clubs', '2_Clubs', '3_Clubs', '4_Clubs', '5_Clubs', '6_Clubs', '7_Clubs', '8_Clubs', '9_Clubs', '10_Clubs', 'J_Clubs', 'Q_Clubs', 'K_Clubs',
@@ -62,12 +63,13 @@ class Game:
             self.players_obj[player.id] = Game.Player(self.client, player)
 
     async def start(self):
-        self.turn = 0
+        self.turn = 1
 
         self.up_row = []
         self.middle_row = []
         self.down_row = []
 
+        await self.show_scores()
         self.pick_god()
         self.reset_decks()
 
@@ -76,26 +78,81 @@ class Game:
         await self.show_cards()
         await self.show_decks()
 
+        await self.process_turn()
+
     def reset_decks(self):
         for player in self.players:
             if not self.players_obj[player.id].is_god():
-                player.create_deck()
+                self.players_obj[player.id].create_deck()
 
     def pick_god(self):
-        self.players_obj[random.choice(self.players).id].set_player_status('god')
+        self.god = random.choice(self.players)
+        self.players_obj[self.god.id].set_player_status('god')
 
     async def show_cards(self):
-        await self.client.send_message(self.channel, self.middle_row)
+        await self.client.send_message(self.channel, 'Card are : {}'.format(self.middle_row))
 
     async def show_decks(self):
         for player in self.players:
             if not self.players_obj[player.id].is_god():
                 await self.players_obj[player.id].show_deck()
 
+    async def show_scores(self):
+        embed=discord.Embed(title="[Eleusis]", description="Scores", color=0x00ffff)
+
+        for player in self.players:
+            embed.add_field(name=player.name, value=self.players_obj[player.id].score, inline=False)
+
+        await self.client.send_message(self.channel, embed=embed)
+
+    async def process_turn(self):
+        for player in self.players:
+            if not self.players_obj[player.id].is_god():
+                chosen_card = ''
+                while not chosen_card in self.cards and chosen_card in self.players_obj[player].deck:
+                    await self.client.send_message(player, 'Choose a card.. .')
+                    chosen_card = await self.client.wait_for_message(author=player).content
+                    # chosen_card = chosen_card_msg.content
+                    if not chosen_card in self.cards:
+                        await self.client.send_message(player, "This card doesn't exist, please try again")
+                    elif not chosen_card in self.players_obj[player].deck:
+                        await self.client.send_message(player, "This card is not in your deck, please try again")
+
+                self.players_obj[player].deck.remove(chosen_card)
+                self.players_obj[player].show_deck()
+
+                await self.client.send_message(player, 'Card chosen')
+                await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
+                answer = await self.client.wait_for_message(author=self.god)
+                answer_message = ''
+
+                while not (answer_message == 'yes' or answer_message == 'no'):
+                    answer_message = answer.content
+                    print('Wait for answer ' + answer_message)
+                    if answer_message == 'yes':
+                        self.turn += 1
+                        self.middle_row.append((self.turn, chosen_card))
+                    elif answer_message == 'no':
+                        self.down_row.append((self.turn, chosen_card))
+                    else:
+                        await self.client.send_message(self.god,
+                        'Sorry, your message was not fully understood, please try again')
+                        answer = await self.client.wait_for_message(author=self.god)
+
+                await self.show_cards()
+
+                if len(self.players_obj[player].deck) == 0:
+                    await self.client.send_message(self.chanel, '{} has won !'.format(player.name))
+                    self.satrt()
+
+        await self.process_turn()
+
+
+
 class Eleusis:
   def __init__(self, client):
     self.client = client
-
+    self.games_list = {}
   #Help Eleusis
   async def on_message(self, message):
     if '.help all' in message.content or '.help eleusis' in message.content:
@@ -127,12 +184,14 @@ class Eleusis:
         for reaction in new_game_msg.reactions:
           reactors = await self.client.get_reaction_users(reaction)
           for reactor in reactors:
-            # if reactor not in players:
-            players.append(reactor)
+            if reactor not in players:
+                players.append(reactor)
 
-        new_game = Game(self.client, ctx.message.channel, players)
-        await new_game.start()
-
+        if len(players) > 2:
+            self.games_list[ctx.message.channel.id] = Game(self.client, ctx.message.channel, players)
+            await self.games_list[ctx.message.channel.id].start()
+        else:
+            await self.client.say('/shrug Not enough players, start again')
 
 def setup(client):
   client.add_cog(Eleusis(client))
