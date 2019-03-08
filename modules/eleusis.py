@@ -121,12 +121,12 @@ class Game:
                 answer_message = ''
 
                 while not (answer_message is 'yes' or answer_message is 'no'):
-                    print('Wait for answer')
+                    print('Wait for answer ' + answer_message)
                     answer_message = answer.content
-                    if answer_message is 'yes':
+                    if answer_message == 'yes':
                         self.middle_row.append((turn, chosen_card))
                         turn += 1
-                    elif answer_message is 'no':
+                    elif answer_message == 'no':
                         self.down_row.append((turn, chosen_card))
                     else:
                         await self.client.send_message(self.god,
