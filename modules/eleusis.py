@@ -7,10 +7,9 @@ import random
 import sys
 import os
 
-# sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'cards_img'))
-# print(sys.path)
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'cards_img'))
+print(sys.path)
 # import display_cards
-# import json
 
 owners = ['263670024391229440']
 
@@ -90,7 +89,8 @@ class Game:
         self.players_obj[self.god.id].set_player_status('god')
 
     async def show_cards(self):
-        await self.client.send_message(self.channel, 'Card are : {}'.format(self.middle_row))
+
+        await bot.send_file(self.channel, r"c:\location\of\the_file_to\send.png",filename="Cards",content='Card are : {}'.format(self.middle_row))
 
     async def show_decks(self):
         for player in self.players:
