@@ -64,9 +64,9 @@ class Game:
     async def start(self):
         self.turn = 1
 
-        self.up_row = []
-        self.middle_row = []
-        self.down_row = []
+        self.up_row = [(0, '')]
+        self.middle_row = [(0, '')]
+        self.down_row = [(0, '')]
 
         await self.show_scores()
         self.pick_god()
