@@ -6,11 +6,11 @@ def get_folder():
 
 
 def load_card(cardTuple):
-    cardPath = get_folder()+ "\\" + cardTuple[1] + ".jpg"
+    cardPath = get_folder()+ "/" + cardTuple[1] + ".jpg"
     return Image.open(cardPath)
 
 def load_stack():
-    stack_path = get_folder() + "\\stack.png"
+    stack_path = get_folder() + "/stack.png"
     return  Image.open(stack_path)
 
 def get_position(row, column, card_index = None, cards_number = None):
@@ -68,7 +68,7 @@ def create_image(up_row, middle_row, down_row):
     print('appelle de paste_down_row:\n')
     stack = paste_border_row(down_row, 2, current_round, stack)
     stack = paste_border_row(up_row, 0, current_round, stack)
-    stack.save(get_folder() + "\\temp.png")
+    stack.save(get_folder() + "/temp.png")
 
 
 def paste_middle_row(middle_row, current_round, stack):
@@ -140,5 +140,5 @@ if __name__ == '__main__':
     up_row = [(4, '3_Spades'),  (4, '5_Hearts'),  (4, '1_Spades'), (4, 'K_Diamonds'),(4, '3_Spades'),  (4, '5_Hearts'),  (4, '1_Spades'), (4, 'K_Diamonds')]
     middle_row = [(1, '3_Spades'),  (2, '5_Hearts'),  (3, '1_Spades'), (4, 'K_Diamonds')]
     down_row = [(3, '3_Spades'),  (4, '4_Hearts'),  (5, '8_Spades'), (5, 'K_Diamonds')]
-
+    print(get_folder())
     create_image(up_row, middle_row, down_row)
