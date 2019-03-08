@@ -1,6 +1,8 @@
 from PIL import Image
 import os
 
+print('display_cards import success !')
+
 def get_folder():
     return os.path.dirname(__file__)
 
