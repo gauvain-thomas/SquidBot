@@ -125,7 +125,11 @@ class Game:
                     print('Wait for answer ' + answer_message)
                     if answer_message == 'yes':
                         self.middle_row.append((self.turn, chosen_card))
+<<<<<<< HEAD
                         self.turn += 1
+=======
+                        turn += 1
+>>>>>>> 8c6e43ab3b59cca313d883c5fb37bfd6d91f96a7
                     elif answer_message == 'no':
                         self.down_row.append((self.turn, chosen_card))
                     else:
