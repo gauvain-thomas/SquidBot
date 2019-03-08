@@ -120,7 +120,7 @@ class Game:
                 answer = await self.client.wait_for_message(author=self.god)
                 answer_message = ''
 
-                while not answer_message is 'yes' or answer_message is 'no':
+                while not (answer_message is 'yes' or answer_message is 'no'):
                     print('Wait for answer')
                     answer_message = answer.content
                     if answer_message is 'yes':
