@@ -121,7 +121,7 @@ class Game:
                         await self.client.send_message(player, "This card is not in your deck, please try again")
 
                 # self.players_obj[player.id].deck.remove(chosen_card)
-                self.players_obj[player.id].show_deck()
+                await self.players_obj[player.id].show_deck()
 
                 await self.client.send_message(player, 'Card chosen')
                 await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
