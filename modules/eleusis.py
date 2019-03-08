@@ -111,17 +111,17 @@ class Game:
         for player in self.players:
             if not self.players_obj[player.id].is_god():
                 chosen_card = ''
-                while not chosen_card in self.cards and chosen_card in self.players_obj[player].deck:
+                while not chosen_card in self.cards and chosen_card in self.players_obj[player.id].deck:
                     await self.client.send_message(player, 'Choose a card.. .')
                     chosen_card = await self.client.wait_for_message(author=player).content
                     # chosen_card = chosen_card_msg.content
                     if not chosen_card in self.cards:
                         await self.client.send_message(player, "This card doesn't exist, please try again")
-                    elif not chosen_card in self.players_obj[player].deck:
+                    elif not chosen_card in self.players_obj[player.id].deck:
                         await self.client.send_message(player, "This card is not in your deck, please try again")
 
-                self.players_obj[player].deck.remove(chosen_card)
-                self.players_obj[player].show_deck()
+                self.players_obj[player.id].deck.remove(chosen_card)
+                self.players_obj[player.id].show_deck()
 
                 await self.client.send_message(player, 'Card chosen')
                 await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
@@ -143,7 +143,7 @@ class Game:
 
                 await self.show_cards()
 
-                if len(self.players_obj[player].deck) == 0:
+                if len(self.players_obj[player.id].deck) == 0:
                     await self.client.send_message(self.chanel, '{} has won !'.format(player.name))
                     self.satrt()
 
