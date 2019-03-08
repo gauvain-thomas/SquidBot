@@ -109,7 +109,6 @@ class Game:
     async def process_turn(self):
         for player in self.players:
             if not self.players_obj[player.id].is_god():
-                print('Process turn')
                 chosen_card = ''
                 while not chosen_card in self.cards:
                     await self.client.send_message(player, 'Choose a card.. .')
@@ -119,19 +118,20 @@ class Game:
                 await self.client.send_message(player, 'Card chosen')
                 await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
                 answer = await self.client.wait_for_message(author=self.god)
-                answer_message = answer.content
+                answer_message = ''
 
-                while not (answer_message is 'yes' or answer_message is 'no'):
+                while not answer_message is 'yes' or answer_message is 'no':
+                    print('Wait for answer')
+                    answer_message = answer.content
                     if answer_message is 'yes':
                         self.middle_row.append((turn, chosen_card))
                         turn += 1
-                        answer_message = ''
                     elif answer_message is 'no':
                         self.down_row.append((turn, chosen_card))
-                        answer_message = ''
                     else:
                         await self.client.send_message(self.god,
                         'Sorry, your message was not fully understood, please try again')
+                        answer = await self.client.wait_for_message(author=self.god)
 
                 await self.show_cards()
 
