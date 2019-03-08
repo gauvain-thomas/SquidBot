@@ -191,7 +191,7 @@ class Eleusis:
             self.games_list[ctx.message.channel.id] = Game(self.client, ctx.message.channel, players)
             await self.games_list[ctx.message.channel.id].start()
         else:
-            await self.client.say('/shrug Not enough players, start again')
+            await self.client.say('Not enough players, start again')
 
 def setup(client):
   client.add_cog(Eleusis(client))
