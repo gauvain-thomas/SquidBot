@@ -7,10 +7,9 @@ import random
 import sys
 import os
 
-# sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'cards_img'))
-print(os.path.dirname(__file__))
-# print(sys.path)
-# import display_cards
+sys.path.append(os.path.join(os.path.dirname(__file__),'cards_img'))
+print(sys.path)
+import display_cards
 
 owners = ['263670024391229440']
 
