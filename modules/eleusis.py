@@ -111,9 +111,9 @@ class Game:
         for player in self.players:
             if not self.players_obj[player.id].is_god():
                 chosen_card = ''
-                while not chosen_card in self.cards and chosen_card in self.players_obj[player.id].deck:
+                while not (chosen_card in self.cards and chosen_card in self.players_obj[player.id].deck):
                     await self.client.send_message(player, 'Choose a card.. .')
-                    chosen_msg = await self.client.wait_for_message(author=player)
+                    chosen_card_msg = await self.client.wait_for_message(author=player)
                     chosen_card = chosen_card_msg.content
                     if not chosen_card in self.cards:
                         await self.client.send_message(player, "This card doesn't exist, please try again")
