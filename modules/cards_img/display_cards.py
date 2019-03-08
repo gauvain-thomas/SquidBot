@@ -8,11 +8,11 @@ def get_folder():
 
 
 def load_card(cardTuple):
-    cardPath = get_folder()+ "/" + cardTuple[1] + ".jpg"
+    cardPath = get_folder()+ "\\" + cardTuple[1] + ".jpg"
     return Image.open(cardPath)
 
 def load_stack():
-    stack_path = get_folder() + "/stack.png"
+    stack_path = get_folder() + "\\stack.png"
     return  Image.open(stack_path)
 
 def get_position(row, column, card_index = None, cards_number = None):
@@ -40,6 +40,7 @@ def get_position(row, column, card_index = None, cards_number = None):
 
 
 def get_current_round(up_last_card, middle_last_card, down_last_card):
+
 
     if up_last_card[0] > middle_last_card[0] and up_last_card[0] > down_last_card[0]:
 
@@ -70,7 +71,7 @@ def create_image(up_row, middle_row, down_row):
     print('appelle de paste_down_row:\n')
     stack = paste_border_row(down_row, 2, current_round, stack)
     stack = paste_border_row(up_row, 0, current_round, stack)
-    stack.save(get_folder() + "/temp.png")
+    stack.save(get_folder() + "\\temp.png")
 
 
 def paste_middle_row(middle_row, current_round, stack):
@@ -78,6 +79,10 @@ def paste_middle_row(middle_row, current_round, stack):
     row = 1
 
     for index in range(-1, -5, -1):
+
+        if index <= -len(middle_row):
+
+            return stack
 
         card_tuple = middle_row[index]
         column = 3 - (current_round - card_tuple[0])
@@ -122,6 +127,8 @@ def paste_border_row(row_list, row_number, current_round, stack):
         column = 3 - (current_round - card_round)
         if cards_number == 1:
             card_tuple = row_list[previous_index]
+            if card_tuple[0] == 0:
+                return stack
             stack = paste_card(card_tuple, get_position(row_number, column), stack)
 
         else:
@@ -139,8 +146,8 @@ def paste_border_row(row_list, row_number, current_round, stack):
 
 
 if __name__ == '__main__':
-    up_row = [(4, '3_Spades'),  (4, '5_Hearts'),  (4, '1_Spades'), (4, 'K_Diamonds'),(4, '3_Spades'),  (4, '5_Hearts'),  (4, '1_Spades'), (4, 'K_Diamonds')]
-    middle_row = [(1, '3_Spades'),  (2, '5_Hearts'),  (3, '1_Spades'), (4, 'K_Diamonds')]
-    down_row = [(3, '3_Spades'),  (4, '4_Hearts'),  (5, '8_Spades'), (5, 'K_Diamonds')]
+    up_row = [(0, '3_Spades')]
+    middle_row = [(0, '3_Spades'),  (1, '5_Hearts')]
+    down_row = [(0, '3_Spades'),]
     print(get_folder())
     create_image(up_row, middle_row, down_row)
