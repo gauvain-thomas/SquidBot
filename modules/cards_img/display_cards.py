@@ -1,5 +1,15 @@
 from PIL import Image
+import io
+import pathlib
+import json
 import os
+# import sys
+
+# sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'modules/cards_img'))
+# print(sys.path)
+
+#return the position in the image of the card, given a row and a column
+
 
 def get_folder():
     return os.path.dirname(__file__)
@@ -115,7 +125,6 @@ def paste_border_row(row_list, row_number, current_round, stack):
 
         print(index)
         print(previous_index)
-        cards_number
         column = 3 - (current_round - card_round)
         for x in range(previous_index, index, -1):
 
@@ -126,9 +135,9 @@ def paste_border_row(row_list, row_number, current_round, stack):
     return stack
 
 
+if __name__ == '__main__':
+    up_row = [(1, '3_Spades'),  (1, '5_Hearts'),  (3, '1_Spades'), (5, 'K_Diamonds')]
+    middle_row = [(1, '3_Spades'),  (2, '5_Hearts'),  (3, '1_Spades'), (4, 'K_Diamonds')]
+    down_row = [(3, '3_Spades'),  (4, '4_Hearts'),  (5, '8_Spades'), (5, 'K_Diamonds')]
 
-up_row = [(1, '3_Spades'),  (1, '5_Hearts'),  (3, '1_Spades'), (5, 'K_Diamonds')]
-middle_row = [(1, '3_Spades'),  (2, '5_Hearts'),  (3, '1_Spades'), (4, 'K_Diamonds')]
-down_row = [(3, '3_Spades'),  (4, '4_Hearts'),  (5, '8_Spades'), (5, 'K_Diamonds')]
-
-create_image(up_row, middle_row, down_row)
+    create_image(up_row, middle_row, down_row)
