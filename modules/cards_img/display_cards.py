@@ -34,16 +34,33 @@ def get_position(row, column, card_index = None, cards_number = None):
 
     if card_index == None or cards_number == None:
 
+
         position1 = (column*(horizontal_gap+card_width) + horizontal_gap, row*(vertical_gap2+card_height) + vertical_gap1)
         position2 = (position1[0] + card_width, position1[1] + card_height)
 
     else:
 
-        position1 = (column*(horizontal_gap+card_width) + horizontal_gap + (cards_number - card_index)* 30 / (cards_number - 1), row*(vertical_gap2+card_height) + vertical_gap1)
+        position1 = (int(column*(horizontal_gap+card_width)  + horizontal_gap + ((cards_number - card_index - 1)* 30 / (cards_number - 1))), row*(vertical_gap2+card_height) + vertical_gap1)
         position2 = (position1[0] + card_width, position1[1] + card_height)
 
-
+    print(position1+position2)
     return position1 + position2
+
+
+def get_current_round(up_last_card, middle_last_card, down_last_card):
+
+    if up_last_card[0] > middle_last_card[0] and up_last_card[0] > down_last_card[0]:
+
+        return up_last_card[0]
+
+    elif middle_last_card[0] > down_last_card[0]:
+
+        return middle_last_card[0]
+
+    else:
+
+        return down_last_card[0]
+
 
 def paste_card(cardTuple, position, stack):
     card_image = load_card(cardTuple)
@@ -54,77 +71,73 @@ def create_image(up_row, middle_row, down_row):
 
     stack = load_stack()
 
-    round = len(middle_row)
+    current_round = get_current_round(up_row[-1], middle_row[-1], down_row[-1])
 
-    if round < 4:
-        round_shown = round
-
-    else:
-        round_shown = 4
-
-    stack = paste_middle_row(middle_row, round_shown, stack)
+    print('appelle de paste_middle_row:\n')
+    stack = paste_middle_row(middle_row, current_round, stack)
+    print('appelle de paste_down_row:\n')
+    stack = paste_border_row(down_row, 2, current_round, stack)
+    stack = paste_border_row(up_row, 0, current_round, stack)
     stack.show()
-    print(round)
-    print(round_shown)
+    print(current_round)
     print(middle_row)
 
-def paste_middle_row(middle_row, round_shown, stack):
+def paste_middle_row(middle_row, current_round, stack):
 
     row = 1
 
-    for i in range(-round_shown, 0):
-        column = round_shown - 1 - i
-        stack = paste_card(middle_row[i], get_position(row, column), stack)
-        print(column)
+    for index in range(-1, -5, -1):
+
+        card_tuple = middle_row[index]
+        column = 3 - (current_round - card_tuple[0])
+
+        if column <= 3 and column >= 0:
+
+            stack = paste_card(card_tuple, get_position(row, column), stack)
 
     return stack
 
-def paste_down_row(down_row, round, round_shown, stack):
+def paste_border_row(row_list, row_number, current_round, stack):
 
-    row = 2
+    stop_round = current_round - 4
     index = -1
 
-    for current_round in range(round, round - round_shown, -1):
+    while index >= -len(row_list):
+
 
         previous_index = index
-        card_tuple = down_row[index]
+        card_tuple = row_list[index]
+        card_round = card_tuple[0]
 
-        while down_row[index] == current_round:
+        if card_tuple[0] < stop_round:
 
-            index =- 1
-            card_tuple = down_row[index]
+            break
 
-        cards_number = previous_index - index
+        while card_round == card_tuple[0]:
 
-        for index in range(previous_index, index, -1):
+            index = index - 1
+            if index < -len(row_list):
 
-            
+                break
 
-
-            pass
-
-
+            card_tuple = row_list[index]
 
 
+        print(index)
+        print(previous_index)
+        column = 3 - (current_round - card_round)
+        for x in range(previous_index, index, -1):
 
 
-# stack = load_stack()
-# paste_card((1,"1_Clubs"),get_position(1,2),stack).show()
+            card_tuple = row_list[x]
+            stack = paste_card(card_tuple, get_position(row_number, column), stack)
+
+    return stack
 
 
-# def createImage(up,mid,down):
-#     tour_max = len(mid)
-#
-#     if tour_max < 4:
-#         count = tour_max
-#     else:
-#         count = 4
-#
-#         for x in range (-4,0):
-#             tuple = mid[x]
-#             card = tuple[1]
-#             card_image = Image.open(dirname+"\\"+card+".jpg")
-#             row = 1
-#             column = tuple[0]
-#             img.paste(card_image,
-#             card_image.close()
+
+up_row = [(1, '3_Spades'),  (1, '5_Hearts'),  (3, '1_Spades'), (5, 'K_Diamonds')]
+middle_row = [(1, '3_Spades'),  (2, '5_Hearts'),  (3, '1_Spades'), (4, 'K_Diamonds')]
+down_row = [(3, '3_Spades'),  (4, '4_Hearts'),  (5, '8_Spades'), (5, 'K_Diamonds')]
+
+create_image(up_row, middle_row, down_row)
