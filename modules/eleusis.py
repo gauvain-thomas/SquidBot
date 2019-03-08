@@ -89,8 +89,8 @@ class Game:
         self.players_obj[self.god.id].set_player_status('god')
 
     async def show_cards(self):
-
-        await bot.send_file(self.channel, r"c:\location\of\the_file_to\send.png",filename="Cards",content='Card are : {}'.format(self.middle_row))
+        display_cards.create_image(self.up_row, self.middle_row, self.down_row)
+        await bot.send_file(self.channel, r"~/Bot/SquidBot/modules/cards_img/temp",filename="Cards",content='Card are : {}'.format(self.middle_row))
 
     async def show_decks(self):
         for player in self.players:
