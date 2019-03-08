@@ -120,7 +120,7 @@ class Game:
                     elif not chosen_card in self.players_obj[player.id].deck:
                         await self.client.send_message(player, "This card is not in your deck, please try again")
 
-                self.players_obj[player.id].deck.remove(chosen_card)
+                # self.players_obj[player.id].deck.remove(chosen_card)
                 self.players_obj[player.id].show_deck()
 
                 await self.client.send_message(player, 'Card chosen')
