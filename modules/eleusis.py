@@ -113,8 +113,8 @@ class Game:
                 chosen_card = ''
                 while not chosen_card in self.cards and chosen_card in self.players_obj[player.id].deck:
                     await self.client.send_message(player, 'Choose a card.. .')
-                    chosen_card = await self.client.wait_for_message(author=player).content
-                    # chosen_card = chosen_card_msg.content
+                    chosen_msg = await self.client.wait_for_message(author=player)
+                    chosen_card = chosen_card_msg.content
                     if not chosen_card in self.cards:
                         await self.client.send_message(player, "This card doesn't exist, please try again")
                     elif not chosen_card in self.players_obj[player.id].deck:
