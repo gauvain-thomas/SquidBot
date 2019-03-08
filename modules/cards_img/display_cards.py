@@ -1,15 +1,5 @@
 from PIL import Image
-import io
-import pathlib
-import json
 import os
-# import sys
-
-# sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'modules/cards_img'))
-# print(sys.path)
-
-#return the position in the image of the card, given a row and a column
-
 
 def get_folder():
     return os.path.dirname(__file__)
@@ -125,6 +115,7 @@ def paste_border_row(row_list, row_number, current_round, stack):
 
         print(index)
         print(previous_index)
+        cards_number
         column = 3 - (current_round - card_round)
         for x in range(previous_index, index, -1):
 
