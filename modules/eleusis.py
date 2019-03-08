@@ -141,7 +141,9 @@ class Game:
 
                 await self.show_cards()
 
-                if len(player)
+                if len(self.players_obj[player].deck) == 0:
+                    await self.client.send_message(self.chanel, '{} has won !'.format(player.name))
+                    self.satrt()
 
         await self.process_turn()
 
