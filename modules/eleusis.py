@@ -8,7 +8,7 @@ import sys
 import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__),'cards_img'))
-print(sys.path)
+# print(sys.path)
 import display_cards
 
 owners = ['263670024391229440']
@@ -48,6 +48,7 @@ class Game:
             i = 1
             for card in self.deck:
                 embed.add_field(name='[{}]'.format(i), value=self.deck[i-1], inline=True)
+                i += 1
             await self.client.send_message(self.player, embed=embed)
 
     cards = [
