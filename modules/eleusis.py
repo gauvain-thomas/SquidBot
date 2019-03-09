@@ -93,7 +93,7 @@ class Game:
         self.god = random.choice(self.players)
         self.players_obj[self.god.id].set_player_status('god')
         await self.client.send_message(self.channel, '{} is the god, waiting for the rules to start the game'.format(self.god.name))
-        await self.client.send_message(self.players_obj[self.god.id], 'You are the god ! Define rules :')
+        await self.client.send_message(self.god.id, 'You are the god ! Define rules :')
         self.rules = await self.client.wait_for_message(author=self.players_obj[self.god.id]).content
         self.rules = self.rules.content
 
