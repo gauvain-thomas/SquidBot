@@ -85,8 +85,8 @@ class Game:
 
         self.middle_row.append((self.turn, random.choice(Game.cards)))
 
-        await self.show_cards()
-        # await self.show_decks()
+        # await self.show_cards()
+        await self.show_decks()
 
         await self.process_turn()
 
