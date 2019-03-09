@@ -43,7 +43,12 @@ class Game:
 
         async def show_deck(self):
             self.deck.sort()
-            await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
+            # await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
+            embed=discord.Embed(title="Deck")
+            i = 1
+            for card in self.deck:
+                embed.add_field(name='[{}]'.format(i), value=self.deck[i-1], inline=True)
+            await self.client.send_message(self.player, embed=embed)
 
     cards = [
     '1_Clubs', '2_Clubs', '3_Clubs', '4_Clubs', '5_Clubs', '6_Clubs', '7_Clubs', '8_Clubs', '9_Clubs', '10_Clubs', 'J_Clubs', 'Q_Clubs', 'K_Clubs',
@@ -69,7 +74,7 @@ class Game:
         self.down_row = [(0, '')]
 
         await self.show_scores()
-        self.pick_god()
+        await self.pick_god()
         self.reset_decks()
 
         self.middle_row.append((self.turn, random.choice(Game.cards)))
@@ -84,9 +89,13 @@ class Game:
             if not self.players_obj[player.id].is_god():
                 self.players_obj[player.id].create_deck()
 
-    def pick_god(self):
+    async def pick_god(self):
         self.god = random.choice(self.players)
         self.players_obj[self.god.id].set_player_status('god')
+        await self.client.send_message(self.channel, '{} is the god, waiting for the rules to start the game'.format(self.god.name))
+        await self.client.send_message(self.players_obj[self.god.id], 'You are the god ! Define rules :')
+        self.rules = await self.client.wait_for_message(author=self.players_obj[self.god.id]).content
+        self.rules = self.rules.content
 
     async def show_cards(self):
         display_cards.create_image(self.up_row, self.middle_row, self.down_row)
@@ -125,6 +134,10 @@ class Game:
                     await self.client.send_message(player, 'Choose a card.. .')
                     chosen_card_msg = await self.client.wait_for_message(author=player)
                     chosen_card = chosen_card_msg.content
+
+                    if chosen_card.isdigit():
+                        chosen_card = self.players_obj[player.id].deck[int(chosen_card)]
+
                     if not chosen_card in self.cards:
                         await self.client.send_message(player, "This card doesn't exist, please try again")
                     elif not chosen_card in self.players_obj[player.id].deck:
@@ -132,10 +145,8 @@ class Game:
 
                 try:
                     self.players_obj[player.id].deck.remove(chosen_card)
-                    pass
                 except ValueError:
                     print("Card could not be removed")
-                    pass
 
                 await self.players_obj[player.id].show_deck()
 
@@ -159,11 +170,15 @@ class Game:
                 await self.show_cards()
 
                 if len(self.players_obj[player.id].deck) == 0:
-                    await self.client.send_message(self.channel, '{} has won !'.format(player.name))
-                    self.count_score()
-                    await self.start()
+                    await self.end_game()
+
 
         await self.process_turn()
+
+    async def end_game(self):
+        await self.client.send_message(self.channel, '{} has won ! Rules were : ```{}```'.format(player.name, self.rules))
+        self.count_score()
+        await self.start()
 
 
 
