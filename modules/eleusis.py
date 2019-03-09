@@ -45,11 +45,16 @@ class Game:
             self.deck.sort()
             # await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
             embed=discord.Embed(title="Deck")
-            i = 1
+            i = 0
             for card in self.deck:
                 embed.add_field(name='[{}]'.format(i), value=self.deck[i-1], inline=True)
                 i += 1
             await self.client.send_message(self.player, embed=embed)
+
+        def add_card(self, number):
+            for i in range(number):
+                self.deck.append(random.choice(Game.cards))
+
 
     cards = [
     '1_Clubs', '2_Clubs', '3_Clubs', '4_Clubs', '5_Clubs', '6_Clubs', '7_Clubs', '8_Clubs', '9_Clubs', '10_Clubs', 'J_Clubs', 'Q_Clubs', 'K_Clubs',
@@ -81,7 +86,7 @@ class Game:
         self.middle_row.append((self.turn, random.choice(Game.cards)))
 
         await self.show_cards()
-        await self.show_decks()
+        # await self.show_decks()
 
         await self.process_turn()
 
@@ -128,16 +133,21 @@ class Game:
             self.players_obj[player].score = max - len(self.players_obj[player].deck)
 
     async def process_turn(self):
+        await self.show_cards()
+
         for player in self.players:
             if not self.players_obj[player.id].is_god():
                 chosen_card = ''
                 while not (chosen_card in self.cards and chosen_card in self.players_obj[player.id].deck):
-                    await self.client.send_message(player, 'Choose a card.. .')
+                    await self.client.send_message(player, 'Choose a card...')
                     chosen_card_msg = await self.client.wait_for_message(author=player)
                     chosen_card = chosen_card_msg.content
 
                     if chosen_card.isdigit():
+                        if int(chosen_card) > 0 and int(chosen_card) <= len(self.players_obj[player.id].deck):
                         chosen_card = self.players_obj[player.id].deck[int(chosen_card)]
+                        else:
+                            await self.client.send_message(player, 'Index out of range, please try again')
 
                     if not chosen_card in self.cards:
                         await self.client.send_message(player, "This card doesn't exist, please try again")
@@ -163,12 +173,12 @@ class Game:
                         self.middle_row.append((self.turn, chosen_card))
                     elif answer_message == 'no':
                         self.down_row.append((self.turn, chosen_card))
+                        self.players_obj[player.id].add_card(1)
                     else:
                         await self.client.send_message(self.god,
                         'Sorry, your message was not fully understood, please try again')
                         answer = await self.client.wait_for_message(author=self.god)
 
-                await self.show_cards()
 
                 if len(self.players_obj[player.id].deck) == 0:
                     await self.end_game()
