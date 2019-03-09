@@ -145,7 +145,7 @@ class Game:
 
                     if chosen_card.isdigit():
                         if int(chosen_card) > 0 and int(chosen_card) <= len(self.players_obj[player.id].deck):
-                        chosen_card = self.players_obj[player.id].deck[int(chosen_card)]
+                            chosen_card = self.players_obj[player.id].deck[int(chosen_card)]
                         else:
                             await self.client.send_message(player, 'Index out of range, please try again')
 
