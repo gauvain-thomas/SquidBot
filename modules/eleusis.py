@@ -181,12 +181,12 @@ class Game:
 
 
                 if len(self.players_obj[player.id].deck) == 0:
-                    await self.end_game()
+                    await self.end_game(player)
 
 
         await self.process_turn()
 
-    async def end_game(self):
+    async def end_game(self, player):
         await self.client.send_message(self.channel, '{} has won ! Rules were : ```{}```'.format(player.name, self.rules))
         self.count_score()
         await self.start()
