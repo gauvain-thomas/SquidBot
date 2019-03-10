@@ -9,12 +9,12 @@ def get_folder():
 
 #load a card image given is name
 def load_card(cardTuple):
-    cardPath = get_folder()+ "/" + cardTuple[1] + ".jpg"
+    cardPath = get_folder()+ '/' + cardTuple[1] + '.jpg'
     return Image.open(cardPath)
 
 #load the stack image
-def load_stack():
-    stack_path = get_folder() + "/stack.png"
+def load_stack(stack_name):
+    stack_path = get_folder() + '/' + stack_name + '.png'
     return  Image.open(stack_path)
 
 #get a card position given a row and a column
@@ -67,7 +67,7 @@ def paste_card(cardTuple, position, stack):
 #create an image of the current game state
 def create_game_image(up_row, middle_row, down_row):
 
-    stack = load_stack()
+    stack = load_stack('game_stack')
 
     current_round = get_current_round(up_row[-1], middle_row[-1], down_row[-1])
 
