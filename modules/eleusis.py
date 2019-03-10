@@ -130,7 +130,7 @@ class Game:
         max = max(num_cards)
 
         for player in self.players:
-            self.players_obj[player].score = max - len(self.players_obj[player].deck)
+            self.players_obj[player].score += max - len(self.players_obj[player].deck)
 
     async def process_turn(self):
         await self.show_cards()
@@ -161,7 +161,7 @@ class Game:
 
                 await self.client.send_message(player, 'Card chosen')
                 await self.players_obj[player.id].show_deck()
-                
+
                 await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
                 answer = await self.client.wait_for_message(author=self.god)
                 answer_message = ''
