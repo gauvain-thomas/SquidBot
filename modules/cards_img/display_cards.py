@@ -9,12 +9,12 @@ def get_folder():
 
 #load a card image given is name
 def load_card(cardTuple):
-    cardPath = get_folder()+ '/' + cardTuple[1] + '.jpg'
+    cardPath = get_folder()+ "/" + cardTuple[1] + ".jpg"
     return Image.open(cardPath)
 
 #load the stack image
-def load_stack(stack_name):
-    stack_path = get_folder() + '/' + stack_name + '.png'
+def load_stack():
+    stack_path = get_folder() + "/stack.png"
     return  Image.open(stack_path)
 
 #get a card position given a row and a column
@@ -35,7 +35,7 @@ def get_position(row, column, card_index = None, cards_number = None):
 
     else:
 
-        position1 = (int(column*(horizontal_gap+card_width)  + horizontal_gap + ((cards_number -card_index -1)*cards_disparity / (cards_number - 1))), row*(vertical_gap2+card_height) + vertical_gap1)
+        position1 = (int(column*(horizontal_gap+card_width)  + horizontal_gap + ((cards_number - card_index - 1)*cards_disparity / (cards_number - 1))), row*(vertical_gap2+card_height) + vertical_gap1)
         position2 = (position1[0] + card_width, position1[1] + card_height)
 
     print('position of the card:')
@@ -58,7 +58,7 @@ def get_current_round(up_last_card, middle_last_card, down_last_card):
 
         return down_last_card[0]
 
-#paste a card image given is name and position
+#paste a card image given its name and position
 def paste_card(cardTuple, position, stack):
     card_image = load_card(cardTuple)
     stack.paste(card_image,position)
@@ -67,7 +67,7 @@ def paste_card(cardTuple, position, stack):
 #create an image of the current game state
 def create_game_image(up_row, middle_row, down_row):
 
-    stack = load_stack('game_stack')
+    stack = load_stack()
 
     current_round = get_current_round(up_row[-1], middle_row[-1], down_row[-1])
 
@@ -78,7 +78,6 @@ def create_game_image(up_row, middle_row, down_row):
     print('drawing up row:\n')
     stack = paste_border_row(up_row, 0, current_round, stack)
     stack.save(get_folder() + '/temp.png')
-    return stack
 
 #create an image of the deck of a player
 def create_deck_image():
@@ -143,14 +142,12 @@ def paste_border_row(row_list, row_number, current_round, stack):
             stack = paste_card(card_tuple, get_position(row_number, column), stack)
 
         else:
-            for x in range(index + 1, previous_index + 1):
+            for x in range(previous_index, index, -1):
 
 
                 card_tuple = row_list[x]
 
                 card_index = -(x - previous_index)
-                print('card_index')
-                print(card_index)
                 stack = paste_card(card_tuple, get_position(row_number, column, card_index, cards_number), stack)
 
     return stack
@@ -159,6 +156,6 @@ def paste_border_row(row_list, row_number, current_round, stack):
 if __name__ == '__main__':
     up_row = [(0, '3_Spades')]
     middle_row = [(0, '3_Spades'),  (1, '5_Hearts')]
-    down_row = [(0, ''), (5, '4_Hearts'), (5, '5_Hearts'), (5, '8_Diamonds'), (5, '8_Hearts'), (5, 'J_Clubs'), (6, 'J_Spades'), (7, 'Q_Hearts')]
+    down_row = [(0, '3_Spades'),]
     # print(get_folder())
-    create_game_image(up_row, middle_row, down_row).show()
+    create_image(up_row, middle_row, down_row)

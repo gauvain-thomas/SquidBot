@@ -44,7 +44,7 @@ class Game:
         async def show_deck(self):
             self.deck.sort()
             # await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
-            embed=discord.Embed(title="Deck")
+            embed=discord.Embed(title="Your deck :")
             i = 0
             for card in self.deck:
                 embed.add_field(name='[{}]'.format(i), value=self.deck[i-1], inline=True)
@@ -105,9 +105,9 @@ class Game:
 
     async def show_cards(self):
         display_cards.create_game_image(self.up_row, self.middle_row, self.down_row)
-        await self.client.send_file(self.channel, r"/home/pi/Bot/SquidBot/modules/cards_img/temp.png",filename="Cards.png",content='Cards')
-        await self.client.send_message(self.channel, 'Cards are : {}'.format(self.middle_row))
-        await self.client.send_message(self.channel, 'Rejected cards are : {}'.format(self.down_row))
+        for player in self.players:
+            await self.client.send_file(self.player, r"/home/pi/Bot/SquidBot/modules/cards_img/temp.png", filename="Cards.png",
+            content='Cards are : {}\nRejected cards are : {}'.format(self.middle_row, self.down_row))
 
     async def show_decks(self):
         for player in self.players:
@@ -144,7 +144,7 @@ class Game:
                     chosen_card = chosen_card_msg.content
 
                     if chosen_card.isdigit():
-                        if int(chosen_card) > 0 and int(chosen_card) <= len(self.players_obj[player.id].deck):
+                        if int(chosen_card) >= 0 and int(chosen_card) <= len(self.players_obj[player.id].deck):
                             chosen_card = self.players_obj[player.id].deck[int(chosen_card)]
                         else:
                             await self.client.send_message(player, 'Index out of range, please try again')
@@ -237,5 +237,8 @@ class Eleusis:
         else:
             await self.client.say('Not enough players, start again')
 
+        await self.client.wait_for_message(author = ctx.message.author, content=".eleusis stop")
+        await self.client.say('Game stopped')
+        del self.games_list[ctx.message.channel.id]
 def setup(client):
   client.add_cog(Eleusis(client))
