@@ -1,9 +1,10 @@
 import discord
 from discord.ext import commands
 import youtube_dl
-from apiclient.discovery import build
-from apiclient.errors import HttpError
-
+# from apiclient.discovery import build
+# from apiclient.errors import HttpError
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
 DEVELOPER_KEY = "AIzaSyC7Zxm1fWNZJOiw_CNIuB5s99x9DxKz0ao"
 YOUTUBE_API_SERVICE_NAME = "youtube"
