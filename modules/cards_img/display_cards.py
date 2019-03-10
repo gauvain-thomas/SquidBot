@@ -1,7 +1,11 @@
 from PIL import Image
 import os
 
+<<<<<<< HEAD
 print('display_cards successfully imported')
+=======
+# print(__name__ + ' imported successfully')
+>>>>>>> b236cbe20d461821e0394915f21da580124b4d7e
 
 #get the absolute path of the folder
 def get_folder():
@@ -38,8 +42,12 @@ def get_position(row, column, card_index = None, cards_number = None):
         position1 = (int(column*(horizontal_gap+card_width)  + horizontal_gap + ((cards_number - card_index - 1)*cards_disparity / (cards_number - 1))), row*(vertical_gap2+card_height) + vertical_gap1)
         position2 = (position1[0] + card_width, position1[1] + card_height)
 
+<<<<<<< HEAD
     print('position of the card:')
     print(position1+position2)
+=======
+    # print(position1+position2)
+>>>>>>> b236cbe20d461821e0394915f21da580124b4d7e
     return position1 + position2
 
 #get the current round of the game
@@ -71,9 +79,15 @@ def create_game_image(up_row, middle_row, down_row):
 
     current_round = get_current_round(up_row[-1], middle_row[-1], down_row[-1])
 
+<<<<<<< HEAD
     print('drawing middle row:\n')
     stack = paste_middle_row(middle_row, current_round, stack)
     print('drawing down row:\n')
+=======
+    # print('appel de paste_middle_row:\n')
+    stack = paste_middle_row(middle_row, current_round, stack)
+    # print('appel de paste_down_row:\n')
+>>>>>>> b236cbe20d461821e0394915f21da580124b4d7e
     stack = paste_border_row(down_row, 2, current_round, stack)
     print('drawing up row:\n')
     stack = paste_border_row(up_row, 0, current_round, stack)
@@ -131,11 +145,11 @@ def paste_border_row(row_list, row_number, current_round, stack):
             card_tuple = row_list[index]
 
 
-        print(index)
-        print(previous_index)
+        # print(index)
+        # print(previous_index)
         cards_number = previous_index - index
-        print('cards_number')
-        print(cards_number)
+        # print('cards_number')
+        # print(cards_number)
         column = 3 - (current_round - card_round)
         if cards_number == 1:
             card_tuple = row_list[previous_index]
@@ -150,8 +164,8 @@ def paste_border_row(row_list, row_number, current_round, stack):
                 card_tuple = row_list[x]
 
                 card_index = -(x - previous_index)
-                print('card_index')
-                print(card_index)
+                # print('card_index')
+                # print(card_index)
                 stack = paste_card(card_tuple, get_position(row_number, column, card_index, cards_number), stack)
 
     return stack
@@ -161,5 +175,5 @@ if __name__ == '__main__':
     up_row = [(0, '3_Spades')]
     middle_row = [(0, '3_Spades'),  (1, '5_Hearts')]
     down_row = [(0, '3_Spades'),]
-    print(get_folder())
+    # print(get_folder())
     create_image(up_row, middle_row, down_row)

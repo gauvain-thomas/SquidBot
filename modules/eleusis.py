@@ -8,7 +8,7 @@ import sys
 import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__),'cards_img'))
-print(sys.path)
+# print(sys.path)
 import display_cards
 
 owners = ['263670024391229440']
@@ -42,7 +42,19 @@ class Game:
                 return False
 
         async def show_deck(self):
-            await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
+            self.deck.sort()
+            # await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
+            embed=discord.Embed(title="Deck")
+            i = 0
+            for card in self.deck:
+                embed.add_field(name='[{}]'.format(i), value=self.deck[i-1], inline=True)
+                i += 1
+            await self.client.send_message(self.player, embed=embed)
+
+        def add_card(self, number):
+            for i in range(number):
+                self.deck.append(random.choice(Game.cards))
+
 
     cards = [
     '1_Clubs', '2_Clubs', '3_Clubs', '4_Clubs', '5_Clubs', '6_Clubs', '7_Clubs', '8_Clubs', '9_Clubs', '10_Clubs', 'J_Clubs', 'Q_Clubs', 'K_Clubs',
@@ -56,25 +68,24 @@ class Game:
         self.channel = channel
         self.players = players
         self.players_obj = {}
+        self.turn = 1
 
         #Set players object
         for player in self.players:
             self.players_obj[player.id] = Game.Player(self.client, player)
 
     async def start(self):
-        self.turn = 1
-
         self.up_row = [(0, '')]
         self.middle_row = [(0, '')]
         self.down_row = [(0, '')]
 
         await self.show_scores()
-        self.pick_god()
+        await self.pick_god()
         self.reset_decks()
 
         self.middle_row.append((self.turn, random.choice(Game.cards)))
 
-        await self.show_cards()
+        # await self.show_cards()
         await self.show_decks()
 
         await self.process_turn()
@@ -84,9 +95,13 @@ class Game:
             if not self.players_obj[player.id].is_god():
                 self.players_obj[player.id].create_deck()
 
-    def pick_god(self):
+    async def pick_god(self):
         self.god = random.choice(self.players)
         self.players_obj[self.god.id].set_player_status('god')
+        await self.client.send_message(self.channel, '{} is the god, waiting for the rules to start the game'.format(self.god.name))
+        await self.client.send_message(self.god, 'You are the god ! Define rules :')
+        self.rules = await self.client.wait_for_message(author=self.god)
+        self.rules = self.rules.content
 
     async def show_cards(self):
         display_cards.create_game_image(self.up_row, self.middle_row, self.down_row)
@@ -107,20 +122,43 @@ class Game:
 
         await self.client.send_message(self.channel, embed=embed)
 
+    def count_score(self):
+        num_cards = []
+        for player in self.players:
+            num_cards.append(len(self.players_obj[player.id].deck))
+
+        max = max(num_cards)
+
+        for player in self.players:
+            self.players_obj[player].score = max - len(self.players_obj[player].deck)
+
     async def process_turn(self):
+        await self.show_cards()
+
         for player in self.players:
             if not self.players_obj[player.id].is_god():
                 chosen_card = ''
-                while not chosen_card in self.cards and chosen_card in self.players_obj[player.id].deck:
-                    await self.client.send_message(player, 'Choose a card.. .')
-                    chosen_msg = await self.client.wait_for_message(author=player)
+                while not (chosen_card in self.cards and chosen_card in self.players_obj[player.id].deck):
+                    await self.client.send_message(player, 'Choose a card...')
+                    chosen_card_msg = await self.client.wait_for_message(author=player)
                     chosen_card = chosen_card_msg.content
+
+                    if chosen_card.isdigit():
+                        if int(chosen_card) > 0 and int(chosen_card) <= len(self.players_obj[player.id].deck):
+                            chosen_card = self.players_obj[player.id].deck[int(chosen_card)]
+                        else:
+                            await self.client.send_message(player, 'Index out of range, please try again')
+
                     if not chosen_card in self.cards:
                         await self.client.send_message(player, "This card doesn't exist, please try again")
                     elif not chosen_card in self.players_obj[player.id].deck:
                         await self.client.send_message(player, "This card is not in your deck, please try again")
 
-                # self.players_obj[player.id].deck.remove(chosen_card)
+                try:
+                    self.players_obj[player.id].deck.remove(chosen_card)
+                except ValueError:
+                    print("Card could not be removed")
+
                 await self.players_obj[player.id].show_deck()
 
                 await self.client.send_message(player, 'Card chosen')
@@ -130,24 +168,28 @@ class Game:
 
                 while not (answer_message == 'yes' or answer_message == 'no'):
                     answer_message = answer.content
-                    print('Wait for answer ' + answer_message)
                     if answer_message == 'yes':
                         self.turn += 1
                         self.middle_row.append((self.turn, chosen_card))
                     elif answer_message == 'no':
                         self.down_row.append((self.turn, chosen_card))
+                        self.players_obj[player.id].add_card(1)
                     else:
                         await self.client.send_message(self.god,
                         'Sorry, your message was not fully understood, please try again')
                         answer = await self.client.wait_for_message(author=self.god)
 
-                await self.show_cards()
 
                 if len(self.players_obj[player.id].deck) == 0:
-                    await self.client.send_message(self.chanel, '{} has won !'.format(player.name))
-                    self.satrt()
+                    await self.end_game()
+
 
         await self.process_turn()
+
+    async def end_game(self):
+        await self.client.send_message(self.channel, '{} has won ! Rules were : ```{}```'.format(player.name, self.rules))
+        self.count_score()
+        await self.start()
 
 
 
