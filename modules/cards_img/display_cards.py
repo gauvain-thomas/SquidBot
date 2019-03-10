@@ -14,7 +14,7 @@ def load_card(cardTuple):
 
 #load the stack image
 def load_stack():
-    stack_path = get_folder() + "/stack.png"
+    stack_path = get_folder() + "/game_stack.png"
     return  Image.open(stack_path)
 
 #get a card position given a row and a column
