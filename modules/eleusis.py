@@ -89,7 +89,7 @@ class Game:
         self.players_obj[self.god.id].set_player_status('god')
 
     async def show_cards(self):
-        display_cards.create_image(self.up_row, self.middle_row, self.down_row)
+        display_cards.create_game_image(self.up_row, self.middle_row, self.down_row)
         await self.client.send_file(self.channel, r"/home/pi/Bot/SquidBot/modules/cards_img/temp.png",filename="Cards.png",content='Cards')
         await self.client.send_message(self.channel, 'Cards are : {}'.format(self.middle_row))
         await self.client.send_message(self.channel, 'Rejected cards are : {}'.format(self.down_row))
