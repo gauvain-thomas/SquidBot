@@ -210,14 +210,14 @@ class Eleusis:
 
   #Commands
   @commands.command(pass_context=True)
-  async def eleusis(self, ctx, *args):
+  async def eleusis(self, ctx, arg):
       """Eleusis commands"""
 
-      if args[0] == 'rules':
+      if arg == 'rules':
         await self.client.say('http://laelith.fr/Zet/Articles/images/eleusis.pdf')
 
 #       New Game
-      elif args[0] == 'create':
+      elif arg == 'create':
         players = []
 
         new_game_msg = await self.client.say("**A new game of Eleusis is being created ! React to join the party !**")
