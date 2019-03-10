@@ -205,6 +205,7 @@ class Eleusis:
       embed.add_field(name=".eleusis rules", value="Give link to the game's rules", inline=False)
       embed.add_field(name=".eleusis create", value="Create a new party, waiting for playing to react until game is started", inline=False)
       embed.add_field(name=".eleusis start", value="Launch a new game, must be used after creating a new party", inline=False)
+      embed.add_field(name=".eleusis stop", value="End the game", inline=False)
       await self.client.send_message(message.channel, embed=embed)
 
 
