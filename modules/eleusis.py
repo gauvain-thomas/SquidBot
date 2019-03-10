@@ -159,9 +159,9 @@ class Game:
                 except ValueError:
                     print("Card could not be removed")
 
-                await self.players_obj[player.id].show_deck()
-
                 await self.client.send_message(player, 'Card chosen')
+                await self.players_obj[player.id].show_deck()
+                
                 await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
                 answer = await self.client.wait_for_message(author=self.god)
                 answer_message = ''
@@ -181,12 +181,12 @@ class Game:
 
 
                 if len(self.players_obj[player.id].deck) == 0:
-                    await self.end_game()
+                    await self.end_game(player)
 
 
         await self.process_turn()
 
-    async def end_game(self):
+    async def end_game(self, player):
         await self.client.send_message(self.channel, '{} has won ! Rules were : ```{}```'.format(player.name, self.rules))
         self.count_score()
         await self.start()
