@@ -47,7 +47,7 @@ class Game:
             embed=discord.Embed(title="Your deck :")
             i = 0
             for card in self.deck:
-                embed.add_field(name='[{}]'.format(i), value=self.deck[i-1], inline=True)
+                embed.add_field(name='[{}]'.format(i), value=self.deck[i], inline=True)
                 i += 1
             await self.client.send_message(self.player, embed=embed)
 
@@ -144,7 +144,7 @@ class Game:
                     chosen_card = chosen_card_msg.content
 
                     if chosen_card.isdigit():
-                        if int(chosen_card) >= 0 and int(chosen_card) <= len(self.players_obj[player.id].deck):
+                        if int(chosen_card) >= 0 and int(chosen_card) < len(self.players_obj[player.id].deck):
                             chosen_card = self.players_obj[player.id].deck[int(chosen_card)]
                         else:
                             await self.client.send_message(player, 'Index out of range, please try again')
