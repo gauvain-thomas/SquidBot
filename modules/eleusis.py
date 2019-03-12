@@ -241,5 +241,6 @@ class Eleusis:
         await self.client.wait_for_message(author = ctx.message.author, content=".eleusis stop")
         await self.client.say('Game stopped')
         del self.games_list[ctx.message.channel.id]
+
 def setup(client):
   client.add_cog(Eleusis(client))
