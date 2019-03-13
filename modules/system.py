@@ -7,7 +7,7 @@ import os
 import subprocess
 import sys
 
-owners = ['263670024391229440']
+owners = ['263670024391229440', '263657174230761483']
 
 class System:
   def __init__(self, client):
