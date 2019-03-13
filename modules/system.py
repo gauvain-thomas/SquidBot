@@ -7,6 +7,7 @@ import os
 import subprocess
 import sys
 
+# List of owners
 owners = ['263670024391229440', '263657174230761483']
 
 class System:
@@ -20,9 +21,9 @@ class System:
       embed.add_field(name="--------------------", value="--------------------", inline=False)
       embed.add_field(name=".reboot", value="Restart bot and update code from github", inline=False)
       embed.add_field(name=".shutdown", value="Turn bot off", inline=False)
-      
+
       await self.client.send_message(message.channel, embed=embed)
-      
+
   #Commands
   @commands.command(pass_context=True)
   async def reboot(self, ctx):
