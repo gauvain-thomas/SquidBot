@@ -62,8 +62,8 @@ async def on_command_error(ctx, error):
     error_channel = client.get_channel('555445252375183380')
     await client.send_message(error_channel, 'ctx : {}\nError : {}'.format(ctx, error))
     print(ctx)
-    print(error)
-    
+    print(error.__class__.__name__)
+
 @client.command()
 async def error():
     """Creates error"""
