@@ -41,8 +41,9 @@ class Game:
             else:
                 return False
 
+
         async def show_deck(self):
-            self.deck.sort()
+            self.deck.sort(key=self.sort_index)
             # await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
             embed=discord.Embed(title="Your deck :")
             i = 0
@@ -50,6 +51,31 @@ class Game:
                 embed.add_field(name='[{}]'.format(i), value=self.deck[i], inline=True)
                 i += 1
             await self.client.send_message(self.player, embed=embed)
+
+        # Assign an index to each card in order to sort them
+        def sort_index(self, card):
+
+            sort_value = 0
+            card_properties[] = card.split('_')
+
+            if card_properties[1] == "Clubs":
+                sort_value += 13
+            elif card_properties[1] == "Hearts":
+                sort_value += 26
+            elif card_properties[1] == "Diamonds":
+                sort_value += 39
+
+            if card_properties[0] == "J":
+                sort_value += 11
+            elif card_properties[0] == "Q":
+                sort_value += 12
+            elif card_properties[0] == "K":
+                sort_value += 13
+            else:
+                sort_value += int(card_properties[0])
+
+            return sort_value
+
 
         def add_card(self, number):
             for i in range(number):
