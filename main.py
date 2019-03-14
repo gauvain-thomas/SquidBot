@@ -49,7 +49,7 @@ async def on_message(message):
 
 @client.event
 async def on_error(event, *args, **kwargs):
-    error_channel = ''
+    error_channel = '555445252375183380'
     await client.send_message(error_channel, 'Event : {}\nArgs : {}\nKwargs : {}'.format(event, args, kwargs))
     print(event)
     print(args)
