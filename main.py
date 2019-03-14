@@ -54,7 +54,11 @@ async def on_error(event, *args, **kwargs):
     print(event)
     print(args)
     print(kwargs)
-
+@client.command()
+async def error():
+    """Creates error"""
+    error = 5/0
+    
 #Commands
 
 @client.command(pass_context=True)
