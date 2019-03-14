@@ -14,7 +14,7 @@ class CommandErrorHandler:
         error : Exception"""
 
         error_channel = self.client.get_channel('555445252375183380')
-        await self.client.send_message(error_channel, traceback.format_exc())
+        await self.client.send_message(error_channel, '{}\n{}'.format(traceback.format_exc(), error))
 
         # if hasattr(ctx.command, 'on_error'):
         #     return
