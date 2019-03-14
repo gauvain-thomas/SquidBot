@@ -13,7 +13,7 @@ class CommandErrorHandler:
         ctx   : Context
         error : Exception"""
 
-        error_channel = client.get_channel('555445252375183380')
+        error_channel = self.client.get_channel('555445252375183380')
         await self.client.send_message(error_channel, traceback.format_exc())
 
         # if hasattr(ctx.command, 'on_error'):
