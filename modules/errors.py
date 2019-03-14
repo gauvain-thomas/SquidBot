@@ -13,7 +13,7 @@ class CommandErrorHandler:
         ctx   : Context
         error : Exception"""
 
-        ctx.send(traceback.format_exc())
+        await ctx.send(traceback.format_exc())
 
         if hasattr(ctx.command, 'on_error'):
             return
