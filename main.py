@@ -55,6 +55,15 @@ async def on_error(event, *args, **kwargs):
     print(event)
     print(args)
     print(kwargs)
+
+@client.event
+async def on_command_error(event, *args, **kwargs):
+    print('ERRRRROOOOOOOOOOOOORRRRRRRRRRRRRR!!!!!!!!!!!!!!')
+    error_channel = '555445252375183380'
+    await client.send_message(error_channel, 'Event : {}\nArgs : {}\nKwargs : {}'.format(event, args, kwargs))
+    print(event)
+    print(args)
+    print(kwargs)
 @client.command()
 async def error():
     """Creates error"""
