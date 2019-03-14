@@ -47,11 +47,13 @@ async def on_message(message):
             await client.send_message(message.channel,
             "In order to get any help, type .help. For further informations, ask @Squidoss or any other programmer.")
 
-# @client.event
-# async def on_error(event, *args, **kwargs):
-#     print(event)
-#     print(args)
-#     print(kwargs)
+@client.event
+async def on_error(event, *args, **kwargs):
+    error_channel = ''
+    await client.send_message(error_channel, 'Event : {}\nArgs : {}\nKwargs : {}'.format(event, args, kwargs))
+    print(event)
+    print(args)
+    print(kwargs)
 
 #Commands
 
