@@ -8,13 +8,13 @@ class CommandErrorHandler:
     def __init__(self, client):
         self.client = client
 
-    async def on_command_error(self, ctx, error):
-        """The event triggered when an error is raised while invoking a command.
-        ctx   : Context
-        error : Exception"""
-
-        error_channel = self.client.get_channel('555445252375183380')
-        await self.client.send_message(error_channel, '{}\n{}\n{}'.format(traceback.format_exc(), ctx, error))
+    # async def on_command_error(self, ctx, error):
+    #     """The event triggered when an error is raised while invoking a command.
+    #     ctx   : Context
+    #     error : Exception"""
+    #
+    #     error_channel = self.client.get_channel('555445252375183380')
+    #     await self.client.send_message(error_channel, '{}\n{}\n{}'.format(traceback.format_exc(), ctx, error))
 
         # if hasattr(ctx.command, 'on_error'):
         #     return

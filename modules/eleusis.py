@@ -193,7 +193,6 @@ class Game:
                     print("Card could not be removed")
 
                 await self.client.send_message(player, 'Card chosen')
-                await self.players_obj[player.id].show_deck()
 
                 await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
                 answer = await self.client.wait_for_message(author=self.god)
@@ -215,6 +214,7 @@ class Game:
                         'Sorry, your message was not fully understood, please try again')
                         answer = await self.client.wait_for_message(author=self.god)
 
+                    await self.players_obj[player.id].show_deck()
 
                 if len(self.players_obj[player.id].deck) == 0:
                     await self.end_game(player)
