@@ -201,10 +201,9 @@ class Game:
                 while not (answer_message == 'yes' or answer_message == 'no'):
                     answer_message = answer.content
 
-                    # self.client.add_reaction(answer, '☑')
-                    await self.client.add_reaction(answer, '\N{THUMBS UP SIGN}')
-                    await self.client.add_reaction(answer, '\N{BALLOT BOX WITH CHECK}')
-                    # self.client.add_reaction(answer, '❎')
+                    await self.client.add_reaction(answer, '☑')
+                    await self.client.add_reaction(answer, '❎')
+                    
                     if answer_message == 'yes':
                         self.turn += 1
                         self.middle_row.append((self.turn, chosen_card))
