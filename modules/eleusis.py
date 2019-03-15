@@ -149,7 +149,11 @@ class Game:
 
     def count_score(self):
         num_cards = []
+<<<<<<< HEAD
         max_points = 0
+=======
+        max = 0
+>>>>>>> 325bb804ab4ef23ec13fa5e8d7bc15f0f73b81c5
         for player in self.players:
             num_cards.append(len(self.players_obj[player.id].deck))
 
