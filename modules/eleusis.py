@@ -106,7 +106,7 @@ class Game:
     async def show_cards(self):
         display_cards.create_game_image(self.up_row, self.middle_row, self.down_row)
         for player in self.players:
-            await self.client.send_file(player, r"/home/pi/Bot/SquidBot/modules/cards_img/temp.png", filename="Cards.png",
+            await self.client.send_file(player, r"/home/pi/Bot2/SkidBot/modules/cards_img/temp.png", filename="Cards.png",
             content='Cards are : {}\nRejected cards are : {}'.format(self.middle_row, self.down_row))
 
     async def show_decks(self):
