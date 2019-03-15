@@ -29,7 +29,7 @@ class Game:
 
         def create_deck(self):
             self.deck = []
-            for i in range(14):
+            for i in range(1):
                 self.deck.append(random.choice(Game.cards))
 
         def set_player_status(self, status):
@@ -149,10 +149,11 @@ class Game:
 
     def count_score(self):
         num_cards = []
+        max_points = 0
         for player in self.players:
             num_cards.append(len(self.players_obj[player.id].deck))
 
-        max = max(num_cards)
+        max_points = max(num_cards)
 
         for player in self.players:
             self.players_obj[player].score += max - len(self.players_obj[player].deck)
