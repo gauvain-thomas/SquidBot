@@ -202,8 +202,8 @@ class Game:
                     answer_message = answer.content
 
                     # self.client.add_reaction(answer, '☑')
-                    self.client.add_reaction(answer, '\N{THUMBS UP SIGN}')
-                    self.client.add_reaction(answer, '\N{BALLOT BOX WITH CHECK}')
+                    await self.client.add_reaction(answer, '\N{THUMBS UP SIGN}')
+                    await self.client.add_reaction(answer, '\N{BALLOT BOX WITH CHECK}')
                     # self.client.add_reaction(answer, '❎')
                     if answer_message == 'yes':
                         self.turn += 1
