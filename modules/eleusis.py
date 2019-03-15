@@ -56,7 +56,7 @@ class Game:
         def sort_index(self, card):
 
             sort_value = 0
-            card_properties[] = card.split('_')
+            card_properties = card.split('_')
 
             if card_properties[1] == "Clubs":
                 sort_value += 13
