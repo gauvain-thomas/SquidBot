@@ -194,16 +194,16 @@ class Game:
 
                 await self.client.send_message(player, 'Card chosen')
 
-                await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
+                check_card_msg = await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
                 answer = await self.client.wait_for_message(author=self.god)
                 answer_message = ''
 
                 while not (answer_message == 'yes' or answer_message == 'no'):
                     answer_message = answer.content
 
-                    await self.client.add_reaction(answer, '☑')
-                    await self.client.add_reaction(answer, '❎')
-                    
+                    await self.client.add_reaction(check_card_msg, '☑')
+                    await self.client.add_reaction(check_card_msg, '❎')
+
                     if answer_message == 'yes':
                         self.turn += 1
                         self.middle_row.append((self.turn, chosen_card))
