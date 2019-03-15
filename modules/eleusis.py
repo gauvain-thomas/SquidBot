@@ -133,9 +133,8 @@ class Game:
             self.players_obj[player].score += max - len(self.players_obj[player].deck)
 
     async def process_turn(self):
-        await self.show_cards()
-
         for player in self.players:
+            await self.show_cards()
             if not self.players_obj[player.id].is_god():
                 chosen_card = ''
                 while not (chosen_card in self.cards and chosen_card in self.players_obj[player.id].deck):
@@ -182,9 +181,9 @@ class Game:
 
                 if len(self.players_obj[player.id].deck) == 0:
                     await self.end_game(player)
+                else:
+                    await self.process_turn()
 
-
-        await self.process_turn()
 
     async def end_game(self, player):
         await self.client.send_message(self.channel, '{} has won ! Rules were : ```{}```'.format(player.name, self.rules))
