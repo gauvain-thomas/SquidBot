@@ -202,7 +202,7 @@ class Game:
                 if answer_msg.reaction.emoji == '☑':
                     self.turn += 1
                     self.middle_row.append((self.turn, chosen_card))
-                elif answer_msg.emoji.reaction == '❎':
+                elif answer_msg.reaction.emoji == '❎':
                     self.down_row.append((self.turn, chosen_card))
                     self.players_obj[player.id].add_card(2)
                 # else:
