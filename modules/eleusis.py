@@ -47,14 +47,7 @@ class Game:
             embed=discord.Embed(title="Your deck :")
             i = 0
             for card in self.deck:
-                if 'Spades' in card:
-                    card = card.replace('_Spades', ':spades:Spades')
-                elif 'Clubs' in card:
-                    card = card.replace('_Clubs', ':clubs:Clubs')
-                elif 'Hearts' in card:
-                    card = card.replace('_Hearts', ':hearts:Hearts')
-                elif 'Diamonds' in card:
-                    card = card.replace('_Diamonds', ':diamonds:Diamonds')
+                card = self.card_esthetic(card)
                 embed.add_field(name='[{}]'.format(i), value=card, inline=True)
                 i += 1
             await self.client.send_message(self.player, embed=embed)
@@ -133,7 +126,7 @@ class Game:
         self.players_obj[self.god.id].set_player_status('god')
         await self.client.send_message(self.channel, '{} is the god, waiting for the rules to start the game'.format(self.god.name))
         await self.client.send_message(self.god, 'You are the god ! Define rules :')
-        self.rules = await self.client.wait_for_message(author=self.god)
+        self.rules = await self.client.wait_for_message(author=self.god, channel=self.god)
         self.rules = self.rules.content
 
     async def show_cards(self):
@@ -173,7 +166,7 @@ class Game:
                 chosen_card = ''
                 while not (chosen_card in self.cards and chosen_card in self.players_obj[player.id].deck):
                     await self.client.send_message(player, 'Choose a card...')
-                    chosen_card_msg = await self.client.wait_for_message(author=player)
+                    chosen_card_msg = await self.client.wait_for_message(author=player, channel=player)
                     chosen_card = chosen_card_msg.content
 
                     if chosen_card.isdigit():
@@ -194,7 +187,7 @@ class Game:
 
                 await self.client.send_message(player, 'Card chosen')
 
-                check_card_msg = await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
+                check_card_msg = await self.client.send_message(self.god, 'Does this card fit the sequence ? : {}'.format(self.card_esthetic(chosen_card)))
                 await self.client.add_reaction(check_card_msg, '☑')
                 await self.client.add_reaction(check_card_msg, '❎')
                 answer_msg = await self.client.wait_for_reaction(emoji=['☑', '❎'], user=self.god)
@@ -222,6 +215,19 @@ class Game:
         await self.client.send_message(self.channel, '{} has won ! Rules were : ```{}```'.format(player.name, self.rules))
         self.count_score()
         await self.start()
+
+    def card_esthetic(self, card):
+        if 'Spades' in card:
+            card = card.replace('_Spades', ':spades:Spades')
+        elif 'Clubs' in card:
+            card = card.replace('_Clubs', ':clubs:Clubs')
+        elif 'Hearts' in card:
+            card = card.replace('_Hearts', ':hearts:Hearts')
+        elif 'Diamonds' in card:
+            card = card.replace('_Diamonds', ':diamonds:Diamonds')
+
+        return card
+
 
 
 
