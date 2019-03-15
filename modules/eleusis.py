@@ -47,7 +47,7 @@ class Game:
             embed=discord.Embed(title="Your deck :")
             i = 0
             for card in self.deck:
-                card = self.card_esthetic(card)
+                card = Game.card_esthetic(card)
                 embed.add_field(name='[{}]'.format(i), value=card, inline=True)
                 i += 1
             await self.client.send_message(self.player, embed=embed)
