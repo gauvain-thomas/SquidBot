@@ -47,14 +47,14 @@ class Game:
             embed=discord.Embed(title="Your deck :")
             i = 0
             for card in self.deck:
-                if 'Spades' is in card:
-                    card.replace('_Spades', ':spades:')
-                elif 'Clubs' is in card:
-                    card.replace('_Clubs', ':clubs:')
-                elif 'Hearts' is in card:
-                    card.replace('_Hearts', ':hearts:')
-                elif 'Diamonds' is in card:
-                    card.replace('_Diamonds', ':diamonds:')
+                if 'Spades' in card:
+                    card = card.replace('_Spades', ':spades:')
+                elif 'Clubs' in card:
+                    card = card.replace('_Clubs', ':clubs:')
+                elif 'Hearts' in card:
+                    card = card.replace('_Hearts', ':hearts:')
+                elif 'Diamonds' in card:
+                    card = card.replace('_Diamonds', ':diamonds:')
                 embed.add_field(name='[{}]'.format(i), value=card, inline=True)
                 i += 1
             await self.client.send_message(self.player, embed=embed)
@@ -168,8 +168,8 @@ class Game:
 
     async def process_turn(self):
         for player in self.players:
-            await self.show_cards()
             if not self.players_obj[player.id].is_god():
+                await self.show_cards()
                 chosen_card = ''
                 while not (chosen_card in self.cards and chosen_card in self.players_obj[player.id].deck):
                     await self.client.send_message(player, 'Choose a card...')
