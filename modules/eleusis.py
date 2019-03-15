@@ -42,7 +42,7 @@ class Game:
                 return False
 
         async def show_deck(self):
-            self.deck.sort()
+            self.deck.sort(key=self.sort_index)
             # await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
             embed=discord.Embed(title="Your deck :")
             i = 0
@@ -74,7 +74,7 @@ class Game:
                 sort_value += int(card_properties[0])
 
             return sort_value
-            
+
 
         def add_card(self, number):
             for i in range(number):
