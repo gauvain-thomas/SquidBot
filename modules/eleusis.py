@@ -29,7 +29,7 @@ class Game:
 
         def create_deck(self):
             self.deck = []
-            for i in range(1):
+            for i in range(14):
                 self.deck.append(random.choice(Game.cards))
 
         def set_player_status(self, status):
@@ -47,7 +47,15 @@ class Game:
             embed=discord.Embed(title="Your deck :")
             i = 0
             for card in self.deck:
-                embed.add_field(name='[{}]'.format(i), value=self.deck[i], inline=True)
+                if 'Spades' is in card:
+                    card.replace('_Spades', ':spades:')
+                elif 'Clubs' is in card:
+                    card.replace('_Clubs', ':clubs:')
+                elif 'Hearts' is in card:
+                    card.replace('_Hearts', ':hearts:')
+                elif 'Diamonds' is in card:
+                    card.replace('_Diamonds', ':diamonds:')
+                embed.add_field(name='[{}]'.format(i), value=card, inline=True)
                 i += 1
             await self.client.send_message(self.player, embed=embed)
 
@@ -198,7 +206,7 @@ class Game:
                         self.middle_row.append((self.turn, chosen_card))
                     elif answer_message == 'no':
                         self.down_row.append((self.turn, chosen_card))
-                        self.players_obj[player.id].add_card(1)
+                        self.players_obj[player.id].add_card(2)
                     else:
                         await self.client.send_message(self.god,
                         'Sorry, your message was not fully understood, please try again')
