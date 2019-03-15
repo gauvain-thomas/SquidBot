@@ -198,7 +198,6 @@ class Game:
                 await self.client.add_reaction(check_card_msg, '☑')
                 await self.client.add_reaction(check_card_msg, '❎')
                 answer_msg = await self.client.wait_for_reaction(emoji=['☑', '❎'], user=self.god)
-                print(yes, no)
 
                 if answer_msg == '☑':
                     self.turn += 1
