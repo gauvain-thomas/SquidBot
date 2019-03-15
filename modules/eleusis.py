@@ -195,25 +195,21 @@ class Game:
                 await self.client.send_message(player, 'Card chosen')
 
                 check_card_msg = await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
-                answer = await self.client.wait_for_message(author=self.god)
-                answer_message = ''
+                await self.client.add_reaction(check_card_msg, '☑')
+                await self.client.add_reaction(check_card_msg, '❎')
+                answer_msg = await self.client.wait_for_reaction(emoji=['☑', '❎'], user=self.god)
 
-                while not (answer_message == 'yes' or answer_message == 'no'):
-                    answer_message = answer.content
-
-                    await self.client.add_reaction(check_card_msg, '☑')
-                    await self.client.add_reaction(check_card_msg, '❎')
-
-                    if answer_message == 'yes':
+                while not (answer_msg.reaction.emoji == '☑' or answer_msg.reaction.emoji == '❎'):
+                    if answer_msg == '☑':
                         self.turn += 1
                         self.middle_row.append((self.turn, chosen_card))
-                    elif answer_message == 'no':
+                    elif answer_msg == '❎':
                         self.down_row.append((self.turn, chosen_card))
                         self.players_obj[player.id].add_card(2)
-                    else:
-                        await self.client.send_message(self.god,
-                        'Sorry, your message was not fully understood, please try again')
-                        answer = await self.client.wait_for_message(author=self.god)
+                    # else:
+                    #     await self.client.send_message(self.god,
+                    #     'Sorry, your message was not fully understood, please try again')
+                    #     answer = await self.client.wait_for_message(author=self.god)
 
                     await self.players_obj[player.id].show_deck()
 
