@@ -47,13 +47,13 @@ class Game:
             embed=discord.Embed(title="Your deck :")
             i = 0
             for card in self.deck:
-                if 'Spades' is in card:
+                if 'Spades' in card:
                     card.replace('_Spades', ':spades:')
-                elif 'Clubs' is in card:
+                elif 'Clubs' in card:
                     card.replace('_Clubs', ':clubs:')
-                elif 'Hearts' is in card:
+                elif 'Hearts' in card:
                     card.replace('_Hearts', ':hearts:')
-                elif 'Diamonds' is in card:
+                elif 'Diamonds' in card:
                     card.replace('_Diamonds', ':diamonds:')
                 embed.add_field(name='[{}]'.format(i), value=card, inline=True)
                 i += 1
