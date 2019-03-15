@@ -156,7 +156,7 @@ class Game:
         max_points = max(num_cards)
 
         for player in self.players:
-            self.players_obj[player].score += max - len(self.players_obj[player].deck)
+            self.players_obj[player.id].score += max - len(self.players_obj[player.id].deck)
 
     async def process_turn(self):
         for player in self.players:
