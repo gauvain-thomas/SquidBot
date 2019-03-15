@@ -199,10 +199,10 @@ class Game:
                 await self.client.add_reaction(check_card_msg, '❎')
                 answer_msg = await self.client.wait_for_reaction(emoji=['☑', '❎'], user=self.god)
 
-                if answer_msg == '☑':
+                if answer_msg.reaction.emoji == '☑':
                     self.turn += 1
                     self.middle_row.append((self.turn, chosen_card))
-                elif answer_msg == '❎':
+                elif answer_msg.emoji.reaction == '❎':
                     self.down_row.append((self.turn, chosen_card))
                     self.players_obj[player.id].add_card(2)
                 # else:
