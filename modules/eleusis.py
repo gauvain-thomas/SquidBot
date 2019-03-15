@@ -48,13 +48,13 @@ class Game:
             i = 0
             for card in self.deck:
                 if 'Spades' in card:
-                    card = card.replace('_Spades', ':spades:')
+                    card = card.replace('_Spades', ':spades:Spades')
                 elif 'Clubs' in card:
-                    card = card.replace('_Clubs', ':clubs:')
+                    card = card.replace('_Clubs', ':clubs:Clubs')
                 elif 'Hearts' in card:
-                    card = card.replace('_Hearts', ':hearts:')
+                    card = card.replace('_Hearts', ':hearts:Hearts')
                 elif 'Diamonds' in card:
-                    card = card.replace('_Diamonds', ':diamonds:')
+                    card = card.replace('_Diamonds', ':diamonds:Diamonds')
                 embed.add_field(name='[{}]'.format(i), value=card, inline=True)
                 i += 1
             await self.client.send_message(self.player, embed=embed)
