@@ -65,9 +65,9 @@ class Game:
             sort_value = 0
             card_properties = card.split('_')
 
-            if card_properties[1] == "Clubs":
+            if card_properties[1] == "Hearts":
                 sort_value += 13
-            elif card_properties[1] == "Hearts":
+            elif card_properties[1] == "Clubs":
                 sort_value += 26
             elif card_properties[1] == "Diamonds":
                 sort_value += 39
