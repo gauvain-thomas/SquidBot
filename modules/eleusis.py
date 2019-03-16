@@ -47,7 +47,7 @@ class Game:
             embed=discord.Embed(title="Your deck :")
             i = 0
             for card in self.deck:
-                print(Game.card_esthetic(card))
+                print(Game.card_esthetic(card=card))
                 if 'Spades' in card:
                     card = card.replace('_Spades', ':spades:Spades')
                 elif 'Clubs' in card:
