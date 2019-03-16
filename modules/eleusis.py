@@ -47,6 +47,7 @@ class Game:
             embed=discord.Embed(title="Your deck :")
             i = 0
             for card in self.deck:
+                print(Game.card_esthetic(card))
                 if 'Spades' in card:
                     card = card.replace('_Spades', ':spades:Spades')
                 elif 'Clubs' in card:
@@ -56,6 +57,7 @@ class Game:
                 elif 'Diamonds' in card:
                     card = card.replace('_Diamonds', ':diamonds:Diamonds')
                 embed.add_field(name='[{}]'.format(i), value=card, inline=True)
+                # embed.add_field(name='[{}]'.format(i), value=Game.card_esthetic(card), inline=True)
                 i += 1
             await self.client.send_message(self.player, embed=embed)
 
@@ -222,6 +224,18 @@ class Game:
         await self.client.send_message(self.channel, '{} has won ! Rules were : ```{}```'.format(player.name, self.rules))
         self.count_score()
         await self.start()
+
+    def card_esthetic(self, card):
+        if 'Spades' in card:
+            card = card.replace('_Spades', ':spades:Spades')
+        elif 'Clubs' in card:
+            card = card.replace('_Clubs', ':clubs:Clubs')
+        elif 'Hearts' in card:
+            card = card.replace('_Hearts', ':hearts:Hearts')
+        elif 'Diamonds' in card:
+            card = card.replace('_Diamonds', ':diamonds:Diamonds')
+
+        return card
 
 
 
