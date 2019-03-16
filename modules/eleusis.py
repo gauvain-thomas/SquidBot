@@ -47,7 +47,6 @@ class Game:
             embed=discord.Embed(title="Your deck :")
             i = 0
             for card in self.deck:
-                print(Game.card_esthetic(card=card))
                 if 'Spades' in card:
                     card = card.replace('_Spades', ':spades:Spades')
                 elif 'Clubs' in card:
@@ -57,7 +56,6 @@ class Game:
                 elif 'Diamonds' in card:
                     card = card.replace('_Diamonds', ':diamonds:Diamonds')
                 embed.add_field(name='[{}]'.format(i), value=card, inline=True)
-                # embed.add_field(name='[{}]'.format(i), value=Game.card_esthetic(card), inline=True)
                 i += 1
             await self.client.send_message(self.player, embed=embed)
 
@@ -196,7 +194,7 @@ class Game:
 
                 await self.client.send_message(player, 'Card chosen')
 
-                check_card_msg = await self.client.send_message(self.god, 'Does this card fit the sequence ? : {}'.format(chosen_card))
+                check_card_msg = await self.client.send_message(self.god, 'Does this card fit the sequence ? : {}'.format(self.card_esthetic(chosen_card)))
                 await self.client.add_reaction(check_card_msg, '☑')
                 await self.client.add_reaction(check_card_msg, '❎')
                 answer_msg = await self.client.wait_for_reaction(emoji=['☑', '❎'], user=self.god)
