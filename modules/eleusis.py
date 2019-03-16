@@ -194,7 +194,7 @@ class Game:
 
                 await self.client.send_message(player, 'Card chosen')
 
-                check_card_msg = await self.client.send_message(self.god, 'Does this card fit the sequence ? : {}'.format(self.card_esthetic(chosen_card)))
+                check_card_msg = await self.client.send_message(self.god, 'Does this card fit the sequence ? :\n{}'.format(self.card_esthetic(chosen_card)))
                 await self.client.add_reaction(check_card_msg, '☑')
                 await self.client.add_reaction(check_card_msg, '❎')
                 answer_msg = await self.client.wait_for_reaction(emoji=['☑', '❎'], user=self.god)
