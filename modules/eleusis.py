@@ -214,8 +214,8 @@ class Game:
 
                 if len(self.players_obj[player.id].deck) == 0:
                     await self.end_game(player)
-                else:
-                    await self.process_turn()
+
+        await self.process_turn()
 
 
     async def end_game(self, player):
