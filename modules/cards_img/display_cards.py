@@ -38,8 +38,6 @@ def get_position(row, column, card_index = None, cards_number = None):
         position1 = (int(column*(horizontal_gap+card_width)  + horizontal_gap + ((cards_number - card_index - 1)*cards_disparity / (cards_number - 1))), row*(vertical_gap2+card_height) + vertical_gap1)
         position2 = (position1[0] + card_width, position1[1] + card_height)
 
-    print('position of the card:')
-    print(position1+position2)
     return position1 + position2
 
 #get the current round of the game
@@ -71,11 +69,8 @@ def create_game_image(up_row, middle_row, down_row):
 
     current_round = get_current_round(up_row[-1], middle_row[-1], down_row[-1])
 
-    print('drawing middle row:\n')
     stack = paste_middle_row(middle_row, current_round, stack)
-    print('drawing down row:\n')
     stack = paste_border_row(down_row, 2, current_round, stack)
-    print('drawing up row:\n')
     stack = paste_border_row(up_row, 0, current_round, stack)
     stack.save(get_folder() + '/temp.png')
 
