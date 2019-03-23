@@ -9,13 +9,13 @@ from discord.ext import commands
 # DEVELOPER_KEY = "AIzaSyC7Zxm1fWNZJOiw_CNIuB5s99x9DxKz0ao"
 # YOUTUBE_API_SERVICE_NAME = "youtube"
 # YOUTUBE_API_VERSION = "v3"
-#
-#
+
+
 # def youtube_search(q, max_results=5,order="relevance", token=None, location=None, location_radius=None):
-#
+
 #   youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
 #     developerKey=DEVELOPER_KEY)
-#
+
 #   search_response = youtube.search().list(
 #     q=q,
 #     type="video",
@@ -25,13 +25,13 @@ from discord.ext import commands
 #     maxResults=max_results,
 #     location=location,
 #     locationRadius=location_radius
-#
+
 #   ).execute()
-#
-#
-#
+
+
+
 #   videos = []
-#
+
 #   for search_result in search_response.get("items", []):
 #     if search_result["id"]["kind"] == "youtube#video":
 #       videos.append(search_result)
@@ -41,20 +41,20 @@ from discord.ext import commands
 #   except Exception as e:
 #       nexttok = "last_page"
 #       return(nexttok, videos)
-#
-#
-#
+
+
+
 # def grab_video(keyword):
-#
+
 #     video_dict = {'youID':[], 'title':[]}
 #     result = youtube_search(keyword)
 #     videos = result[1]
-#
+
 #     for video in videos:
 #         video_dict['youID'].append(video['id']['videoId'])
 #         video_dict['title'].append(video['snippet']['title'])
 #     return video_dict
-#
+
 # print(grab_video('hollow knight'))
 
 
