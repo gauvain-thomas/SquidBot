@@ -48,7 +48,15 @@ class Game:
             embed=discord.Embed(title="Your deck :")
             i = 0
             for card in self.deck:
-                embed.add_field(name='[{}]'.format(i), value=self.deck[i], inline=True)
+                if 'Spades' in card:
+                    card = card.replace('_Spades', ':spades:Spades')
+                elif 'Clubs' in card:
+                    card = card.replace('_Clubs', ':clubs:Clubs')
+                elif 'Hearts' in card:
+                    card = card.replace('_Hearts', ':hearts:Hearts')
+                elif 'Diamonds' in card:
+                    card = card.replace('_Diamonds', ':diamonds:Diamonds')
+                embed.add_field(name='[{}]'.format(i), value=card, inline=True)
                 i += 1
             await self.client.send_message(self.player, embed=embed)
 
@@ -58,9 +66,9 @@ class Game:
             sort_value = 0
             card_properties = card.split('_')
 
-            if card_properties[1] == "Clubs":
+            if card_properties[1] == "Hearts":
                 sort_value += 13
-            elif card_properties[1] == "Hearts":
+            elif card_properties[1] == "Clubs":
                 sort_value += 26
             elif card_properties[1] == "Diamonds":
                 sort_value += 39
@@ -132,7 +140,7 @@ class Game:
     async def show_cards(self):
         display_cards.create_game_image(self.up_row, self.middle_row, self.down_row)
         for player in self.players:
-            await self.client.send_file(player, r"/home/pi/Bot/SquidBot/modules/cards_img/temp.png", filename="Cards.png",
+            await self.client.send_file(player, r"/home/pi/Bot2/SquidBot/modules/cards_img/temp.png", filename="Cards.png",
             content='Cards are : {}\nRejected cards are : {}'.format(self.middle_row, self.down_row))
 
     async def show_decks(self):
@@ -150,19 +158,19 @@ class Game:
 
     def count_score(self):
         num_cards = []
+        max_points = 0
         for player in self.players:
             num_cards.append(len(self.players_obj[player.id].deck))
 
-        max = max(num_cards)
+        max_points = max(num_cards)
 
         for player in self.players:
-            self.players_obj[player].score += max - len(self.players_obj[player].deck)
+            self.players_obj[player.id].score += max_points - len(self.players_obj[player.id].deck)
 
     async def process_turn(self):
-        await self.show_cards()
-
         for player in self.players:
             if not self.players_obj[player.id].is_god():
+                await self.show_cards()
                 chosen_card = ''
                 while not (chosen_card in self.cards and chosen_card in self.players_obj[player.id].deck):
                     await self.client.send_message(player, 'Choose a card...')
@@ -186,36 +194,48 @@ class Game:
                     print("Card could not be removed")
 
                 await self.client.send_message(player, 'Card chosen')
+
+                check_card_msg = await self.client.send_message(self.god, 'Does this card fit the sequence ? :\n{}'.format(self.card_esthetic(chosen_card)))
+                await self.client.add_reaction(check_card_msg, '☑')
+                await self.client.add_reaction(check_card_msg, '❎')
+                answer_msg = await self.client.wait_for_reaction(emoji=['☑', '❎'], user=self.god)
+
+                if answer_msg.reaction.emoji == '☑':
+                    self.turn += 1
+                    self.middle_row.append((self.turn, chosen_card))
+                elif answer_msg.reaction.emoji == '❎':
+                    self.down_row.append((self.turn, chosen_card))
+                    self.players_obj[player.id].add_card(2)
+                # else:
+                #     await self.client.send_message(self.god,
+                #     'Sorry, your message was not fully understood, please try again')
+                #     answer = await self.client.wait_for_message(author=self.god)
+
                 await self.players_obj[player.id].show_deck()
-
-                await self.client.send_message(self.god, 'Does this card fit the sequence ? (yes, no): {}'.format(chosen_card))
-                answer = await self.client.wait_for_message(author=self.god)
-                answer_message = ''
-
-                while not (answer_message == 'yes' or answer_message == 'no'):
-                    answer_message = answer.content
-                    if answer_message == 'yes':
-                        self.turn += 1
-                        self.middle_row.append((self.turn, chosen_card))
-                    elif answer_message == 'no':
-                        self.down_row.append((self.turn, chosen_card))
-                        self.players_obj[player.id].add_card(1)
-                    else:
-                        await self.client.send_message(self.god,
-                        'Sorry, your message was not fully understood, please try again')
-                        answer = await self.client.wait_for_message(author=self.god)
-
 
                 if len(self.players_obj[player.id].deck) == 0:
                     await self.end_game(player)
 
-
         await self.process_turn()
+
 
     async def end_game(self, player):
         await self.client.send_message(self.channel, '{} has won ! Rules were : ```{}```'.format(player.name, self.rules))
         self.count_score()
         await self.start()
+
+    def card_esthetic(self, card):
+        if 'Spades' in card:
+            card = card.replace('_Spades', ':spades:Spades')
+        elif 'Clubs' in card:
+            card = card.replace('_Clubs', ':clubs:Clubs')
+        elif 'Hearts' in card:
+            card = card.replace('_Hearts', ':hearts:Hearts')
+        elif 'Diamonds' in card:
+            card = card.replace('_Diamonds', ':diamonds:Diamonds')
+
+        return card
+
 
 
 
