@@ -55,7 +55,7 @@ def grab_video(keyword):
         video_dict['title'].append(video['snippet']['title'])
     return video_dict
 
-print(grab_video('hollow knight'))
+# print(grab_video('hollow knight'))
 
 
 
@@ -128,8 +128,8 @@ class Voice:
 
 
   @commands.command(pass_context=True)
-  async def youtube(self, ctx, arg):
-    search = youtube_search(arg)
+  async def youtube(self, ctx, args):
+    search = grab_video(args)
     await self.client.say(search)
 
 
