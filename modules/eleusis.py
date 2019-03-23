@@ -41,6 +41,7 @@ class Game:
             else:
                 return False
 
+
         async def show_deck(self):
             self.deck.sort(key=self.sort_index)
             # await self.client.send_message(self.player, 'Your deck : {}'.format(self.deck))
