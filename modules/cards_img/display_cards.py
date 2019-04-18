@@ -153,4 +153,4 @@ if __name__ == '__main__':
     middle_row = [(0, '3_Spades'),  (1, '5_Hearts')]
     down_row = [(0, '3_Spades'),]
     # print(get_folder())
-    create_image(up_row, middle_row, down_row)
+    create_game_image(up_row, middle_row, down_row)
