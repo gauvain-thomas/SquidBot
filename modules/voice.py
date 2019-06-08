@@ -46,17 +46,9 @@ def youtube_search(q, max_results=5,order="relevance", token=None, location=None
 
 def grab_video(keyword):
 
-    video_dict = {'youID':[], 'title':[]}
-    result = youtube_search(keyword)
+    result = youtube_search(keyword ,max_results = 1)
     videos = result[1]
-
-    for video in videos:
-        video_dict['youID'].append(video['id']['videoId'])
-        video_dict['title'].append(video['snippet']['title'])
-    return video_dict
-
-# print(grab_video('hollow knight'))
-
+    return "https://youtu.be/"+videos[0]['id']['videoId']
 
 
 players = {}
@@ -104,6 +96,15 @@ class Voice:
     server = ctx.message.server
     voice_client = self.client.voice_client_in(server)
     player = await voice_client.create_ytdl_player(url)
+    players[server.id] = player
+    player.start()
+    await self.client.say(":musical_note: Now playing : {} :musical_note:".format(url))
+
+@commands.command(pass_context=True)
+async def search(self, ctx, keyword):
+    server = ctx.message.server
+    voice_client = self.client.voice_client_in(server)
+    player = await voice_client.create_ytdl_player(grab_video(keyword))
     players[server.id] = player
     player.start()
     await self.client.say(":musical_note: Now playing : {} :musical_note:".format(url))
