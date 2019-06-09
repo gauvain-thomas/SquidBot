@@ -101,8 +101,6 @@ class Voice:
 
   @commands.command(pass_context=True)
   async def search(self, ctx, *args):
-    print(ctx.message)
-    print(args)
     server = ctx.message.server
     voice_client = self.client.voice_client_in(server)
     url = grab_video(args)
