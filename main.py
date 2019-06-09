@@ -55,7 +55,7 @@ async def on_message(message):
 #     print(event)
 #     print(args)
 #     print(kwargs)
-# 
+#
 # @client.event
 # async def on_command_error(ctx, error):
 #     print('ERRRRROOOOOOOOOOOOORRRRRRRRRRRRRR!!!!!!!!!!!!!!')

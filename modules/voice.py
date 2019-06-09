@@ -31,7 +31,6 @@ def youtube_search(q, max_results=5,order="relevance", token=None, location=None
 
 
   videos = []
-
   for search_result in search_response.get("items", []):
     if search_result["id"]["kind"] == "youtube#video":
       videos.append(search_result)
@@ -73,7 +72,6 @@ class Voice:
 
 
 
-
 #
   #Voice commands
 
@@ -93,6 +91,7 @@ class Voice:
 
   @commands.command(pass_context=True)
   async def play(self, ctx, url):
+
     server = ctx.message.server
     voice_client = self.client.voice_client_in(server)
     player = await voice_client.create_ytdl_player(url)
@@ -100,11 +99,14 @@ class Voice:
     player.start()
     await self.client.say(":musical_note: Now playing : {} :musical_note:".format(url))
 
-@commands.command(pass_context=True)
-async def search(self, ctx, keyword):
+  @commands.command(pass_context=True)
+  async def search(self, ctx, *args):
+    print(ctx.message)
+    print(args)
     server = ctx.message.server
     voice_client = self.client.voice_client_in(server)
-    player = await voice_client.create_ytdl_player(grab_video(keyword))
+    url = grab_video(args)
+    player = await voice_client.create_ytdl_player(url)
     players[server.id] = player
     player.start()
     await self.client.say(":musical_note: Now playing : {} :musical_note:".format(url))
