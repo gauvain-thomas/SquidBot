@@ -80,7 +80,7 @@ class Voice:
   @commands.command(pass_context=True)
   async def join(self, ctx):
     channel = ctx.message.author.voice.voice_channel
-    await self.client.join_voice_channel(channel)
+    await self.client.connect(channel)
     await self.client.say(":microphone: Joined '{}' voice channel :microphone:".format(channel.name))
 
   @commands.command(pass_context=True)
